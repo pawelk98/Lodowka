@@ -1,0 +1,13 @@
+        LodowkaDatabase db = Room.databaseBuilder(getApplicationContext(),
+                LodowkaDatabase.class, "B1").allowMainThreadQueries().build();
+        //utworzenie bazy danych o nazwie "B1"
+
+        Produkt p1 = new Produkt("test",1,2);
+        Produkt p2;
+        //utworzenie obiektu typu Produkt
+
+        db.produktDao().insert(p1);
+        //dodanie jednego produktu do bazy (pozosta³e komendy zobacz w klasie ProduktDao)
+
+        p2 = db.produktDao().loadId(1);
+        //odczytanie z bazy produktu o id = 1 i przypisanie do p2
