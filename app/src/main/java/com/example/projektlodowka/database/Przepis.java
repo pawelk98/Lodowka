@@ -12,16 +12,13 @@ public class Przepis {
     private int id;
 
     @NonNull
-    private String nazwa;
+    private String nazwa = "BRAK NAZWY";
 
     private int czas;
 
     private String opis;
 
 
-    public Przepis () {
-        nazwa = "BRAK NAZWY";
-    }
 
     public Przepis (@NonNull String nazwa, int czas, String opis) {
         this.nazwa = nazwa;

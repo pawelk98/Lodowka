@@ -12,16 +12,12 @@ public class Produkt {
     private int id;
 
     @NonNull
-    private String nazwa;
+    private String nazwa = "BRAK NAZWY";
 
     private int typ;
 
     private int ilosc;
 
-
-    public Produkt() {
-        nazwa = "BRAK NAZWY";
-    }
 
     public Produkt(@NonNull String nazwa, int typ, int ilosc) {
         this.nazwa = nazwa;

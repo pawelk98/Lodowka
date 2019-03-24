@@ -2,12 +2,14 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 
 @Entity(foreignKeys = @ForeignKey(entity = Przepis.class, parentColumns = "id",
-        childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE))
+        childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE),
+        indices = @Index("idPrzepisu"))
 
 public class Historia {
 
@@ -17,12 +19,9 @@ public class Historia {
     private int idPrzepisu;
 
     @NonNull
-    private String data;
+    private String data = "20990101";
 
 
-    public Historia() {
-        this.data = "20990101";
-    }
 
     public Historia(int idPrzepisu, @NonNull String data) {
         this.idPrzepisu = idPrzepisu;

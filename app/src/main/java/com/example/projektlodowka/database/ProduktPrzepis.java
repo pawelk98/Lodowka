@@ -2,12 +2,14 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 
 @Entity(foreignKeys = {
         @ForeignKey(entity = Przepis.class, parentColumns = "id", childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Produkt.class, parentColumns = "id", childColumns = "idProduktu", onDelete = ForeignKey.CASCADE)})
+        @ForeignKey(entity = Produkt.class, parentColumns = "id", childColumns = "idProduktu", onDelete = ForeignKey.CASCADE)},
+        indices = {@Index("idProduktu"), @Index("idPrzepisu")})
 
 public class ProduktPrzepis {
 

@@ -2,12 +2,14 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 
 @Entity(foreignKeys = @ForeignKey(entity = Przepis.class, parentColumns = "id",
-        childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE))
+        childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE),
+        indices = @Index("idPrzepisu"))
 
 public class Minutnik {
 
@@ -15,16 +17,13 @@ public class Minutnik {
     private int id;
 
     @NonNull
-    private String nazwa;
+    private String nazwa = "BRAK NAZWY";
 
     private int idPrzepisu;
 
     private int czas;
 
 
-    public Minutnik() {
-        nazwa = "BRAK NAZWY";
-    }
 
     public Minutnik(@NonNull String nazwa, int idPrzepisu, int czas) {
         this.nazwa = nazwa;
