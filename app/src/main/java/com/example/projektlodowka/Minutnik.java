@@ -14,6 +14,9 @@ public class Minutnik {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @NonNull
+    private String nazwa;
+
     private int idPrzepisu;
 
     private int czas;
@@ -25,6 +28,15 @@ public class Minutnik {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @NonNull
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(@NonNull String nazwa) {
+        this.nazwa = nazwa;
     }
 
     public int getIdPrzepisu() {

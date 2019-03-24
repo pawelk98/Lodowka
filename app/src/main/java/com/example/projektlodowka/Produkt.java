@@ -20,7 +20,7 @@ public class Produkt {
     private int ilosc;
 
 
-    public Produkt(String nazwa, int typ, int ilosc) {
+    public Produkt(@NonNull String nazwa, int typ, int ilosc) {
         this.nazwa = nazwa;
         this.typ = typ;
         this.ilosc = ilosc;
@@ -32,9 +32,10 @@ public class Produkt {
 
     public void setId(int id) { this.id = id; }
 
+    @NonNull
     public String getNazwa() { return nazwa; }
 
-    public void setNazwa(String nazwa) { this.nazwa = nazwa; }
+    public void setNazwa(@NonNull String nazwa) { this.nazwa = nazwa; }
 
     public int getIlosc() { return ilosc; }
 

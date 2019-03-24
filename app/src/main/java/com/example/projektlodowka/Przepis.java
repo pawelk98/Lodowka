@@ -14,17 +14,14 @@ public class Przepis {
     @NonNull
     private String nazwa;
 
-    private int skladniki;
-
     private int czas;
 
     private String opis;
 
     private int idMinutnik;
 
-    public Przepis (String nazwa, int skladniki, int czas, String opis, int idMinutnik) {
+    public Przepis (@NonNull String nazwa, int czas, String opis, int idMinutnik) {
         this.nazwa = nazwa;
-        this.skladniki = skladniki;
         this.czas = czas;
         this.opis = opis;
         this.idMinutnik = idMinutnik;
@@ -38,20 +35,13 @@ public class Przepis {
         this.id = id;
     }
 
+    @NonNull
     public String getNazwa() {
         return nazwa;
     }
 
-    public void setNazwa(String nazwa) {
+    public void setNazwa(@NonNull String nazwa) {
         this.nazwa = nazwa;
-    }
-
-    public int getSkladniki() {
-        return skladniki;
-    }
-
-    public void setSkladniki(int skladniki) {
-        this.skladniki = skladniki;
     }
 
     public int getCzas() {

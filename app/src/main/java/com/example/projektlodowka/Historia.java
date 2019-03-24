@@ -19,9 +19,6 @@ public class Historia {
     @NonNull
     private String data;
 
-    @NonNull
-    private String godzina;
-
 
     public int getId() {
         return id;
@@ -46,14 +43,5 @@ public class Historia {
 
     public void setData(@NonNull String data) {
         this.data = data;
-    }
-
-    @NonNull
-    public String getGodzina() {
-        return godzina;
-    }
-
-    public void setGodzina(@NonNull String godzina) {
-        this.godzina = godzina;
     }
 }

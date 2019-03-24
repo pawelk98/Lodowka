@@ -7,6 +7,8 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
+
 @Dao
 public interface ProduktDao {
 
@@ -20,17 +22,17 @@ public interface ProduktDao {
     void delete(Produkt... produkt);
 
     @Query("SELECT * FROM Produkt")
-    Produkt[] loadAll();
+    List<Produkt> loadAll();
 
     @Query("SELECT * FROM Produkt WHERE id = :id")
     Produkt loadId(int id);
 
     @Query("SELECT * FROM Produkt WHERE nazwa = :nazwa")
-    Produkt loadNazwa(String nazwa);
+    List<Produkt> loadNazwa(String nazwa);
 
     @Query("SELECT * FROM Produkt WHERE ilosc = :ilosc")
-    Produkt loadIlosc(int ilosc);
+    List<Produkt> loadIlosc(int ilosc);
 
     @Query("SELECT * FROM Produkt WHERE typ = :typ")
-    Produkt loadTyp(int typ);
+    List<Produkt> loadTyp(int typ);
 }
