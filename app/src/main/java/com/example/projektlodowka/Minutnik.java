@@ -22,6 +22,16 @@ public class Minutnik {
     private int czas;
 
 
+    public Minutnik() {
+        nazwa = "BRAK NAZWY";
+    }
+
+    public Minutnik(@NonNull String nazwa, int idPrzepisu, int czas) {
+        this.nazwa = nazwa;
+        this.idPrzepisu = idPrzepisu;
+        this.czas = czas;
+    }
+
     public int getId() {
         return id;
     }

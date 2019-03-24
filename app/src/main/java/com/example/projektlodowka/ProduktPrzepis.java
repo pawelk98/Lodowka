@@ -3,7 +3,6 @@ package com.example.projektlodowka;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 
 @Entity(foreignKeys = {
@@ -20,6 +19,13 @@ public class ProduktPrzepis {
     private int idProduktu;
 
     private boolean opcjonalny;
+
+
+    public ProduktPrzepis(int idPrzepisu, int idProduktu, boolean opcjonalny) {
+        this.idPrzepisu = idPrzepisu;
+        this.idProduktu = idProduktu;
+        this.opcjonalny = opcjonalny;
+    }
 
     public int getId() {
         return id;

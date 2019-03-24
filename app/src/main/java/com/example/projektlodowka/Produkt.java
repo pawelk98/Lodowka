@@ -3,7 +3,6 @@ package com.example.projektlodowka;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
 
 
 @Entity
@@ -19,6 +18,10 @@ public class Produkt {
 
     private int ilosc;
 
+
+    public Produkt() {
+        nazwa = "BRAK NAZWY";
+    }
 
     public Produkt(@NonNull String nazwa, int typ, int ilosc) {
         this.nazwa = nazwa;

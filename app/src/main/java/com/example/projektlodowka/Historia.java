@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 
 public class Historia {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private int idPrzepisu;
@@ -19,6 +19,15 @@ public class Historia {
     @NonNull
     private String data;
 
+
+    public Historia() {
+        this.data = "20990101";
+    }
+
+    public Historia(int idPrzepisu, @NonNull String data) {
+        this.idPrzepisu = idPrzepisu;
+        this.data = data;
+    }
 
     public int getId() {
         return id;
@@ -37,9 +46,7 @@ public class Historia {
     }
 
     @NonNull
-    public String getData() {
-        return data;
-    }
+    public String getData() { return data; }
 
     public void setData(@NonNull String data) {
         this.data = data;

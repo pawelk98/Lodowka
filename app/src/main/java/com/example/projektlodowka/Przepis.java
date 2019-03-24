@@ -18,13 +18,15 @@ public class Przepis {
 
     private String opis;
 
-    private int idMinutnik;
 
-    public Przepis (@NonNull String nazwa, int czas, String opis, int idMinutnik) {
+    public Przepis () {
+        nazwa = "BRAK NAZWY";
+    }
+
+    public Przepis (@NonNull String nazwa, int czas, String opis) {
         this.nazwa = nazwa;
         this.czas = czas;
         this.opis = opis;
-        this.idMinutnik = idMinutnik;
     }
 
     public int getId() {
@@ -58,11 +60,5 @@ public class Przepis {
 
     public void setOpis(String opis) {
         this.opis = opis;
-    }
-
-    public int getIdMinutnik() { return idMinutnik; }
-
-    public void setIdMinutnik(int minutnik) {
-        this.idMinutnik = minutnik;
     }
 }
