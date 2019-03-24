@@ -2,6 +2,7 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ public class Historia {
     private String data = "20990101";
 
 
+    @Ignore
     public Historia() {}
 
     public Historia(int idPrzepisu, @NonNull String data) {

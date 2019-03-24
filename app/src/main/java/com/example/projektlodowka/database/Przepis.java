@@ -1,6 +1,7 @@
 package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -19,6 +20,7 @@ public class Przepis {
     private String opis;
 
 
+    @Ignore
     public Przepis() {}
 
     public Przepis (@NonNull String nazwa, int czas, String opis) {

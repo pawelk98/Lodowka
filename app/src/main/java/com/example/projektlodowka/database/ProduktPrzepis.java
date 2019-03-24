@@ -2,6 +2,7 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -23,6 +24,7 @@ public class ProduktPrzepis {
     private boolean opcjonalny;
 
 
+    @Ignore
     public ProduktPrzepis() {}
 
     public ProduktPrzepis(int idPrzepisu, int idProduktu, boolean opcjonalny) {
