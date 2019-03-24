@@ -2,6 +2,7 @@ package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ public class Minutnik {
     private int czas;
 
 
+    @Ignore
     public Minutnik() {}
 
     public Minutnik(@NonNull String nazwa, int idPrzepisu, int czas) {
