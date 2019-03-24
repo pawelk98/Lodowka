@@ -1,4 +1,4 @@
-package com.example.projektlodowka;
+package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

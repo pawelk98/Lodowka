@@ -1,15 +1,12 @@
-package com.example.projektlodowka;
+package com.example.projektlodowka.database;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 
-@Entity(foreignKeys = @ForeignKey(entity = Przepis.class, parentColumns = "id",
-        childColumns = "idPrzepisu", onDelete = ForeignKey.CASCADE))
-
-public class Minutnik {
+@Entity
+public class Przepis {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -17,19 +14,19 @@ public class Minutnik {
     @NonNull
     private String nazwa;
 
-    private int idPrzepisu;
-
     private int czas;
 
+    private String opis;
 
-    public Minutnik() {
+
+    public Przepis () {
         nazwa = "BRAK NAZWY";
     }
 
-    public Minutnik(@NonNull String nazwa, int idPrzepisu, int czas) {
+    public Przepis (@NonNull String nazwa, int czas, String opis) {
         this.nazwa = nazwa;
-        this.idPrzepisu = idPrzepisu;
         this.czas = czas;
+        this.opis = opis;
     }
 
     public int getId() {
@@ -49,19 +46,19 @@ public class Minutnik {
         this.nazwa = nazwa;
     }
 
-    public int getIdPrzepisu() {
-        return idPrzepisu;
-    }
-
-    public void setIdPrzepisu(int idPrzepisu) {
-        this.idPrzepisu = idPrzepisu;
-    }
-
     public int getCzas() {
         return czas;
     }
 
     public void setCzas(int czas) {
         this.czas = czas;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
     }
 }
