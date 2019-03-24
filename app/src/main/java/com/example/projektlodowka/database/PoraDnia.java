@@ -17,6 +17,9 @@ public class PoraDnia {
 
     private int pora;
 
+
+    public PoraDnia() {}
+
     public PoraDnia(int idPrzepisu, int pora) {
         this.idPrzepisu = idPrzepisu;
         this.pora = pora;
