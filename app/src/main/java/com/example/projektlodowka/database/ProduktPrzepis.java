@@ -23,6 +23,8 @@ public class ProduktPrzepis {
     private boolean opcjonalny;
 
 
+    public ProduktPrzepis() {}
+
     public ProduktPrzepis(int idPrzepisu, int idProduktu, boolean opcjonalny) {
         this.idPrzepisu = idPrzepisu;
         this.idProduktu = idProduktu;

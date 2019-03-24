@@ -22,6 +22,7 @@ public class Historia {
     private String data = "20990101";
 
 
+    public Historia() {}
 
     public Historia(int idPrzepisu, @NonNull String data) {
         this.idPrzepisu = idPrzepisu;

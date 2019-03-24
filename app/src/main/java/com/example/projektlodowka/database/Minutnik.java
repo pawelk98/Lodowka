@@ -24,6 +24,7 @@ public class Minutnik {
     private int czas;
 
 
+    public Minutnik() {}
 
     public Minutnik(@NonNull String nazwa, int idPrzepisu, int czas) {
         this.nazwa = nazwa;

@@ -19,6 +19,7 @@ public class Przepis {
     private String opis;
 
 
+    public Przepis() {}
 
     public Przepis (@NonNull String nazwa, int czas, String opis) {
         this.nazwa = nazwa;

@@ -18,6 +18,7 @@ public class Produkt {
 
     private int ilosc;
 
+    public Produkt() {}
 
     public Produkt(@NonNull String nazwa, int typ, int ilosc) {
         this.nazwa = nazwa;
