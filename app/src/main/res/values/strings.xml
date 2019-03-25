@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ProjektLodowka</string>
+    <string name="app_name">eFridge</string>
     <string name="produkty">Produkty</string>
     <string name="przepisy">Przepisy</string>
     <string name="historia">Historia</string>
     <string name="ustawienia">Ustawienia</string>
-    <string name="header">Naglowek nawigatora</string>
+    <string name="header">Twoja kieszonkowa lodówka</string>
 </resources>

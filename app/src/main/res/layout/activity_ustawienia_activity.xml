@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".produkty_activity">
-
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
 
     <TextView
         android:id="@+id/textView"
