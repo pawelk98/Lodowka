@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/efrigde"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ustawienia_activity"></activity>
+        <activity android:name=".produkty_list_adapter"></activity>
+        <activity android:name=".ustawienia_activity" />
         <activity android:name=".historia_activity" />
         <activity android:name=".przepisy_activity" />
         <activity android:name=".produkty_activity" />
