@@ -5,4 +5,7 @@
     <string name="historia">Historia</string>
     <string name="ustawienia">Ustawienia</string>
     <string name="header">Twoja kieszonkowa lodówka</string>
+    <string name="nazwa">Nazwa</string>
+    <string name="ilosc">Ilość</string>
+    <string name="typ">Typ</string>
 </resources>
