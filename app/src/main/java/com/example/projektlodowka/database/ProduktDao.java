@@ -24,6 +24,9 @@ public interface ProduktDao {
     @Query("SELECT * FROM Produkt")
     List<Produkt> loadAll();
 
+    @Query("SELECT * FROM Produkt ORDER BY nazwa")
+    List<Produkt> loadAllOrderNazwa();
+
     @Query("SELECT * FROM Produkt WHERE id = :id")
     Produkt loadId(int id);
 
