@@ -24,6 +24,9 @@ public interface PrzepisDao {
     @Query("SELECT * FROM Przepis")
     List<Przepis> loadAll();
 
+    @Query("SELECT * FROM Przepis ORDER BY nazwa")
+    List<Przepis> loadAllOrderNazwa();
+
     @Query("SELECT * FROM Przepis WHERE id = :id")
     Przepis loadId(int id);
 

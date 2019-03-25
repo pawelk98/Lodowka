@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projektlodowka.database.BazaDanych;
@@ -24,6 +25,7 @@ public class produkty_activity extends AppCompatActivity {
     EditText produktIlosc;
     EditText produktTyp;
     Button produktDodaj;
+    Spinner produktWybierz;
 
     Toast produktDodano;
 
@@ -42,10 +44,10 @@ public class produkty_activity extends AppCompatActivity {
         produktIlosc = findViewById(R.id.produktIloscEditText);
         produktTyp = findViewById(R.id.produktTypEditText);
         produktDodaj = findViewById(R.id.produktDodajButton);
-        produktDodano = Toast.makeText(getApplicationContext(), "Dodano produkt", Toast.LENGTH_SHORT);
-
         produktyLista = findViewById(R.id.produktyLista);
         setListView();
+
+        produktDodano = Toast.makeText(getApplicationContext(), "Dodano produkt", Toast.LENGTH_SHORT);
 
         produktDodaj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +72,7 @@ public class produkty_activity extends AppCompatActivity {
     }
 
     void setListView() {
-        List<Produkt> p = baza.produktDao().loadAll();
+        List<Produkt> p = baza.produktDao().loadAllOrderNazwa();
         produktyAdapter = new ProduktyAdapter(getApplicationContext(), p);
         produktyLista.setAdapter(produktyAdapter);
     }
