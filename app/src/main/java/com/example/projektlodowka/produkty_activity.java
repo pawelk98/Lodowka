@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projektlodowka.database.BazaDanych;
@@ -28,7 +27,6 @@ public class produkty_activity extends AppCompatActivity {
     EditText produktIlosc;
     EditText produktTyp;
     Button produktDodaj;
-    Spinner produktWybierz;
 
     Toast produktDodano;
 
@@ -81,8 +79,9 @@ public class produkty_activity extends AppCompatActivity {
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        //baza.produktDao().delete(produktyLista.getId()); <- moja mizerna proba usuniecia
-                        //DELETE HERE
+                        Produkt p = produktyAdapter.getProdukt(position);
+                        baza.produktDao().delete(p);
+                        setListView();
                         Toast.makeText(produkty_activity.this, "Usunalbys ale nie dzialczy XD",Toast.LENGTH_SHORT).show();
                         return true;
                     }

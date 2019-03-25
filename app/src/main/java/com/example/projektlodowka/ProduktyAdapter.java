@@ -30,6 +30,10 @@ public class ProduktyAdapter extends BaseAdapter {
         return null;
     }
 
+    public Produkt getProdukt(int i) {
+        return produkt.get(i);
+    }
+
     @Override
     public long getItemId(int i) {
         return 0;
