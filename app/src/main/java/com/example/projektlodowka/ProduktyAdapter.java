@@ -42,9 +42,44 @@ public class ProduktyAdapter extends BaseAdapter {
         TextView ilosc = view.findViewById(R.id.produktIloscLista);
         TextView typ = view.findViewById(R.id.produktTypLista);
 
+        int iloscMniejsza = produkt.get(i).getIlosc();
+        float iloscWieksza = (float)iloscMniejsza/1000;
+
         nazwa.setText(produkt.get(i).getNazwa());
-        ilosc.setText(String.valueOf(produkt.get(i).getIlosc()));
-        typ.setText(String.valueOf(produkt.get(i).getTyp()));
+
+        switch (produkt.get(i).getTyp()) {
+            case 1:
+                if(iloscMniejsza < 100) {
+                    ilosc.setText(String.valueOf(iloscMniejsza));
+                    typ.setText("g");
+                }
+                else {
+                    ilosc.setText(String.valueOf(iloscWieksza));
+                    typ.setText("kg");
+                }
+                break;
+
+            case 2:
+                if (iloscMniejsza < 100) {
+                    ilosc.setText(String.valueOf(iloscMniejsza));
+                    typ.setText("ml");
+                }
+                else {
+                    ilosc.setText(String.valueOf(iloscWieksza));
+                    typ.setText("l");
+                }
+                break;
+
+            case 3:
+                ilosc.setText(String.valueOf(iloscWieksza));
+                typ.setText("szt");
+                break;
+
+                default:
+                    ilosc.setText(String.valueOf(iloscMniejsza));
+                    typ.setText(String.valueOf(produkt.get(i).getTyp()));
+        }
+
         return view;
     }
 
