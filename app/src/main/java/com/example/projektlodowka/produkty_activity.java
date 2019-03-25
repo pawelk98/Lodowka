@@ -82,7 +82,7 @@ public class produkty_activity extends AppCompatActivity {
                         Produkt p = produktyAdapter.getProdukt(position);
                         baza.produktDao().delete(p);
                         setListView();
-                        Toast.makeText(produkty_activity.this, "Usunalbys ale nie dzialczy XD",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(produkty_activity.this, "Pomyślnie usunięto",Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
