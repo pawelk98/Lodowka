@@ -12,4 +12,6 @@ public abstract class BazaDanych extends RoomDatabase {
     public abstract MinutnikDao minutnikDao();
     public abstract HistoriaDao historiaDao();
     public abstract PoraDniaDao poraDniaDao();
+
 }
+

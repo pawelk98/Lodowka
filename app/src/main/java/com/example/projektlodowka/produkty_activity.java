@@ -4,10 +4,13 @@ package com.example.projektlodowka;
 import android.arch.persistence.room.Room;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,6 +34,7 @@ public class produkty_activity extends AppCompatActivity {
 
     ProduktyAdapter produktyAdapter;
     ListView produktyLista;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,23 @@ public class produkty_activity extends AppCompatActivity {
                     produktIlosc.setText("");
                     produktDodano.show();
                 }
+            }
+        });
+        produktyLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                PopupMenu popup = new PopupMenu(produkty_activity.this, produktyLista);
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        //baza.produktDao().delete(produktyLista.getId()); <- moja mizerna proba usuniecia
+                        //DELETE HERE
+                        Toast.makeText(produkty_activity.this, "Usunalbys ale nie dzialczy XD",Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+                popup.show();
             }
         });
     }
