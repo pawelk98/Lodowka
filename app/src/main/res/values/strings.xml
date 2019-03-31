@@ -9,4 +9,8 @@
     <string name="ilosc">Ilość</string>
     <string name="typ">Typ</string>
     <string name="usun">Usun</string>
+    <string name="start">Start</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
