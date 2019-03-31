@@ -2,24 +2,81 @@ package com.example.projektlodowka;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
+import android.support.v4.app.Fragment;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
+    private BottomNavigationView mMainNav;
+    private FrameLayout mMainFrame;
+
+    private StartFragment startFragment;
+    private HistoryFragment historyFragment;
+    private ProductFragment productFragment;
+    private RecipeFragment recipeFragment;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
+        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+
+        startFragment = new StartFragment();
+        historyFragment = new HistoryFragment();
+        productFragment = new ProductFragment();
+        recipeFragment = new RecipeFragment();
+
+        mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_start :
+                        setFragment(startFragment);
+                        return true;
+
+                    case R.id.nav_historia :
+                        setFragment(historyFragment);
+                        return true;
+
+                    case R.id.nav_produkty :
+                        setFragment(productFragment);
+                        return true;
+
+                    case R.id.nav_przepisy :
+                        setFragment(recipeFragment);
+                        return true;
+
+                    default:
+                        return false;
+
+                }
+
+
+
+
+
+
+
+            }
+        });
 
 
 
@@ -77,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
          */
 
 
+    }
+
+    private void setFragment(Fragment fragment) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.commit();
     }
 
     @Override
