@@ -1,5 +1,6 @@
 package com.example.projektlodowka.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -22,7 +23,7 @@ public interface MinutnikDao {
     void delete(Minutnik... minutnik);
 
     @Query("SELECT * FROM Minutnik")
-    List<Minutnik> loadAll();
+    LiveData<List<Minutnik>> loadAll();
 
     @Query("SELECT * FROM Minutnik WHERE id = :id")
     Minutnik loadId(int id);

@@ -1,5 +1,6 @@
 package com.example.projektlodowka.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -22,7 +23,7 @@ public interface PrzepisDao {
     void delete(Przepis... przepis);
 
     @Query("SELECT * FROM Przepis")
-    List<Przepis> loadAll();
+    LiveData<List<Przepis>> loadAll();
 
     @Query("SELECT * FROM Przepis ORDER BY nazwa")
     List<Przepis> loadAllOrderNazwa();
