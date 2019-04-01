@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/efrigde"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".settings"></activity>
         <activity android:name=".ustawienia_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
