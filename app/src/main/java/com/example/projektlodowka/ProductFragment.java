@@ -28,6 +28,7 @@ public class ProductFragment extends Fragment {
 
     private ViewModel viewModel;
     GridView produktyGridView;
+    GridViewProduktyAdapter gridViewProduktyAdapter;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -47,7 +48,7 @@ public class ProductFragment extends Fragment {
 
         produktyGridView = view.findViewById(R.id.gridViewProdukty);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-        final GridViewProduktyAdapter gridViewProduktyAdapter = new GridViewProduktyAdapter(getActivity());
+        gridViewProduktyAdapter = new GridViewProduktyAdapter(getActivity());
         produktyGridView.setAdapter(gridViewProduktyAdapter);
 
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
@@ -80,5 +81,12 @@ public class ProductFragment extends Fragment {
             }
         });
 
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        gridViewProduktyAdapter.notifyDataSetChanged();
     }
 }
