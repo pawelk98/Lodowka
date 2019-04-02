@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -67,10 +68,11 @@ public class ProductEditFragment extends Fragment {
                 if(nazwa.getText().toString().trim().length() != 0
                         && ilosc.getText().toString().trim().length() != 0
                         && typ.getText().toString().trim().length() != 0){
-                    Produkt uProdukt = new Produkt(nazwa.getText().toString(), Integer.parseInt(typ.getText().toString()),
+                    Produkt uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.parseInt(typ.getText().toString()),
                             Integer.parseInt(ilosc.getText().toString()));
                     uProdukt.setId(id);
-                    viewModel.updateProdukt(uProdukt);
+                    viewModel.updateProdukt(getActivity(), uProdukt);
+
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
                     fragmentTransaction.commit();

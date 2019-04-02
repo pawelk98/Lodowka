@@ -5,6 +5,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.projektlodowka.R;
 
@@ -51,18 +52,33 @@ public class Repository {
         }
     }
 
-    public void insertProdukt(Produkt produkt) { new insertProduktAsyncTask(produktDao).execute(produkt); }
+    public void insertProdukt(Activity activity, Produkt produkt) { new insertProduktAsyncTask(activity, produktDao).execute(produkt); }
 
-    private static class insertProduktAsyncTask extends AsyncTask<Produkt, Void, Void> {
+    private static class insertProduktAsyncTask extends AsyncTask<Produkt, Void, Boolean> {
         private ProduktDao mAsyncTaskDao;
-        insertProduktAsyncTask(ProduktDao dao) {
+        private Activity mActivity;
+        insertProduktAsyncTask(Activity activity, ProduktDao dao) {
             mAsyncTaskDao = dao;
+            mActivity = activity;
         }
 
         @Override
-        protected Void doInBackground(final Produkt... params) {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
+        protected Boolean doInBackground(final Produkt... params) {
+            Produkt p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
+            if(p == null) {
+                mAsyncTaskDao.insert(params[0]);
+                return true;
+            }
+            else
+                return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean)
+                Toast.makeText(mActivity,"Dodano produkt",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(mActivity,"Produkt o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -92,16 +108,33 @@ public class Repository {
         }
     }
 
-    public void updateProdukt(Produkt produkt) { new updateProduktAsyncTask(produktDao).execute(produkt); }
+    public void updateProdukt(Activity activity, Produkt produkt) { new updateProduktAsyncTask(activity, produktDao).execute(produkt); }
 
-    private static class updateProduktAsyncTask extends AsyncTask<Produkt, Void, Void> {
+    private static class updateProduktAsyncTask extends AsyncTask<Produkt, Void, Boolean> {
         private ProduktDao mAsyncTaskDao;
-        updateProduktAsyncTask(ProduktDao dao) { mAsyncTaskDao = dao; }
+        private Activity mActivity;
+        updateProduktAsyncTask(Activity activity, ProduktDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
 
         @Override
-        protected Void doInBackground(Produkt... params) {
-            mAsyncTaskDao.update(params[0]);
-            return null;
+        protected Boolean doInBackground(Produkt... params) {
+            Produkt p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
+            if(p == null) {
+                mAsyncTaskDao.update(params[0]);
+                return true;
+            }
+            else
+                return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean)
+                Toast.makeText(mActivity,"Edytowano produkt",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(mActivity,"Produkt o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
         }
     }
 }

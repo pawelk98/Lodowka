@@ -23,13 +23,13 @@ public class ViewModel extends AndroidViewModel {
 
     public void setEditProdukt(Activity activity, int id) { repository.setEditProdukt(activity,id); }
 
-    public void insertProdukt(Produkt produkt) {
-        repository.insertProdukt(produkt);
+    public void insertProdukt(Activity activity, Produkt produkt) {
+        repository.insertProdukt(activity, produkt);
     }
 
     public void deleteProdukt(Produkt produkt) { repository.deleteProdukt(produkt); }
 
     public void deleteAllProdukt() { repository.deleteAllProduct(); }
 
-    public void updateProdukt(Produkt produkt) { repository.updateProdukt(produkt); }
+    public void updateProdukt(Activity activity, Produkt produkt) { repository.updateProdukt(activity, produkt); }
 }

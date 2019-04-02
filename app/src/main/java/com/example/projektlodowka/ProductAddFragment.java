@@ -55,11 +55,9 @@ public class ProductAddFragment extends Fragment {
                 if(nazwa.getText().toString().trim().length() != 0
                         && ilosc.getText().toString().trim().length() != 0
                         && typ.getText().toString().trim().length() != 0) {
-                    p = new Produkt(nazwa.getText().toString(), Integer.valueOf(typ.getText().toString()),
+                    p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(typ.getText().toString()),
                             Integer.valueOf(ilosc.getText().toString()));
-                    viewModel.insertProdukt(p);
-
-                    Toast.makeText(getActivity(),"Dodano produkt", Toast.LENGTH_SHORT).show();
+                    viewModel.insertProdukt(getActivity(),p);
 
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.main_frame, new ProductFragment());

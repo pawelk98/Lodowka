@@ -36,7 +36,7 @@ public interface ProduktDao {
     Produkt loadId(int id);
 
     @Query("SELECT * FROM Produkt WHERE nazwa = :nazwa")
-    List<Produkt> loadNazwa(String nazwa);
+    Produkt loadNazwa(String nazwa);
 
     @Query("SELECT * FROM Produkt WHERE ilosc = :ilosc")
     List<Produkt> loadIlosc(int ilosc);
