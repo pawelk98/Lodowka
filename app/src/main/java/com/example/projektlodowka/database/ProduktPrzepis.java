@@ -21,6 +21,8 @@ public class ProduktPrzepis {
 
     private int idProduktu;
 
+    private int iloscProduktu;
+
     private boolean opcjonalny;
 
 
@@ -56,6 +58,10 @@ public class ProduktPrzepis {
     public void setIdProduktu(int idProduktu) {
         this.idProduktu = idProduktu;
     }
+
+    public int getIloscProduktu() { return iloscProduktu; }
+
+    public void setIloscProduktu(int iloscProduktu) { this.iloscProduktu = iloscProduktu; }
 
     public boolean isOpcjonalny() {
         return opcjonalny;

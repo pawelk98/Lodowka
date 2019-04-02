@@ -2,13 +2,12 @@ package com.example.projektlodowka;
 
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 
@@ -16,11 +15,13 @@ import java.util.List;
 
 public class GridViewProduktyAdapter extends BaseAdapter {
 
-    List<Produkt> produkty;
-    Context context;
+    private List<Produkt> produkty;
+    private Context context;
+    private LayoutInflater inflater;
 
     GridViewProduktyAdapter(Context context) {
         this.context = context;
+        inflater = LayoutInflater.from(context);
     }
 
     void setProdukty(List<Produkt> produkty) {
@@ -46,22 +47,53 @@ public class GridViewProduktyAdapter extends BaseAdapter {
         return position;
     }
 
-    public static int dpToPx(int dp) {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
+    public Produkt getProdukt(int position) { return produkty.get(position); }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Button button;
 
-            if(convertView == null) {
-                button = new Button(context);
-                button.setLayoutParams(new GridView.LayoutParams(dpToPx(110), dpToPx(110)));
-                button.setText(produkty.get(position).getNazwa());
+        if(convertView == null) {
+            convertView = inflater.inflate(R.layout.grid_view_produkt_layout, parent, false);
+            TextView nazwa = convertView.findViewById(R.id.produktNazwaTextView);
+            TextView ilosc = convertView.findViewById(R.id.produktIloscTextView);
+
+            nazwa.setText(produkty.get(position).getNazwa());
+
+            int i = produkty.get(position).getIlosc();
+            switch (produkty.get(position).getTyp()) {
+                case 0:
+                    if(i < 500)
+                        ilosc.setText(String.valueOf(i)+"g");
+                    else
+                        if(i%1000 == 0)
+                            ilosc.setText(String.valueOf(i/1000)+"kg");
+                        else
+                        ilosc.setText(String.valueOf((float)i/1000)+"kg");
+                    break;
+
+                case 1:
+                    if(i < 500)
+                        ilosc.setText(String.valueOf(i)+"ml");
+                    else
+                        if(i%1000 == 0)
+                            ilosc.setText(String.valueOf(i/1000)+"l");
+                        else
+                        ilosc.setText(String.valueOf((float)i/1000)+"l");
+                    break;
+
+                case 2:
+                    if(i%1000 == 0)
+                        ilosc.setText(String.valueOf(i/1000)+"szt.");
+                    else
+                        ilosc.setText(String.valueOf((float)i/1000)+"szt");
+                    break;
+
+                    default:
+                        ilosc.setText(String.valueOf((float)i/1000));
+                        break;
             }
-            else
-                button = (Button) convertView;
+        }
 
-        return button;
+        return convertView;
     }
 }

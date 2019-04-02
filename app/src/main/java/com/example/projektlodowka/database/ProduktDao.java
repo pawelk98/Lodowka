@@ -17,7 +17,7 @@ public interface ProduktDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Produkt... produkt);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Produkt... produkt);
 
     @Delete

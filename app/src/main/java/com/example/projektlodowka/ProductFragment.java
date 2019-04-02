@@ -11,11 +11,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.support.v4.app.FragmentTransaction;
 
 import com.example.projektlodowka.database.Produkt;
-import com.example.projektlodowka.database.ProduktViewModel;
+import com.example.projektlodowka.database.ViewModel;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class ProductFragment extends Fragment {
 
-    private ProduktViewModel produktViewModel;
+    private ViewModel viewModel;
     GridView produktyGridView;
 
     public ProductFragment() {
@@ -45,11 +46,11 @@ public class ProductFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         produktyGridView = view.findViewById(R.id.gridViewProdukty);
-        produktViewModel = ViewModelProviders.of(this).get(ProduktViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         final GridViewProduktyAdapter gridViewProduktyAdapter = new GridViewProduktyAdapter(getActivity());
         produktyGridView.setAdapter(gridViewProduktyAdapter);
 
-        produktViewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
+        viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
                 gridViewProduktyAdapter.setProdukty(produkt);
@@ -61,9 +62,23 @@ public class ProductFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new HistoryFragment());
+                fragmentTransaction.replace(R.id.main_frame, new ProductAddFragment());
                 fragmentTransaction.commit();
             }
         });
+
+        produktyGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", gridViewProduktyAdapter.getProdukt(position).getId());
+                ProductEditFragment fragment = new ProductEditFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.commit();
+            }
+        });
+
     }
 }
