@@ -25,7 +25,7 @@ public abstract class BazaDanych extends RoomDatabase {
             synchronized (BazaDanych.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            BazaDanych.class, "BazaDanych").addCallback(sRoomDatabaseCallback).build();
+                            BazaDanych.class, "BazaDanych").build();
                 }
             }
         }
