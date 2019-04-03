@@ -15,12 +15,13 @@
 
     <TextView
         android:id="@+id/produktNazwaTextView"
+        android:maxLines="1"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/produktImageView"
         app:layout_constraintStart_toStartOf="@+id/produktImageView"

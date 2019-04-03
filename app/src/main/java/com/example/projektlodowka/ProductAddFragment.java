@@ -10,8 +10,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
@@ -21,11 +24,12 @@ import com.example.projektlodowka.database.ViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductAddFragment extends Fragment {
+public class ProductAddFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     EditText nazwa;
     EditText ilosc;
-    EditText typ;
+    //EditText typ;
     Button dodaj;
+    int type;
     Produkt p;
     ViewModel viewModel;
 
@@ -43,20 +47,51 @@ public class ProductAddFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Spinner typ = view.findViewById(R.id.spinner_prod);
+        ArrayAdapter<CharSequence> adapter_prod = ArrayAdapter.createFromResource(this.getActivity() ,R.array.types ,android.R.layout.simple_spinner_item);
+        adapter_prod.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typ.setAdapter(adapter_prod);
+        typ.setOnItemSelectedListener(this);
+
         nazwa = view.findViewById(R.id.produktDodajNazwaEditText);
         ilosc = view.findViewById(R.id.produktDodajIloscEditText);
-        typ = view.findViewById(R.id.produktDodajTypEditText);
+       // typ = view.findViewById(R.id.spinner_prod);
         dodaj = view.findViewById(R.id.produktDodajButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
+
+
+
+
 
         dodaj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(nazwa.getText().toString().trim().length() != 0
-                        && ilosc.getText().toString().trim().length() != 0
-                        && typ.getText().toString().trim().length() != 0) {
-                    p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(typ.getText().toString()),
-                            Integer.valueOf(ilosc.getText().toString()));
+                        && ilosc.getText().toString().trim().length() != 0) {
+
+                    switch (type) {
+                        case 0:
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
+                             break;
+                        case 1:
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
+                            break;
+                        case 2:
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
+                            break;
+                        case 3:
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
+                                    Integer.valueOf(ilosc.getText().toString()));
+                            break;
+                        case 4:
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
+                                    Integer.valueOf(ilosc.getText().toString()));
+                            break;
+                    }
+
                     viewModel.insertProdukt(getActivity(),p);
 
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -69,4 +104,13 @@ public class ProductAddFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    type=position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

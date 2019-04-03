@@ -11,8 +11,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
@@ -22,16 +25,18 @@ import com.example.projektlodowka.database.ViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductEditFragment extends Fragment {
+public class ProductEditFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
     int id;
     EditText nazwa;
     EditText ilosc;
-    EditText typ;
+   // EditText typ;
+    int type;
     Button zatwierdz;
     Button usun;
     Produkt p;
+    Produkt uProdukt;
     ViewModel viewModel;
 
     public ProductEditFragment() {
@@ -54,9 +59,15 @@ public class ProductEditFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Spinner typ = view.findViewById(R.id.spinner_prod_edit);
+        ArrayAdapter<CharSequence> adapter_prod = ArrayAdapter.createFromResource(this.getActivity() ,R.array.types ,android.R.layout.simple_spinner_item);
+        adapter_prod.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typ.setAdapter(adapter_prod);
+        typ.setOnItemSelectedListener(this);
+
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
-        typ = view.findViewById(R.id.produktEditTypEditText);
+        //typ = view.findViewById(R.id.produktEditTypEditText);
         zatwierdz = view.findViewById(R.id.produktEditButton);
         usun = view.findViewById(R.id.produktUsunButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
@@ -66,10 +77,31 @@ public class ProductEditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(nazwa.getText().toString().trim().length() != 0
-                        && ilosc.getText().toString().trim().length() != 0
-                        && typ.getText().toString().trim().length() != 0){
-                    Produkt uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.parseInt(typ.getText().toString()),
-                            Integer.parseInt(ilosc.getText().toString()));
+                        && ilosc.getText().toString().trim().length() != 0){
+
+                    switch (type) {
+                        case 0:
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                            break;
+                        case 1:
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                            break;
+                        case 2:
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                            break;
+                        case 3:
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.parseInt(ilosc.getText().toString()));
+                            break;
+                        case 4:
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                                    Integer.parseInt(ilosc.getText().toString()));
+                            break;
+                    }
+
                     uProdukt.setId(id);
                     viewModel.updateProdukt(getActivity(), uProdukt);
 
@@ -83,7 +115,7 @@ public class ProductEditFragment extends Fragment {
         usun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Produkt uProdukt = new Produkt(nazwa.getText().toString(), Integer.parseInt(typ.getText().toString()),
+                uProdukt = new Produkt(nazwa.getText().toString(), Integer.valueOf(type),
                         Integer.parseInt(ilosc.getText().toString()));
                 uProdukt.setId(id);
                 viewModel.deleteProdukt(uProdukt);
@@ -92,5 +124,15 @@ public class ProductEditFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        type=position;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

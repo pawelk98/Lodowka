@@ -83,7 +83,7 @@ public class GridViewProduktyAdapter extends BaseAdapter {
 
                 case 2:
                     if(i%1000 == 0)
-                        ilosc.setText(String.valueOf(i/1000)+"szt.");
+                        ilosc.setText(String.valueOf(i/1000)+"szt");
                     else
                         ilosc.setText(String.valueOf((float)i/1000)+"szt");
                     break;

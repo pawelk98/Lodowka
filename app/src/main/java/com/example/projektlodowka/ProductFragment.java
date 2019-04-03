@@ -85,8 +85,8 @@ public class ProductFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         gridViewProduktyAdapter.notifyDataSetChanged();
     }
 }

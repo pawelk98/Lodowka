@@ -5,6 +5,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.projektlodowka.R;
@@ -44,12 +45,24 @@ public class Repository {
         protected void onPostExecute(Produkt produkt) {
             EditText nazwa = mActivity.findViewById(R.id.produktEditNazwaEditText);
             EditText ilosc = mActivity.findViewById(R.id.produktEditIloscEditText);
-            EditText typ = mActivity.findViewById(R.id.produktEditTypEditText);
+            Spinner typ = mActivity.findViewById(R.id.spinner_prod_edit);
 
             nazwa.setText(produkt.getNazwa());
-            ilosc.setText(String.valueOf(produkt.getIlosc()));
-            typ.setText(String.valueOf(produkt.getTyp()));
-        }
+
+            if(produkt.getIlosc()<500) {
+                ilosc.setText(String.valueOf(produkt.getIlosc()));
+                typ.setSelection(produkt.getTyp() + 3);
+            }
+            else if(produkt.getIlosc()>1000) {
+                ilosc.setText(String.valueOf(produkt.getIlosc()/1000));
+                typ.setSelection(produkt.getTyp());
+            }
+            else {
+                ilosc.setText(String.valueOf(produkt.getIlosc()));
+                typ.setSelection(produkt.getTyp());
+            }
+            }
+
     }
 
     public void insertProdukt(Activity activity, Produkt produkt) { new insertProduktAsyncTask(activity, produktDao).execute(produkt); }
