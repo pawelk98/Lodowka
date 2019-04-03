@@ -11,7 +11,7 @@
         android:layout_height="90dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/custom_product" />
+        app:srcCompat="@drawable/product_cafel" />
 
     <TextView
         android:id="@+id/produktNazwaTextView"
