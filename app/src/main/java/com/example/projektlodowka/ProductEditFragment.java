@@ -93,11 +93,11 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
                                     Integer.parseInt(ilosc.getText().toString())*1000);
                             break;
                         case 3:
-                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
                                     Integer.parseInt(ilosc.getText().toString()));
                             break;
                         case 4:
-                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
                                     Integer.parseInt(ilosc.getText().toString()));
                             break;
                     }
