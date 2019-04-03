@@ -55,6 +55,7 @@ public class ProductFragment extends Fragment {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
                 gridViewProduktyAdapter.setProdukty(produkt);
+                produktyGridView.setAdapter(gridViewProduktyAdapter);
             }
         });
 
@@ -82,11 +83,5 @@ public class ProductFragment extends Fragment {
         });
 
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        gridViewProduktyAdapter.notifyDataSetChanged();
     }
 }

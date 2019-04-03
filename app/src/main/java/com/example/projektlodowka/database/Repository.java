@@ -134,7 +134,7 @@ public class Repository {
         @Override
         protected Boolean doInBackground(Produkt... params) {
             Produkt p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
-            if(p == null) {
+            if(p == null || params[0].getId() == p.getId()) {
                 mAsyncTaskDao.update(params[0]);
                 return true;
             }

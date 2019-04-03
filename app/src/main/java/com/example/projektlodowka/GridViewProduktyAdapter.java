@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GridViewProduktyAdapter extends BaseAdapter {
@@ -26,7 +27,6 @@ public class GridViewProduktyAdapter extends BaseAdapter {
 
     void setProdukty(List<Produkt> produkty) {
         this.produkty = produkty;
-        notifyDataSetChanged();
     }
 
     @Override
