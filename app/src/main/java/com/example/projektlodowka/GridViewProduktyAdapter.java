@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GridViewProduktyAdapter extends BaseAdapter {
@@ -54,7 +52,7 @@ public class GridViewProduktyAdapter extends BaseAdapter {
 
         if(convertView == null) {
             convertView = inflater.inflate(R.layout.grid_view_produkt_layout, parent, false);
-            TextView nazwa = convertView.findViewById(R.id.produktNazwaTextView);
+            TextView nazwa = convertView.findViewById(R.id.przepisNazwaTextView);
             TextView ilosc = convertView.findViewById(R.id.produktIloscTextView);
 
             nazwa.setText(produkty.get(position).getNazwa());

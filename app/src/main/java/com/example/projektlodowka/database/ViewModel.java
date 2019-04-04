@@ -10,11 +10,13 @@ import java.util.List;
 public class ViewModel extends AndroidViewModel {
     private Repository repository;
     private LiveData<List<Produkt>> produkty;
+    private LiveData<List<Przepis>> przepisy;
 
     public ViewModel(Application application) {
         super(application);
         repository = new Repository(application);
         produkty = repository.getProdukty();
+        przepisy = repository.getPrzepisy();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
@@ -32,4 +34,6 @@ public class ViewModel extends AndroidViewModel {
     public void deleteAllProdukt() { repository.deleteAllProduct(); }
 
     public void updateProdukt(Activity activity, Produkt produkt) { repository.updateProdukt(activity, produkt); }
+
+    public LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
 }

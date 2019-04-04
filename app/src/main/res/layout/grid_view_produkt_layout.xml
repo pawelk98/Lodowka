@@ -14,7 +14,7 @@
         app:srcCompat="@drawable/kafelek" />
 
     <TextView
-        android:id="@+id/produktNazwaTextView"
+        android:id="@+id/przepisNazwaTextView"
         android:maxLines="1"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/produktImageView"
         app:layout_constraintEnd_toEndOf="@+id/produktImageView"
         app:layout_constraintStart_toStartOf="@+id/produktImageView"
-        app:layout_constraintTop_toBottomOf="@+id/produktNazwaTextView"
+        app:layout_constraintTop_toBottomOf="@+id/przepisNazwaTextView"
         app:layout_constraintVertical_bias="0.4" />
 
 </android.support.constraint.ConstraintLayout>

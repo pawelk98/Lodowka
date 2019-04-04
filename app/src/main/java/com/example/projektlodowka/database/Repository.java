@@ -3,6 +3,7 @@ package com.example.projektlodowka.database;
 import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Dao;
 import android.os.AsyncTask;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -14,12 +15,17 @@ import java.util.List;
 
 public class Repository {
     private ProduktDao produktDao;
+    private PrzepisDao przepisDao;
     private LiveData<List<Produkt>> produkty;
+    private LiveData<List<Przepis>> przepisy;
 
     Repository(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
         produktDao = db.produktDao();
+        przepisDao = db.przepisDao();
+
         produkty = produktDao.loadAllOrderNazwa();
+        przepisy = przepisDao.loadAllOrderNazwa();
     }
 
     LiveData<List<Produkt>> getProdukty() { return produkty; }
@@ -150,4 +156,9 @@ public class Repository {
                 Toast.makeText(mActivity,"Produkt o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
         }
     }
+
+    LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
+
+
+
 }

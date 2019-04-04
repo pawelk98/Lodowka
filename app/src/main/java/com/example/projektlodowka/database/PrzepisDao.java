@@ -22,11 +22,14 @@ public interface PrzepisDao {
     @Delete
     void delete(Przepis... przepis);
 
+    @Query("DELETE FROM Przepis")
+    void deleteAll();
+
     @Query("SELECT * FROM Przepis")
     LiveData<List<Przepis>> loadAll();
 
     @Query("SELECT * FROM Przepis ORDER BY nazwa")
-    List<Przepis> loadAllOrderNazwa();
+    LiveData<List<Przepis>> loadAllOrderNazwa();
 
     @Query("SELECT * FROM Przepis WHERE id = :id")
     Przepis loadId(int id);
