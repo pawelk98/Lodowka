@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GridViewProduktyAdapter extends BaseAdapter {
@@ -33,6 +35,14 @@ public class GridViewProduktyAdapter extends BaseAdapter {
             return 0;
         else
             return produkty.size();
+    }
+
+    public List<Produkt> getProdukty(){
+        List<Produkt> nowy = new ArrayList<>();
+        for(int i=0;i<getCount();i++){
+            nowy.add(getProdukt(i));
+        }
+        return nowy;
     }
 
     @Override
@@ -93,5 +103,13 @@ public class GridViewProduktyAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+    public void setFilter(List<Produkt> noweProdukty){
+
+        produkty = new ArrayList<>();
+       // produkty.addAll(noweProdukty);
+        setProdukty(noweProdukty);
+        notifyDataSetChanged();
+
     }
 }

@@ -54,22 +54,22 @@ public class MainActivity extends AppCompatActivity  {
 
                     case R.id.nav_start :
                         setFragment(startFragment);
-                        visible_setter=false;
+                        toolbar.setTitle(R.string.app_name);
                         return true;
 
                     case R.id.nav_historia :
                         setFragment(historyFragment);
-                        visible_setter=false;
+                        toolbar.setTitle(R.string.historia);
                         return true;
 
                     case R.id.nav_produkty :
                         setFragment(productFragment);
-                        visible_setter=true;
+                        toolbar.setTitle(R.string.produkty);
                         return true;
 
                     case R.id.nav_przepisy :
                         setFragment(recipeFragment);
-                        visible_setter=true;
+                        toolbar.setTitle(R.string.przepisy);
                         return true;
 
                     default:
@@ -84,17 +84,6 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.upper_menu, menu);
-        invalidateOptionsMenu();  //To jest problem i plusik bo jeżeli to tutaj jest, wted ikonka szukania znika na niechcianych fragmentach, ale to resetuje ustawienia menu, więc search się nie rozwija
-        //Jezeli chcemy aby sie rozwijało(co jest konieczne) to zakomentujcie 165 linijke i w linijce 30 zmiencie na "true" lub zakomentujcie ifa
-        if(visible_setter==false){
-            menu.getItem(0).setVisible(false);
-        }
-        else {
-            menu.getItem(0).setVisible(true);
-
-
-        }
-
         return true;
     }
 
@@ -110,10 +99,10 @@ public class MainActivity extends AppCompatActivity  {
         String msg = "Wybrano szukanie ";
         switch (item.getItemId())
         {
-            case R.id.search:
+            /*case R.id.search:
                 Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
                 toast.show();
-                break;
+                break;*/
             case R.id.settings:
                 Intent intent =  new Intent(MainActivity.this, settings.class);
                 startActivity(intent);
