@@ -35,8 +35,8 @@ public interface PrzepisDao {
     Przepis loadId(int id);
 
     @Query("SELECT * FROM Przepis WHERE nazwa = :nazwa")
-    List<Przepis> loadNazwa(String nazwa);
+    Przepis loadNazwa(String nazwa);
 
     @Query("SELECT * FROM Przepis WHERE czas <= :czas")
-    List<Przepis> loadCzasLEQ(int czas);
+    List<Przepis> loadCzas(int czas);
 }

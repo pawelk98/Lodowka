@@ -1,8 +1,6 @@
 package com.example.projektlodowka;
 
 
-import android.app.SearchManager;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;

@@ -16,8 +16,10 @@ import java.util.List;
 public class Repository {
     private ProduktDao produktDao;
     private PrzepisDao przepisDao;
+    private ProduktPrzepisDao produktPrzepisDao;
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
+    private List<ProduktPrzepis> produktyPrzepisy;
 
     Repository(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
@@ -159,6 +161,76 @@ public class Repository {
 
     LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
 
+    public void insertPrzepis(Activity activity, Przepis przepis) { new insertPrzepisAsyncTask(activity, przepisDao).execute(przepis); }
 
+    private static class insertPrzepisAsyncTask extends AsyncTask<Przepis, Void, Boolean> {
+        private PrzepisDao mAsyncTaskDao;
+        private Activity mActivity;
+        insertPrzepisAsyncTask(Activity activity, PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
 
+        @Override
+        protected Boolean doInBackground(final Przepis... params) {
+            Przepis p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
+            if(p == null) {
+                mAsyncTaskDao.insert(params[0]);
+                return true;
+            }
+            else
+                return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean)
+                Toast.makeText(mActivity,"Dodano przepis",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deletePrzepis(Przepis przepis) { new deletePrzepisAsyncTask(przepisDao).execute(przepis); }
+
+    private static class deletePrzepisAsyncTask extends AsyncTask<Przepis, Void, Void> {
+        private PrzepisDao mAsyncTaskDao;
+        deletePrzepisAsyncTask(PrzepisDao dao) { mAsyncTaskDao = dao; }
+
+        @Override
+        protected Void doInBackground(final Przepis... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
+    }
+
+    public void updatePrzepis(Activity activity, Przepis przepis) { new updatePrzepisAsyncTask(activity, przepisDao).execute(przepis); }
+
+    private static class updatePrzepisAsyncTask extends AsyncTask<Przepis, Void, Boolean> {
+        private PrzepisDao mAsyncTaskDao;
+        private Activity mActivity;
+        updatePrzepisAsyncTask(Activity activity, PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
+
+        @Override
+        protected Boolean doInBackground(Przepis... params) {
+            Przepis p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
+            if(p == null || params[0].getId() == p.getId()) {
+                mAsyncTaskDao.update(params[0]);
+                return true;
+            }
+            else
+                return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if(aBoolean)
+                Toast.makeText(mActivity,"Edytowano przepis",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

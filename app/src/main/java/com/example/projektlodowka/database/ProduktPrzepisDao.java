@@ -29,8 +29,8 @@ public interface ProduktPrzepisDao {
     ProduktPrzepis loadId(int id);
 
     @Query("SELECT * FROM ProduktPrzepis WHERE idProduktu = :idProduktu")
-    LiveData<List<ProduktPrzepis>> loadProdukt(int idProduktu);
+    List<ProduktPrzepis> loadProdukt(int idProduktu);
 
     @Query("SELECT * FROM ProduktPrzepis WHERE idPrzepisu = :idPrzepisu")
-    LiveData<List<ProduktPrzepis>> loadPrzepis(int idPrzepisu);
+    List<ProduktPrzepis> loadPrzepis(int idPrzepisu);
 }

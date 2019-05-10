@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.projektlodowka.database.Przepis;
@@ -53,6 +55,19 @@ public class RecipeFragment extends Fragment {
             public void onChanged(@Nullable List<Przepis> przepis) {
                 listViewPrzepisyAdapter.setPrzepisy(przepis);
                 przepisyListView.setAdapter(listViewPrzepisyAdapter);
+            }
+        });
+
+        przepisyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", listViewPrzepisyAdapter.getPrzepis(position).getId());
+                RecipeShowFragment fragment = new RecipeShowFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.commit();
             }
         });
     }

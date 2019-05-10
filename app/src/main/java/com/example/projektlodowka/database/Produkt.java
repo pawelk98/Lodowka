@@ -1,5 +1,6 @@
 package com.example.projektlodowka.database;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -18,6 +19,9 @@ public class Produkt {
     private int typ;
 
     private int ilosc;
+
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
 
     @Ignore
@@ -52,5 +56,13 @@ public class Produkt {
 
     public void setTyp(int typ) {
         this.typ = typ;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

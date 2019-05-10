@@ -86,14 +86,24 @@ public abstract class BazaDanych extends RoomDatabase {
             produktDao.insert(produkt);
             produkt = new Produkt("mąka",0,500);
             produktDao.insert(produkt);
+            produkt = new Produkt("masło",0,100);
+            produktDao.insert(produkt);
 
             Przepis przepis = new Przepis("parówki",15,"gotuj gotuj gotuj itd.");
             przepisDao.insert(przepis);
             przepis = new Przepis("makaron", 20, "gotuj gotuj smaż itd");
             przepisDao.insert(przepis);
-            przepis = new Przepis("warzywka", 30, "krój gotuj smaż itd");
+            przepis = new Przepis("warzywa na patelnię", 30, "krój gotuj smaż itd");
             przepisDao.insert(przepis);
-            przepis = new Przepis("kotlety z kartofelkami", 40, "klep gotuj smaż itd");
+            przepis = new Przepis("kotlety z kartoflami", 40, "klep gotuj smaż itd");
+            przepisDao.insert(przepis);
+            przepis = new Przepis("karkówka", 35, "coś tam tego smaż itd");
+            przepisDao.insert(przepis);
+            przepis = new Przepis("kanapki z chlebem i bagietką", 5, "krój samaruj itd");
+            przepisDao.insert(przepis);
+            przepis = new Przepis("kawior", 15, "blee itd");
+            przepisDao.insert(przepis);
+            przepis = new Przepis("kaszanka", 5, "odgrzej w mikrofalówce itd");
             przepisDao.insert(przepis);
 
 
