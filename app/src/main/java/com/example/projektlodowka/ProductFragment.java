@@ -4,6 +4,7 @@ package com.example.projektlodowka;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,11 +14,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -29,7 +34,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductFragment extends Fragment {
+public class ProductFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
@@ -84,13 +89,57 @@ public class ProductFragment extends Fragment {
             }
         });
 
+            recyclerView.addOnItemTouchListener(new RecyclerProduktyAdapter.RecyclerTouchListener(getActivity(), recyclerView, new RecyclerProduktyAdapter.ClickListener() {
 
+            @Override
+            public void onClick(View view, final int position) {
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", adapter.getProdukt(position).getId());
+                ProductEditFragment fragment = new ProductEditFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.commit();
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+            }
+
+        }));
+
+        SearchView searchView = (SearchView) view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(this);
 
 
 
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
     }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String name = newText.toLowerCase();
+        List<Produkt> noweProdukty =new ArrayList<>();
+
+        for(Produkt produkt : produkty){
+            if(produkt.getNazwa().toLowerCase().contains(name)){
+                noweProdukty.add(produkt);
+                String a = produkt.getNazwa()+" "+ produkt.getTyp()+" " + produkt.getIlosc();
+                Toast.makeText(getActivity(), (String)a,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+        adapter.setFilter(noweProdukty);
+        return true;
+    }
+}
+
 
 
 
