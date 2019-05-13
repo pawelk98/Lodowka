@@ -30,6 +30,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     private Context context;
     private LayoutInflater inflater;
 
+    public RecyclerProduktyAdapter(){}
+
     public RecyclerProduktyAdapter(Context context, List<Produkt> produkty) {
         this.produkty = produkty;
         this.context = context;

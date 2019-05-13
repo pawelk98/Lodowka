@@ -72,6 +72,7 @@ public class ProductShowcaseFragment extends Fragment {
         usun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                uProdukt = new Produkt();
                 uProdukt.setId(id);
                 viewModel.deleteProdukt(uProdukt);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
