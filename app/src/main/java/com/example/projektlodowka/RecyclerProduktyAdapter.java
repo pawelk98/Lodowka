@@ -2,11 +2,8 @@ package com.example.projektlodowka;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.GestureDetector;
@@ -14,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -33,8 +29,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     private Context context;
     private LayoutInflater inflater;
 
-    public RecyclerProduktyAdapter(Context context, List<Produkt> produkty) {
-        this.produkty = produkty;
+    public RecyclerProduktyAdapter(Context context, List<Produkt> produktyParam) {
+        produkty = produktyParam;
         this.context = context;
     }
 
@@ -199,8 +195,6 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     public void setFilter(List<Produkt> noweProdukty){
 
          produkty = new ArrayList<>(noweProdukty);
-         produkty.addAll(noweProdukty);
-        notifyDataSetChanged();
-
+         notifyDataSetChanged();
     }
 }

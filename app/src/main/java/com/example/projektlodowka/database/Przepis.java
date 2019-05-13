@@ -1,5 +1,6 @@
 package com.example.projektlodowka.database;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -18,6 +19,9 @@ public class Przepis {
     private int czas;
 
     private String opis;
+
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
 
     @Ignore
@@ -60,5 +64,13 @@ public class Przepis {
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
