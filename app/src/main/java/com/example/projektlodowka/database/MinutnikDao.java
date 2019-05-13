@@ -29,8 +29,11 @@ public interface MinutnikDao {
     Minutnik loadId(int id);
 
     @Query("SELECT * FROM Minutnik WHERE idPrzepisu = :idPrzepisu")
-    LiveData<List<Minutnik>> loadPrzepis(int idPrzepisu);
+    LiveData<List<Minutnik>> loadIdPrzepisu(int idPrzepisu);
 
     @Query("SELECT * FROM Minutnik WHERE nazwa = :nazwa")
     Minutnik loadNazwa(String nazwa);
+
+    @Query("SELECT * FROM Minutnik WHERE idPrzepisu = :idPrzepisu")
+    Minutnik loadNazwa(int idPrzepisu);
 }

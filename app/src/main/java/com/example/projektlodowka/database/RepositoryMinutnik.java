@@ -23,7 +23,7 @@ public class RepositoryMinutnik {
         return minutniki;
     }
 
-    LiveData<List<Minutnik>> getMinutnikiPrzepis(int id) { return minutnikDao.loadPrzepis(id); }
+    LiveData<List<Minutnik>> getMinutnikiPrzepis(int id) { return minutnikDao.loadIdPrzepisu(id); }
 
     public void insertMinutnik(Activity activity, Minutnik minutnik) {
         new insertMinutnikAsyncTask(activity, minutnikDao).execute(minutnik);

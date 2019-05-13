@@ -29,8 +29,8 @@ public interface PoraDniaDao {
     PoraDnia loadId(int id);
 
     @Query("SELECT * FROM PoraDnia WHERE idPrzepisu = :idPrzepisu")
-    List<PoraDnia> loadIdPrzepisu(int idPrzepisu);
+    LiveData<List<PoraDnia>> loadIdPrzepisu(int idPrzepisu);
 
-    @Query("SELECT * FROM PoraDnia WHERE pora = :pora")
-    List<PoraDnia> loadPora(int pora);
+    @Query("SELECT * FROM PoraDnia WHERE pora = :pora AND idPrzepisu = :idPrzepisu")
+    PoraDnia loadPoraPrzepis(int pora, int idPrzepisu);
 }

@@ -12,11 +12,13 @@ public class ViewModel extends AndroidViewModel {
     private RepositoryPrzepis repositoryPrzepis;
     private RepositoryProduktPrzepis repositoryProduktPrzepis;
     private RepositoryMinutnik repositoryMinutnik;
+    private RepositoryPoraDnia repositoryPoraDnia;
 
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
     private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
     private LiveData<List<Minutnik>> minutniki;
+    private LiveData<List<PoraDnia>> poraDnia;
 
     public ViewModel(Application application) {
         super(application);
@@ -24,11 +26,13 @@ public class ViewModel extends AndroidViewModel {
         repositoryPrzepis = new RepositoryPrzepis(application);
         repositoryProduktPrzepis = new RepositoryProduktPrzepis(application);
         repositoryMinutnik = new RepositoryMinutnik(application);
+        repositoryPoraDnia = new RepositoryPoraDnia(application);
 
         produkty = repositoryProdukt.getProdukty();
         przepisy = repositoryPrzepis.getPrzepisy();
         produktyPrzepisy = repositoryProduktPrzepis.getProduktyPrzepisy();
         minutniki = repositoryMinutnik.getMinutniki();
+        poraDnia = repositoryPoraDnia.getPoryDnia();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
@@ -70,4 +74,12 @@ public class ViewModel extends AndroidViewModel {
     public void insertMinutnik (Activity activity, Minutnik minutnik) { repositoryMinutnik.insertMinutnik(activity, minutnik); }
 
     public void deleteMinutnik (Minutnik minutnik) { repositoryMinutnik.deleteMinutnik(minutnik); }
+
+    public LiveData<List<PoraDnia>> getPoraDnia() { return poraDnia; }
+
+    public LiveData<List<PoraDnia>> getPoraDniaPrzepis(int id) { return repositoryPoraDnia.getPoryDniaPrzepis(id); }
+
+    public void insertPoraDnia (Activity activity, PoraDnia poraDnia) { repositoryPoraDnia.insertPoraDnia(activity, poraDnia); }
+
+    public void deletePoraDnia (PoraDnia poraDnia) { repositoryPoraDnia.deletePoraDnia(poraDnia); }
 }
