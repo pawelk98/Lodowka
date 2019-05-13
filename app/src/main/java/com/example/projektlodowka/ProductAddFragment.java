@@ -40,7 +40,6 @@ import static android.app.Activity.RESULT_OK;
 public class ProductAddFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     EditText nazwa;
     EditText ilosc;
-    //EditText typ;
     Button dodaj;
     ImageButton dodajObrazek;
     int type;
@@ -72,17 +71,13 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
 
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
-        // typ = view.findViewById(R.id.spinner_prod);
+       // typ = view.findViewById(R.id.spinner_prod);
         dodaj = view.findViewById(R.id.produktEditButton);
         dodajObrazek = view.findViewById(R.id.productImageAdd);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
 
-        dodajObrazek.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
+
+
 
 
         dodaj.setOnClickListener(new View.OnClickListener() {
@@ -94,22 +89,22 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
                     switch (type) {
                         case 0:
                             p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.valueOf(ilosc.getText().toString()) * 1000);
-                            break;
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
+                             break;
                         case 1:
                             p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.valueOf(ilosc.getText().toString()) * 1000);
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
                             break;
                         case 2:
                             p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.valueOf(ilosc.getText().toString()) * 1000);
+                                    Integer.valueOf(ilosc.getText().toString())*1000);
                             break;
                         case 3:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type - 3),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
                                     Integer.valueOf(ilosc.getText().toString()));
                             break;
                         case 4:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type - 3),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
                                     Integer.valueOf(ilosc.getText().toString()));
                             break;
                     }

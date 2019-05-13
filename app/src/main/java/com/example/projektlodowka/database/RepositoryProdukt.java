@@ -161,14 +161,14 @@ public class RepositoryProdukt {
 
             nazwa.setText(produkt.getNazwa());
 
-            if (produkt.getIlosc() < 500) {
+            if (produkt.getIlosc() < 500 && produkt.getTyp() != 2) {
                 ilosc.setText(String.valueOf(produkt.getIlosc()));
                 typ.setSelection(produkt.getTyp() + 3);
-            } else if (produkt.getIlosc() > 1000) {
-                ilosc.setText(String.valueOf(produkt.getIlosc() / 1000));
+            } else if (produkt.getIlosc() >= 500 && produkt.getTyp() != 2) {
+                ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
                 typ.setSelection(produkt.getTyp());
             } else {
-                ilosc.setText(String.valueOf(produkt.getIlosc()));
+                ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
                 typ.setSelection(produkt.getTyp());
             }
         }
@@ -211,7 +211,7 @@ public class RepositoryProdukt {
                         typ.setText("ml");
                         break;
                 }
-            } else if (produkt.getIlosc() >= 500) {
+            } else {
                 ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
                 switch (typInt){
                     case 0:

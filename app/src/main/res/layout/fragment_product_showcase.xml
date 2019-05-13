@@ -20,12 +20,23 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp">
 
+
             <ImageButton
+                android:id="@+id/backBttn2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:src="@android:drawable/btn_dialog" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/productImage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
                 android:src="@drawable/def_pic" />
+
 
         </LinearLayout>
 
