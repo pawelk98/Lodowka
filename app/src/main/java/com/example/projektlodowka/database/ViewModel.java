@@ -13,12 +13,14 @@ public class ViewModel extends AndroidViewModel {
     private RepositoryProduktPrzepis repositoryProduktPrzepis;
     private RepositoryMinutnik repositoryMinutnik;
     private RepositoryPoraDnia repositoryPoraDnia;
+    private RepositoryHistoria repositoryHistoria;
 
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
     private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
     private LiveData<List<Minutnik>> minutniki;
     private LiveData<List<PoraDnia>> poraDnia;
+    private LiveData<List<Historia>> historia;
 
     public ViewModel(Application application) {
         super(application);
@@ -27,12 +29,14 @@ public class ViewModel extends AndroidViewModel {
         repositoryProduktPrzepis = new RepositoryProduktPrzepis(application);
         repositoryMinutnik = new RepositoryMinutnik(application);
         repositoryPoraDnia = new RepositoryPoraDnia(application);
+        repositoryHistoria = new RepositoryHistoria(application);
 
         produkty = repositoryProdukt.getProdukty();
         przepisy = repositoryPrzepis.getPrzepisy();
         produktyPrzepisy = repositoryProduktPrzepis.getProduktyPrzepisy();
         minutniki = repositoryMinutnik.getMinutniki();
         poraDnia = repositoryPoraDnia.getPoryDnia();
+        historia = repositoryHistoria.getHistoria();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
@@ -82,4 +86,12 @@ public class ViewModel extends AndroidViewModel {
     public void insertPoraDnia (Activity activity, PoraDnia poraDnia) { repositoryPoraDnia.insertPoraDnia(activity, poraDnia); }
 
     public void deletePoraDnia (PoraDnia poraDnia) { repositoryPoraDnia.deletePoraDnia(poraDnia); }
+
+    public LiveData<List<Historia>> getHistoria() { return historia; }
+
+    public void insertHistoria (Historia historia) { repositoryHistoria.insertHistoria(historia); }
+
+    public void deleteHistoria (Historia historia) { repositoryHistoria.deleteHistoria(historia); }
+
+    public void deleteAllHistoria () { repositoryHistoria.deleteAllHistoria(); }
 }

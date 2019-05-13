@@ -22,6 +22,9 @@ public interface HistoriaDao {
     @Delete
     void delete(Historia... historia);
 
+    @Query("DELETE FROM Historia")
+    void deleteAll();
+
     @Query("SELECT * FROM Historia")
     LiveData<List<Historia>> loadAll();
 
