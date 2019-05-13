@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class GridViewProduktyAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null) {
-            convertView = inflater.inflate(R.layout.grid_view_produkt_layout, parent, false);
+            convertView = inflater.inflate(R.layout.produkt_view, parent, false);
             TextView nazwa = convertView.findViewById(R.id.przepisNazwaTextView);
             TextView ilosc = convertView.findViewById(R.id.produktIloscTextView);
 
@@ -106,7 +105,7 @@ public class GridViewProduktyAdapter extends BaseAdapter {
     }
     public void setFilter(List<Produkt> noweProdukty){
 
-        produkty = new ArrayList<>();
+       // produkty = new ArrayList<>();
        // produkty.addAll(noweProdukty);
         setProdukty(noweProdukty);
         notifyDataSetChanged();

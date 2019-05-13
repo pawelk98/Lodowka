@@ -3,19 +3,21 @@ package com.example.projektlodowka;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SearchView;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.support.v4.app.FragmentTransaction;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -27,11 +29,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class ProductFragment extends Fragment {
 
+    List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
-    GridView produktyGridView;
-    GridViewProduktyAdapter gridViewProduktyAdapter;
+    RecyclerView recyclerView;
+    RecyclerProduktyAdapter adapter;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -47,27 +50,29 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product, container, false);
+        return inflater.inflate(R.layout.recycler_view_produkty, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        produktyGridView = view.findViewById(R.id.gridViewProdukty);
+
+        recyclerView = view.findViewById(R.id.recycler_view);
+        adapter = new RecyclerProduktyAdapter(getActivity(),produkty);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-        gridViewProduktyAdapter = new GridViewProduktyAdapter(getActivity());
-        produktyGridView.setAdapter(gridViewProduktyAdapter);
-
-
 
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
-                gridViewProduktyAdapter.setProdukty(produkt);
-                produktyGridView.setAdapter(gridViewProduktyAdapter);
+                adapter.setProdukty(produkt);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+
             }
         });
-
 
         FloatingActionButton fab = view.findViewById(R.id.addProductFab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -79,41 +84,13 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
             }
         });
 
-        produktyGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", gridViewProduktyAdapter.getProdukt(position).getId());
-                ProductEditFragment fragment = new ProductEditFragment();
-                fragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, fragment);
-                fragmentTransaction.commit();
-            }
-        });
 
-       SearchView searchView = (SearchView) view.findViewById(R.id.searchView);
-       searchView.setOnQueryTextListener(this);
+
 
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
     }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        String name = newText.toLowerCase();
-        List<Produkt> noweProdukty = new ArrayList<>();
 
-        for(int i=0;i<gridViewProduktyAdapter.getCount();i++){
-             if(gridViewProduktyAdapter.getProdukt(i).getNazwa().toLowerCase().contains(name)){
-                 noweProdukty.add(gridViewProduktyAdapter.getProdukt(i));
-             }
-        }
-        gridViewProduktyAdapter.setFilter(noweProdukty);
-        return true;
-    }
-}
+
