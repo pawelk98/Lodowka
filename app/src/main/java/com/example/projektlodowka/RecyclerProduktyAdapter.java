@@ -2,6 +2,7 @@ package com.example.projektlodowka;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
         this.context = context;
     }
 
+
     void setProdukty(List<Produkt> produkty) {
         this.produkty = produkty;
     }
@@ -55,10 +57,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
                 Glide.with(context).load(file).into(viewHolder.obrazek);
             }
         } else {
-
-            byte[] ImageArray = Base64.decode(produkty.get(position).getImage(), Base64.DEFAULT);
-
-            Glide.with(context).asBitmap().load(ImageArray).into(viewHolder.obrazek);//<<<<<-------------
+            Bitmap bitmap = BitmapFactory.decodeByteArray(produkty.get(position).getImage(), 0, produkty.get(position).getImage().length);
+            Glide.with(context).load(bitmap).into(viewHolder.obrazek);
         }
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
 

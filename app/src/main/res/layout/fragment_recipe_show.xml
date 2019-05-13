@@ -58,10 +58,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/przepisSkladnikListView"
                     android:layout_width="190dp"
-                    android:layout_height="366dp"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <ImageButton
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/dishImage"
                         android:layout_width="190dp"
                         android:layout_height="190dp"
