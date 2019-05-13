@@ -19,7 +19,6 @@ public class RepositoryProdukt {
     RepositoryProdukt(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
         produktDao = db.produktDao();
-
         produkty = produktDao.loadAllOrderNazwa();
     }
 
@@ -81,8 +80,8 @@ public class RepositoryProdukt {
     }
 
 
-    public void deleteAllProduct() {
-        new deleteAllProduktAsyncTask(produktDao).execute(new Produkt("a", 1, 1));
+    public void deleteAllProdukt() {
+        new deleteAllProduktAsyncTask(produktDao).execute();
     }
 
     private static class deleteAllProduktAsyncTask extends AsyncTask<Produkt, Void, Void> {

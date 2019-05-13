@@ -11,18 +11,32 @@ public class ViewModel extends AndroidViewModel {
     private RepositoryProdukt repositoryProdukt;
     private RepositoryPrzepis repositoryPrzepis;
     private RepositoryProduktPrzepis repositoryProduktPrzepis;
+    private RepositoryMinutnik repositoryMinutnik;
+    private RepositoryPoraDnia repositoryPoraDnia;
+    private RepositoryHistoria repositoryHistoria;
+
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
     private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
+    private LiveData<List<Minutnik>> minutniki;
+    private LiveData<List<PoraDnia>> poraDnia;
+    private LiveData<List<Historia>> historia;
 
     public ViewModel(Application application) {
         super(application);
         repositoryProdukt = new RepositoryProdukt(application);
         repositoryPrzepis = new RepositoryPrzepis(application);
         repositoryProduktPrzepis = new RepositoryProduktPrzepis(application);
+        repositoryMinutnik = new RepositoryMinutnik(application);
+        repositoryPoraDnia = new RepositoryPoraDnia(application);
+        repositoryHistoria = new RepositoryHistoria(application);
+
         produkty = repositoryProdukt.getProdukty();
         przepisy = repositoryPrzepis.getPrzepisy();
         produktyPrzepisy = repositoryProduktPrzepis.getProduktyPrzepisy();
+        minutniki = repositoryMinutnik.getMinutniki();
+        poraDnia = repositoryPoraDnia.getPoryDnia();
+        historia = repositoryHistoria.getHistoria();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
@@ -35,7 +49,7 @@ public class ViewModel extends AndroidViewModel {
 
     public void deleteProdukt(Produkt produkt) { repositoryProdukt.deleteProdukt(produkt); }
 
-    public void deleteAllProdukt() { repositoryProdukt.deleteAllProduct(); }
+    public void deleteAllProdukt() { repositoryProdukt.deleteAllProdukt(); }
 
     public void updateProdukt(Activity activity, Produkt produkt) { repositoryProdukt.updateProdukt(activity, produkt); }
 
@@ -56,4 +70,28 @@ public class ViewModel extends AndroidViewModel {
     public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 
     public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.updateProduktPrzepis(produktPrzepis); }
+
+    public LiveData<List<Minutnik>> getMinutniki() { return minutniki; }
+
+    public LiveData<List<Minutnik>> getMinutnikiPrzepis(int id) { return repositoryMinutnik.getMinutnikiPrzepis(id); }
+
+    public void insertMinutnik (Activity activity, Minutnik minutnik) { repositoryMinutnik.insertMinutnik(activity, minutnik); }
+
+    public void deleteMinutnik (Minutnik minutnik) { repositoryMinutnik.deleteMinutnik(minutnik); }
+
+    public LiveData<List<PoraDnia>> getPoraDnia() { return poraDnia; }
+
+    public LiveData<List<PoraDnia>> getPoraDniaPrzepis(int id) { return repositoryPoraDnia.getPoryDniaPrzepis(id); }
+
+    public void insertPoraDnia (Activity activity, PoraDnia poraDnia) { repositoryPoraDnia.insertPoraDnia(activity, poraDnia); }
+
+    public void deletePoraDnia (PoraDnia poraDnia) { repositoryPoraDnia.deletePoraDnia(poraDnia); }
+
+    public LiveData<List<Historia>> getHistoria() { return historia; }
+
+    public void insertHistoria (Historia historia) { repositoryHistoria.insertHistoria(historia); }
+
+    public void deleteHistoria (Historia historia) { repositoryHistoria.deleteHistoria(historia); }
+
+    public void deleteAllHistoria () { repositoryHistoria.deleteAllHistoria(); }
 }
