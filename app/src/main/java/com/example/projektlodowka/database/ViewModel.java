@@ -41,6 +41,8 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
 
+    public void setShowPrzepis(Activity activity, int id) { repositoryPrzepis.setShowPrzepis(activity,id); }
+
     public void insertPrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.insertPrzepis(activity, przepis); }
 
     public void deletePrzepis(Przepis przepis) { repositoryPrzepis.deletePrzepis(przepis); }

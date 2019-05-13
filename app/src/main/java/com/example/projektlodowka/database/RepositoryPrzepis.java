@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.projektlodowka.R;
 
 import java.util.List;
 
@@ -95,6 +98,37 @@ public class RepositoryPrzepis {
                 Toast.makeText(mActivity,"Edytowano przepis",Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void setShowPrzepis(Activity activity, int id) {
+        new setShowPrzepisAsyncTask(activity, przepisDao).execute(id);
+    }
+
+    private static class setShowPrzepisAsyncTask extends AsyncTask<Integer, Void, Przepis> {
+        private PrzepisDao mAsyncTaskDao;
+        private Activity mActivity;
+
+        setShowPrzepisAsyncTask(Activity activity, PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
+
+        @Override
+        protected Przepis doInBackground(Integer... integers) {
+            return mAsyncTaskDao.loadId(integers[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Przepis przepis) {
+            TextView nazwa = mActivity.findViewById(R.id.przepisShowNazwaTextView);
+            TextView czas = mActivity.findViewById(R.id.przepisShowCzasTextView);
+            TextView opis = mActivity.findViewById(R.id.przepisShowOpisTextView);
+
+            nazwa.setText(przepis.getNazwa());
+            czas.setText(String.valueOf(przepis.getCzas()));
+            opis.setText(przepis.getOpis());
         }
     }
 }

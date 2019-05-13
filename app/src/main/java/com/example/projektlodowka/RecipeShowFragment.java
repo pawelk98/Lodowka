@@ -52,6 +52,6 @@ public class RecipeShowFragment extends Fragment {
         opis = view.findViewById(R.id.przepisShowOpisTextView);
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-
+        viewModel.setShowPrzepis(getActivity(),id);
     }
 }
