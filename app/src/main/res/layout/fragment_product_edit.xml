@@ -92,20 +92,20 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/backBttn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:src="@android:drawable/btn_dialog" />
+
+            <ImageButton
                 android:id="@+id/productImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
                 android:src="@drawable/def_pic" />
 
-            <Button
-                android:id="@+id/imageChangeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
-                android:text="@string/changePhoto" />
         </LinearLayout>
 
     </LinearLayout>

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity  {
     private FrameLayout mMainFrame;
 
     private StartFragment startFragment;
-    private HistoryFragment historyFragment;
     private ProductFragment productFragment;
     private RecipeFragment recipeFragment;
 
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity  {
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
 
         startFragment = new StartFragment();
-        historyFragment = new HistoryFragment();
         productFragment = new ProductFragment();
         recipeFragment = new RecipeFragment();
 
@@ -57,10 +55,6 @@ public class MainActivity extends AppCompatActivity  {
                         toolbar.setTitle(R.string.app_name);
                         return true;
 
-                    case R.id.nav_historia :
-                        setFragment(historyFragment);
-                        toolbar.setTitle(R.string.historia);
-                        return true;
 
                     case R.id.nav_produkty :
                         setFragment(productFragment);

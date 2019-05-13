@@ -5,10 +5,13 @@
 
 
     <item
+        android:id="@+id/history"
+        android:title="@string/historia"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/settings"
-        android:title="@string/settings"
         android:orderInCategory="100"
-        app:showAsAction="never"
-        />
+        android:title="@string/settings"
+        app:showAsAction="never" />
 
 </menu>

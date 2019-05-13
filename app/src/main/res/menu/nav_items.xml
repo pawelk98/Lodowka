@@ -4,17 +4,13 @@
 
 
     <item
-        android:id="@+id/nav_historia"
-        android:icon="@drawable/baseline_history_black_24dp"
-        android:title="@string/historia" />
+        android:id="@+id/nav_start"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="@string/start" />
     <item
         android:id="@+id/nav_produkty"
         android:icon="@drawable/baseline_local_grocery_store_black_24dp"
         android:title="@string/produkty" />
-    <item
-        android:id="@+id/nav_start"
-        android:icon="@drawable/baseline_home_black_24dp"
-        android:title="@string/start" />
     <item
         android:id="@+id/nav_przepisy"
         android:icon="@mipmap/baseline_receipt_black_24dp"

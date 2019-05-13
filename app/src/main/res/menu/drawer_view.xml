@@ -10,10 +10,6 @@
             android:icon="@mipmap/baseline_receipt_black_24dp"
             android:title="@string/przepisy" />
         <item
-            android:id="@+id/nav_historia"
-            android:icon="@mipmap/baseline_history_black_24dp"
-            android:title="@string/historia" />
-        <item
             android:id="@+id/nav_ustawienia"
             android:icon="@mipmap/baseline_settings_black_24dp"
             android:title="@string/ustawienia" />
