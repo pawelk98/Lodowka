@@ -76,7 +76,12 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
         dodajObrazek = view.findViewById(R.id.productImageAdd);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
 
-
+        dodajObrazek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
 
 
 

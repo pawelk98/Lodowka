@@ -3,8 +3,11 @@ package com.example.projektlodowka.database;
 import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +17,8 @@ import com.example.projektlodowka.R;
 import org.w3c.dom.Text;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RepositoryProdukt {
     private ProduktDao produktDao;
@@ -158,6 +163,14 @@ public class RepositoryProdukt {
             EditText nazwa = mActivity.findViewById(R.id.produktEditNazwaEditText);
             EditText ilosc = mActivity.findViewById(R.id.produktEditIloscEditText);
             Spinner typ = mActivity.findViewById(R.id.spinner_prod_edit);
+            ImageButton obrazekGuzik = mActivity.findViewById(R.id.productImage);
+
+            byte [] array = produkt.getImage();
+
+            if(array!=null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                obrazekGuzik.setImageBitmap(bitmap);
+            }
 
             nazwa.setText(produkt.getNazwa());
 
@@ -193,11 +206,17 @@ public class RepositoryProdukt {
 
         @Override
         protected void onPostExecute(Produkt produkt) {
+            CircleImageView obrazek = mActivity.findViewById(R.id.productImage);
             TextView nazwa = mActivity.findViewById(R.id.productNameFromDatabase);
             TextView ilosc = mActivity.findViewById(R.id.productIloscFromDatabase);
             TextView typ = mActivity.findViewById(R.id.productTypFromDatabase);
             int typInt = produkt.getTyp();
+            byte [] array = produkt.getImage();
 
+            if(array!=null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                obrazek.setImageBitmap(bitmap);
+            }
             nazwa.setText(produkt.getNazwa());
 
             if (produkt.getIlosc() < 500 && produkt.getTyp() != 2) {
