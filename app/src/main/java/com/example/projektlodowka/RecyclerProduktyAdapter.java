@@ -29,8 +29,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     private Context context;
     private LayoutInflater inflater;
 
-    public RecyclerProduktyAdapter(Context context, List<Produkt> produktyParam) {
-        produkty = produktyParam;
+    public RecyclerProduktyAdapter(Context context, List<Produkt> produkty) {
+        this.produkty = produkty;
         this.context = context;
     }
 

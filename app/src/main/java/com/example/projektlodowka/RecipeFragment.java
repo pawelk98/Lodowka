@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecipeFragment extends Fragment {
+public class RecipeFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     List<Przepis> przepisy = new ArrayList<>();
     private ViewModel viewModel;
@@ -59,7 +60,7 @@ public class RecipeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.przepisy_recycler);
-        adapter_przepisy = new RecyclerPrzepisyAdapter(getActivity(),przepisy);
+        adapter_przepisy = new RecyclerPrzepisyAdapter(getActivity(), przepisy);
         recyclerView.setAdapter(adapter_przepisy);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -68,6 +69,7 @@ public class RecipeFragment extends Fragment {
         viewModel.getPrzepisy().observe(this, new Observer<List<Przepis>>() {
             @Override
             public void onChanged(@Nullable final List<Przepis> przepis) {
+                przepisy = przepis;
                 adapter_przepisy.setPrzepisy(przepis);
                 recyclerView.setAdapter(adapter_przepisy);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -105,5 +107,27 @@ public class RecipeFragment extends Fragment {
             }
 
         }));
+        SearchView searchView = (SearchView) view.findViewById(R.id.search_view_przepisy);
+        searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        String name = newText.toLowerCase();
+        List<Przepis> nowePrzepisy = new ArrayList<>();
+
+        recyclerView.setAdapter(adapter_przepisy);
+        for (Przepis przepis : przepisy) {
+            if (przepis.getNazwa().toLowerCase().contains(name)) {
+                nowePrzepisy.add(przepis);
+            }
+        }
+        adapter_przepisy.setFilter(nowePrzepisy);
+        return true;
     }
 }

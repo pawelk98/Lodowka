@@ -18,6 +18,7 @@ import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.Przepis;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,8 +28,8 @@ public class RecyclerPrzepisyAdapter extends  RecyclerView.Adapter<RecyclerPrzep
     private List<Przepis> przepisy;
     private Context context;
 
-    public RecyclerPrzepisyAdapter( Context context,List<Przepis> przepisyParam) {
-        przepisy = przepisyParam;
+    public RecyclerPrzepisyAdapter( Context context,List<Przepis> przepisy) {
+        this.przepisy = przepisy;
         this.context = context;
     }
     void setPrzepisy(List<Przepis> przepisy){
@@ -146,5 +147,10 @@ public class RecyclerPrzepisyAdapter extends  RecyclerView.Adapter<RecyclerPrzep
             czas = itemView.findViewById(R.id.textview_czas);
 
         }
+    }
+    public void setFilter(List<Przepis> nowePrzepisy){
+
+        przepisy = new ArrayList<>(nowePrzepisy);
+        notifyDataSetChanged();
     }
 }
