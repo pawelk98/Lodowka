@@ -79,24 +79,24 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
 
                     switch (type) {
                         case 0:
-                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 1:
-                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 2:
-                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
-                                    Integer.parseInt(ilosc.getText().toString())*1000);
+                             uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 3:
-                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
-                                    Integer.parseInt(ilosc.getText().toString()));
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                    (int)(Float.parseFloat(ilosc.getText().toString())));
                             break;
                         case 4:
-                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
-                                    Integer.parseInt(ilosc.getText().toString()));
+                            uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                    (int)(Float.parseFloat(ilosc.getText().toString())));
                             break;
                     }
 
