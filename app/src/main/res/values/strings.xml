@@ -18,7 +18,8 @@
     <string name="productMuch">Ilość: </string>
     <string name="productRecipes">Przepisy wykorzystujące produkt:</string>
     <string name="edit">Edytuj</string>
-    <string name="changePhoto">Zmień obraz</string>
+    <string name="changePhoto">Zmień obraz</string>'
+    <string name="time">Czas przygotowania:</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="types">
@@ -29,5 +30,11 @@
         <item>Mililitry</item>
     </string-array>
 
+
+    <string name="paruwa">Oczyszczone z włókien i błon mięso z szynki, musi być dokładnie umyte i osuszone. Następnie kroimy mięso w kostkę o wymiarach ok. 2 cm. Peklujemy je solą i peklosolą a następnie odstawiamy do lodówki na 24 godziny. Po upływie doby wyjmujemy mięso z lodówki i mielimy na sitku 2mm dwa lub trzy razy. Następnie blendujemy wszystko z dodatkiem wody i przypraw do uzyskania gładkiej masy.
+    UWAGA! Ważne jest aby nie przegrzać mięsa. Podczas mielenia a zwłaszcza blendowania mięso nabiera temperatury. Masa musi mieć temperaturę maksymalną 10 stopni. Po peklowaniu mięsa umieszczam je w zamrażarce na co najmniej dwie godziny. To pozwala uniknąć przegrzania.
+    Gdy już mamy przygotowaną masę, napełniamy jelita odkręcając w odcinki ok 20-25 cm.
+    W celu osadzenia, parówki wieszamy na kijach na 1 godzinę w temperaturze pokojowej. Wędzimy y w temperaturze 30 -40 ˚C przez 1-2 h, do uzyskania jasnej barwy. Uwędzone parówki parzymy przez 10-15 min. w temperaturze 70-72˚C, a następnie po sparzeniu studzimy w zimnej wodzie. Po tym rozwieszamy na kijach w celu osuszenia.
+    </string>
 
 </resources>
