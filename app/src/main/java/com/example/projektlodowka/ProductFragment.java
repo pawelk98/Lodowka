@@ -72,6 +72,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
+                produkty = produkt;
                 adapter.setProdukty(produkt);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
