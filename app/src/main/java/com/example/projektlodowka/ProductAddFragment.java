@@ -26,7 +26,6 @@ import com.example.projektlodowka.database.ViewModel;
 public class ProductAddFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     EditText nazwa;
     EditText ilosc;
-    //EditText typ;
     Button dodaj;
     int type;
     Produkt p;
@@ -54,11 +53,8 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
 
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
-       // typ = view.findViewById(R.id.spinner_prod);
         dodaj = view.findViewById(R.id.produktEditButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-
-
 
 
 
