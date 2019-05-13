@@ -19,7 +19,7 @@ public class Repository {
     private ProduktPrzepisDao produktPrzepisDao;
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
-    private List<ProduktPrzepis> produktyPrzepisy;
+    private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
 
     Repository(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
@@ -159,6 +159,53 @@ public class Repository {
         }
     }
 
+    LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
+
+    public void insertProduktPrzepis(ProduktPrzepis produktprzepis) { new insertProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktprzepis); }
+
+    private static class insertProduktPrzepisAsyncTask extends AsyncTask<ProduktPrzepis, Void, Void> {
+        private ProduktPrzepisDao mAsyncTaskDao;
+        private Activity mActivity;
+        insertProduktPrzepisAsyncTask(ProduktPrzepisDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final ProduktPrzepis... params) {
+            mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { new deleteProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktPrzepis); }
+
+    private static class deleteProduktPrzepisAsyncTask extends AsyncTask<ProduktPrzepis, Void, Void> {
+        private ProduktPrzepisDao mAsyncTaskDao;
+        deleteProduktPrzepisAsyncTask(ProduktPrzepisDao dao) { mAsyncTaskDao = dao; }
+
+        @Override
+        protected Void doInBackground(final ProduktPrzepis... params) {
+            mAsyncTaskDao.delete(params[0]);
+            return null;
+        }
+    }
+
+    public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { new updateProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktPrzepis); }
+
+    private static class updateProduktPrzepisAsyncTask extends AsyncTask<ProduktPrzepis, Void, Void> {
+        private ProduktPrzepisDao mAsyncTaskDao;
+        updateProduktPrzepisAsyncTask(ProduktPrzepisDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(ProduktPrzepis... params) {
+            mAsyncTaskDao.update(params[0]);
+            return null;
+        }
+    }
+
+
     LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
 
     public void insertPrzepis(Activity activity, Przepis przepis) { new insertPrzepisAsyncTask(activity, przepisDao).execute(przepis); }
@@ -233,4 +280,5 @@ public class Repository {
                 Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
         }
     }
+
 }

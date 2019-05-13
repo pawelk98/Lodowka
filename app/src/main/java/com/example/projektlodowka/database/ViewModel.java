@@ -11,12 +11,14 @@ public class ViewModel extends AndroidViewModel {
     private Repository repository;
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
+    private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
 
     public ViewModel(Application application) {
         super(application);
         repository = new Repository(application);
         produkty = repository.getProdukty();
         przepisy = repository.getPrzepisy();
+        produktyPrzepisy = repository.getProduktyPrzepisy();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
@@ -40,4 +42,12 @@ public class ViewModel extends AndroidViewModel {
     public void deletePrzepis(Przepis przepis) { repository.deletePrzepis(przepis); }
 
     public void updatePrzepis(Activity activity, Przepis przepis) { repository.updatePrzepis(activity, przepis); }
+
+    public LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
+
+    public void insertProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.insertProduktPrzepis(produktPrzepis); }
+
+    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.deleteProduktPrzepis(produktPrzepis); }
+
+    public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.updateProduktPrzepis(produktPrzepis); }
 }
