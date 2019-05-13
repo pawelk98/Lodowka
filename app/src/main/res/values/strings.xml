@@ -8,10 +8,18 @@
     <string name="nazwa">Nazwa</string>
     <string name="ilosc">Ilość</string>
     <string name="typ">Typ</string>
-    <string name="usun">Usun</string>
+    <string name="usun">Usuń</string>
     <string name="start">Start</string>
     <string name="settings">Ustawienia</string>
     <string name="search">Szukaj</string>
+    <string name="newProduct">Dodaj nowy produkt:</string>
+    <string name="editProduct">Edytuj produkt:</string>
+    <string name="productName">Nazwa produktu: </string>
+    <string name="productMuch">Ilość: </string>
+    <string name="productRecipes">Przepisy wykorzystujące produkt:</string>
+    <string name="edit">Edytuj</string>
+    <string name="changePhoto">Zmień obraz</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="types">
         <item>Kilogramy</item>

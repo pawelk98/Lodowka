@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -47,14 +46,14 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Spinner typ = view.findViewById(R.id.spinner_prod);
+        Spinner typ = view.findViewById(R.id.spinner_prod_edit);
         ArrayAdapter<CharSequence> adapter_prod = ArrayAdapter.createFromResource(this.getActivity() ,R.array.types ,android.R.layout.simple_spinner_item);
         adapter_prod.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typ.setAdapter(adapter_prod);
         typ.setOnItemSelectedListener(this);
 
-        nazwa = view.findViewById(R.id.produktDodajNazwaEditText);
-        ilosc = view.findViewById(R.id.produktDodajIloscEditText);
+        nazwa = view.findViewById(R.id.produktEditNazwaEditText);
+        ilosc = view.findViewById(R.id.produktEditIloscEditText);
        // typ = view.findViewById(R.id.spinner_prod);
         dodaj = view.findViewById(R.id.produktDodajButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
