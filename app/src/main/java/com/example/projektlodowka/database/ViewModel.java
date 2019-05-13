@@ -45,6 +45,8 @@ public class ViewModel extends AndroidViewModel {
 
     public void setEditProdukt(Activity activity, int id) { repositoryProdukt.setEditProdukt(activity,id); }
 
+    public void setShowcaseProdukt(Activity activity, int id) { repositoryProdukt.setShowcaseProdukt(activity, id); }
+
     public void insertProdukt(Activity activity, Produkt produkt) { repositoryProdukt.insertProdukt(activity, produkt); }
 
     public void deleteProdukt(Produkt produkt) { repositoryProdukt.deleteProdukt(produkt); }

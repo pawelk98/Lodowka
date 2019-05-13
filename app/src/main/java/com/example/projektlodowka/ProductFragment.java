@@ -97,7 +97,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", adapter.getProdukt(position).getId());
-                ProductEditFragment fragment = new ProductEditFragment();
+                ProductShowcaseFragment fragment = new ProductShowcaseFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
@@ -113,9 +113,6 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
         SearchView searchView = (SearchView) view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(this);
-
-
-
     }
 
     @Override

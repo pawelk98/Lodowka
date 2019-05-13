@@ -55,7 +55,7 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
        // typ = view.findViewById(R.id.spinner_prod);
-        dodaj = view.findViewById(R.id.produktDodajButton);
+        dodaj = view.findViewById(R.id.produktEditButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
 
 

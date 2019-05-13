@@ -6,9 +6,12 @@ import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projektlodowka.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -167,6 +170,62 @@ public class RepositoryProdukt {
             } else {
                 ilosc.setText(String.valueOf(produkt.getIlosc()));
                 typ.setSelection(produkt.getTyp());
+            }
+        }
+    }
+
+
+    public void setShowcaseProdukt(Activity activity, int id) { new setShowcaseProduktAsyncTask(activity, produktDao).execute(id); }
+
+    private static class setShowcaseProduktAsyncTask extends AsyncTask<Integer, Void, Produkt> {
+        private ProduktDao mAsyncTaskDao;
+        private Activity mActivity;
+
+        setShowcaseProduktAsyncTask(Activity activity, ProduktDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
+
+        @Override
+        protected Produkt doInBackground(Integer... integers) {
+            return mAsyncTaskDao.loadId(integers[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Produkt produkt) {
+            TextView nazwa = mActivity.findViewById(R.id.productNameFromDatabase);
+            TextView ilosc = mActivity.findViewById(R.id.productIloscFromDatabase);
+            TextView typ = mActivity.findViewById(R.id.productTypFromDatabase);
+            int typInt = produkt.getTyp();
+
+            nazwa.setText(produkt.getNazwa());
+
+            if (produkt.getIlosc() < 500 && produkt.getTyp() != 2) {
+                ilosc.setText(String.valueOf(produkt.getIlosc()));
+                switch (typInt){
+                    case 0:
+                        typ.setText("g");
+                        break;
+
+                    case 1:
+                        typ.setText("ml");
+                        break;
+                }
+            } else if (produkt.getIlosc() >= 500) {
+                ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
+                switch (typInt){
+                    case 0:
+                        typ.setText("kg");
+                        break;
+
+                    case 1:
+                        typ.setText("l");
+                        break;
+
+                    case 2:
+                        typ.setText("szt");
+                        break;
+                }
             }
         }
     }

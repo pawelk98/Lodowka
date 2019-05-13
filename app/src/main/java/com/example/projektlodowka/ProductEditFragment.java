@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,13 +32,11 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
     int id;
     EditText nazwa;
     EditText ilosc;
-   // EditText typ;
     int type;
-    Button zatwierdz;
-    Button usun;
-    Produkt p;
-    Produkt uProdukt;
+    Button edytuj;
     ViewModel viewModel;
+    Produkt uProdukt;
+    ImageButton imageButton;
 
     public ProductEditFragment() {
         // Required empty public constructor
@@ -67,13 +66,12 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
 
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
-        //typ = view.findViewById(R.id.produktEditTypEditText);
-        zatwierdz = view.findViewById(R.id.produktEditButton);
-        usun = view.findViewById(R.id.produktUsunButton);
+        edytuj = view.findViewById(R.id.produktEditButton);
+        imageButton = view.findViewById(R.id.productImage);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setEditProdukt(getActivity(), id);
 
-        zatwierdz.setOnClickListener(new View.OnClickListener() {
+        edytuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(nazwa.getText().toString().trim().length() != 0
@@ -112,18 +110,6 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
             }
         });
 
-        usun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uProdukt = new Produkt(nazwa.getText().toString(), Integer.valueOf(type),
-                        Integer.parseInt(ilosc.getText().toString()));
-                uProdukt.setId(id);
-                viewModel.deleteProdukt(uProdukt);
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
-                fragmentTransaction.commit();
-            }
-        });
     }
 
     @Override

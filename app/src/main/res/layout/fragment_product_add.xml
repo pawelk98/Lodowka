@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
 
     <Button
-        android:id="@+id/produktDodajButton"
+        android:id="@+id/produktEditButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
