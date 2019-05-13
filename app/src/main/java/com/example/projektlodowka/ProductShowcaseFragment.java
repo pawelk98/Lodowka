@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +34,7 @@ public class ProductShowcaseFragment extends Fragment {
     Button usun;
     Produkt uProdukt;
     ViewModel viewModel;
-    ImageButton imageButton;
+    CircleImageView circleImageView;
 
     public ProductShowcaseFragment() {
         // Required empty public constructor
@@ -63,7 +65,7 @@ public class ProductShowcaseFragment extends Fragment {
         usun = view.findViewById(R.id.produktUsunButton);
         edytuj = view.findViewById(R.id.produktEditButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-        imageButton = view.findViewById(R.id.productImage);
+        circleImageView = view.findViewById(R.id.productImage);
 
         viewModel.setShowcaseProdukt(getActivity(), id);
 
