@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/obrazek_przepisu"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/custom_dish_03"/>
+        <ImageView
+            android:id="@+id/obrazek_zegarka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_timer"
+            android:paddingStart="140dp"
+            android:paddingTop="130dp"/>
+        <TextView
+            android:id="@+id/textview_czas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15min"
+            android:textColor="#000"
+            android:paddingStart="170dp"
+            android:paddingTop="130dp"/>
+        <TextView
+            android:id="@+id/textview_nazwa_przepisu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="Parówki z wody"
+            android:textSize="26dp"
+            android:paddingTop="35dp"
+            android:paddingStart="180dp"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#003" />
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

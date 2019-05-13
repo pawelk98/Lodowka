@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class ProductFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    List<Produkt> produkty;
+    List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
     RecyclerView recyclerView;
     RecyclerProduktyAdapter adapter;
@@ -62,7 +62,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view_produkty);
         adapter = new RecyclerProduktyAdapter(getActivity(),produkty);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -72,7 +72,6 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
-                produkty = produkt;
                 adapter.setProdukty(produkt);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -113,6 +112,9 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
         SearchView searchView = (SearchView) view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(this);
+
+
+
     }
 
     @Override

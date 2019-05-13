@@ -142,34 +142,34 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     }
 
     public interface ClickListener {
-        public void onClick(View view, int position);
+            public void onClick(View view, int position);
 
-        public void onLongClick(View view, int position);
-    }
-
-    static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
-
-        private ClickListener clicklistener;
-        private GestureDetector gestureDetector;
-
-        public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener) {
-
-            this.clicklistener = clicklistener;
-            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onSingleTapUp(MotionEvent e) {
-                    return true;
-                }
-
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    View child = recycleView.findChildViewUnder(e.getX(), e.getY());
-                    if (child != null && clicklistener != null) {
-                        clicklistener.onLongClick(child, recycleView.getChildAdapterPosition(child));
-                    }
-                }
-            });
+            public void onLongClick(View view, int position);
         }
+
+        static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+
+            private ClickListener clicklistener;
+            private GestureDetector gestureDetector;
+
+            public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener) {
+
+                this.clicklistener = clicklistener;
+                gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onSingleTapUp(MotionEvent e) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onLongPress(MotionEvent e) {
+                        View child = recycleView.findChildViewUnder(e.getX(), e.getY());
+                        if (child != null && clicklistener != null) {
+                            clicklistener.onLongClick(child, recycleView.getChildAdapterPosition(child));
+                        }
+                    }
+                });
+            }
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
