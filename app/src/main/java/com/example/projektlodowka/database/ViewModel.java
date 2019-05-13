@@ -8,46 +8,50 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 public class ViewModel extends AndroidViewModel {
-    private Repository repository;
+    private RepositoryProdukt repositoryProdukt;
+    private RepositoryPrzepis repositoryPrzepis;
+    private RepositoryProduktPrzepis repositoryProduktPrzepis;
     private LiveData<List<Produkt>> produkty;
     private LiveData<List<Przepis>> przepisy;
     private LiveData<List<ProduktPrzepis>> produktyPrzepisy;
 
     public ViewModel(Application application) {
         super(application);
-        repository = new Repository(application);
-        produkty = repository.getProdukty();
-        przepisy = repository.getPrzepisy();
-        produktyPrzepisy = repository.getProduktyPrzepisy();
+        repositoryProdukt = new RepositoryProdukt(application);
+        repositoryPrzepis = new RepositoryPrzepis(application);
+        repositoryProduktPrzepis = new RepositoryProduktPrzepis(application);
+        produkty = repositoryProdukt.getProdukty();
+        przepisy = repositoryPrzepis.getPrzepisy();
+        produktyPrzepisy = repositoryProduktPrzepis.getProduktyPrzepisy();
     }
 
     public LiveData<List<Produkt>> getProdukty() {
         return produkty;
     }
 
-    public void setEditProdukt(Activity activity, int id) { repository.setEditProdukt(activity,id); }
+    public void setEditProdukt(Activity activity, int id) { repositoryProdukt.setEditProdukt(activity,id); }
 
-    public void insertProdukt(Activity activity, Produkt produkt) { repository.insertProdukt(activity, produkt); }
+    public void insertProdukt(Activity activity, Produkt produkt) { repositoryProdukt.insertProdukt(activity, produkt); }
 
-    public void deleteProdukt(Produkt produkt) { repository.deleteProdukt(produkt); }
+    public void deleteProdukt(Produkt produkt) { repositoryProdukt.deleteProdukt(produkt); }
 
-    public void deleteAllProdukt() { repository.deleteAllProduct(); }
+    public void deleteAllProdukt() { repositoryProdukt.deleteAllProduct(); }
 
-    public void updateProdukt(Activity activity, Produkt produkt) { repository.updateProdukt(activity, produkt); }
+    public void updateProdukt(Activity activity, Produkt produkt) { repositoryProdukt.updateProdukt(activity, produkt); }
 
     public LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
 
-    public void insertPrzepis(Activity activity, Przepis przepis) { repository.insertPrzepis(activity, przepis); }
+    public void insertPrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.insertPrzepis(activity, przepis); }
 
-    public void deletePrzepis(Przepis przepis) { repository.deletePrzepis(przepis); }
+    public void deletePrzepis(Przepis przepis) { repositoryPrzepis.deletePrzepis(przepis); }
 
-    public void updatePrzepis(Activity activity, Przepis przepis) { repository.updatePrzepis(activity, przepis); }
+    public void updatePrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.updatePrzepis(activity, przepis); }
 
     public LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
 
-    public void insertProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.insertProduktPrzepis(produktPrzepis); }
+    public void insertProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.insertProduktPrzepis(produktPrzepis); }
 
-    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.deleteProduktPrzepis(produktPrzepis); }
+    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 
-    public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repository.updateProduktPrzepis(produktPrzepis); }
+    public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.updateProduktPrzepis(produktPrzepis); }
 }
