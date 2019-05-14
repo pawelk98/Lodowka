@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity  {
         startFragment = new StartFragment();
         productFragment = new ProductFragment();
         recipeFragment = new RecipeFragment();
+
+        mMainNav.setSelectedItemId(R.id.nav_start);
+        setFragment(startFragment);
+        toolbar.setTitle("eFridge");
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -101,7 +107,6 @@ public class MainActivity extends AppCompatActivity  {
                 Intent intent =  new Intent(MainActivity.this, settings.class);
                 startActivity(intent);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);

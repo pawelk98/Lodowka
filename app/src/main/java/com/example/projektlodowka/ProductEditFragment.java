@@ -52,6 +52,7 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
     public byte [] obrazBajty;
+    ImageButton back;
 
     public ProductEditFragment() {
         // Required empty public constructor
@@ -85,6 +86,7 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         imageButton = view.findViewById(R.id.productImage);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setEditProdukt(getActivity(), id);
+        back = view.findViewById(R.id.backBttn);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +132,15 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
                     fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
                     fragmentTransaction.commit();
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
+                fragmentTransaction.commit();
             }
         });
 
