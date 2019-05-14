@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,149 +8,135 @@
     tools:context=".ProductEditFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp">
-
-
-            <ImageButton
-                android:id="@+id/backBttn2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:src="@android:drawable/btn_dialog" />
+            android:layout_height="match_parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/productImage"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:src="@drawable/def_pic" />
-
-
-        </LinearLayout>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp">
-
-            <TextView
-                android:id="@+id/productName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/productName"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/productNameFromDatabase"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="*tutaj nazwa produktu*"
-                android:textColor="@color/colorText"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp" >
-
-            <TextView
-                android:id="@+id/productMuch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/productMuch"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/productIloscFromDatabase"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*tutaj ilosc*"
-                android:textColor="@color/colorText"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/productTypFromDatabase"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="*tu jednostka*"
-                android:textColor="@color/colorText"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TextView
-            android:id="@+id/productRecipes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:text="@string/productRecipes"
-            android:textSize="18sp" />
-
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            android:fillViewport="true">
-
-            <TextView
-                android:id="@+id/tutajMaBycListaPrzepisowZawierajacychDanyProdukt"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:lines="20"
-                android:scrollbars="vertical"
-                android:scrollHorizontally="false"
-                android:textSize="15sp" />
-
-        </ScrollView>
-
-
-        <TableLayout
-            android:id="@+id/productButtons"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:stretchColumns="0,1">
-
-            <TableRow>
-
-                <Button
-                    android:id="@+id/produktEditButton"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/edit" />
-
-                <Button
-                    android:id="@+id/produktUsunButton"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/usun" />
-
-            </TableRow>
-        </TableLayout>
-
+                android:src="@drawable/def_pic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/productName"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/productRecipes"
+        android:layout_width="339dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/productRecipes"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productMuch" />
+
+    <TextView
+        android:id="@+id/productNameFromDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="*tutaj nazwa produktu*"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/productName"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/productMuch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/productMuch"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <TextView
+        android:id="@+id/productIloscFromDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="*tutaj ilosc*"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/productMuch"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <TextView
+        android:id="@+id/productTypFromDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="*tu jednostka*"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/productIloscFromDatabase"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <TextView
+        android:id="@+id/tutajMaBycListaPrzepisowZawierajacychDanyProdukt"
+        android:layout_width="fill_parent"
+        android:layout_height="337dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:lines="20"
+        android:scrollbars="vertical"
+        android:scrollHorizontally="false"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productRecipes" />
+
+    <Button
+        android:id="@+id/produktEditButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/produktUsunButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/usun"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
