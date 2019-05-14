@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -22,9 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -32,6 +29,8 @@ import com.example.projektlodowka.database.ViewModel;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -49,11 +48,11 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
     Button edytuj;
     ViewModel viewModel;
     Produkt uProdukt;
-    ImageButton imageButton;
+    CircleImageView circleImageView;
+    Button setImage;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
     public byte [] obrazBajty;
-    ImageButton back;
 
     public ProductEditFragment() {
         // Required empty public constructor
@@ -84,17 +83,18 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         nazwa = view.findViewById(R.id.produktEditNazwaEditText);
         ilosc = view.findViewById(R.id.produktEditIloscEditText);
         edytuj = view.findViewById(R.id.produktEditButton);
-        imageButton = view.findViewById(R.id.productImage);
+        setImage = view.findViewById(R.id.changeImage);
+        circleImageView = view.findViewById(R.id.productImage);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setEditProdukt(getActivity(), id);
-        back = view.findViewById(R.id.backBttn);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        setImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
             }
         });
+
 
         edytuj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,16 +139,6 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
                 }
             }
         });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
-                fragmentTransaction.commit();
-            }
-        });
-
     }
 
     @Override
@@ -171,7 +161,7 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
-            imageButton.setImageURI(imageUri);
+            circleImageView.setImageURI(imageUri);
             obrazBajty=convertImageToByte(imageUri);
         }
     }

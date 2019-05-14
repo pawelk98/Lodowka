@@ -36,7 +36,6 @@ public class ProductShowcaseFragment extends Fragment {
     Produkt uProdukt;
     ViewModel viewModel;
     CircleImageView circleImageView;
-    ImageButton back;
 
     public ProductShowcaseFragment() {
         // Required empty public constructor
@@ -68,7 +67,6 @@ public class ProductShowcaseFragment extends Fragment {
         edytuj = view.findViewById(R.id.produktEditButton);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         circleImageView = view.findViewById(R.id.productImage);
-        back = view.findViewById(R.id.backBttn2);
 
         viewModel.setShowcaseProdukt(getActivity(), id);
 
@@ -98,15 +96,6 @@ public class ProductShowcaseFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
                 fragmentTransaction.addToBackStack("produktyShowcase").commit();
-            }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
-                fragmentTransaction.commit();
             }
         });
     }

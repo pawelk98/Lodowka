@@ -163,7 +163,7 @@ public class RepositoryProdukt {
             EditText nazwa = mActivity.findViewById(R.id.produktEditNazwaEditText);
             EditText ilosc = mActivity.findViewById(R.id.produktEditIloscEditText);
             Spinner typ = mActivity.findViewById(R.id.spinner_prod_edit);
-            ImageButton obrazekGuzik = mActivity.findViewById(R.id.productImage);
+            CircleImageView obrazekGuzik = mActivity.findViewById(R.id.productImage);
 
             byte [] array = produkt.getImage();
 
