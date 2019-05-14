@@ -92,13 +92,14 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
             @Override
             public void onClick(View view, final int position) {
 
+
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", adapter_przepisy.getPrzepis(position).getId());
                 RecipeShowFragment fragment = new RecipeShowFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
-                fragmentTransaction.commit();
+                fragmentTransaction.addToBackStack("przepisyRecycler").commit();
 
             }
 

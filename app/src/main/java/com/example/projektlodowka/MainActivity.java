@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
 
 
-        mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
-        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
+        mMainNav = findViewById(R.id.main_nav);
+        mMainFrame = findViewById(R.id.main_frame);
 
         startFragment = new StartFragment();
         productFragment = new ProductFragment();
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity  {
 
                     default:
                         return false;
-
                 }
             }
         });
@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity  {
 
     private void setFragment(Fragment fragment) {
 
+        FragmentManager manager = getSupportFragmentManager();
+        manager.popBackStack();
+        manager.popBackStack();
+        manager.popBackStack();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();

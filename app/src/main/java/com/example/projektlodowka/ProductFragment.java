@@ -86,7 +86,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, new ProductAddFragment());
-                fragmentTransaction.commit();
+                fragmentTransaction.addToBackStack("produktyRecycler").commit();
             }
         });
 
@@ -101,7 +101,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
-                fragmentTransaction.commit();
+                fragmentTransaction.addToBackStack("produktyRecycler").commit();
 
             }
 
