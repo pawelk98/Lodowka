@@ -47,10 +47,19 @@
                     android:id="@+id/przepisShowCzasTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
+                    android:layout_gravity="end"
                     android:layout_marginLeft="8dp"
                     android:text="*czas*"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/min"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="min"
+                    android:textSize="18sp"/>
             </LinearLayout>
 
             <LinearLayout
