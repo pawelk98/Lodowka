@@ -67,7 +67,13 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
 
+    public LiveData<List<ProduktPrzepis>> getProduktyPrzepisyIdPrzepis(int idPrzepisu) { return repositoryProduktPrzepis.getProduktyPrzepisyIdPrzepis(idPrzepisu); }
+
     public void insertProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.insertProduktPrzepis(produktPrzepis); }
+
+    public void insertProduktPrzepisByName(String przepisName, String produktName, int ilosc, boolean opcjonalny) {
+        repositoryProduktPrzepis.insertProduktPrzepisByName(przepisName, produktName, ilosc, opcjonalny);
+    }
 
     public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 

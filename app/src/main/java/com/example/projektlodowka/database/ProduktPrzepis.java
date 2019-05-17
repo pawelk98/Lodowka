@@ -29,9 +29,10 @@ public class ProduktPrzepis {
     @Ignore
     public ProduktPrzepis() {}
 
-    public ProduktPrzepis(int idPrzepisu, int idProduktu, boolean opcjonalny) {
+    public ProduktPrzepis(int idPrzepisu, int idProduktu, int iloscProduktu, boolean opcjonalny) {
         this.idPrzepisu = idPrzepisu;
         this.idProduktu = idProduktu;
+        this.iloscProduktu = iloscProduktu;
         this.opcjonalny = opcjonalny;
     }
 

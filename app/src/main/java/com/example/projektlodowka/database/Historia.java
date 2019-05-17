@@ -20,15 +20,17 @@ public class Historia {
     private int idPrzepisu;
 
     @NonNull
-    private String data = "20990101";
+    private String data;
 
+    private int iloscPorcji;
 
     @Ignore
     public Historia() {}
 
-    public Historia(int idPrzepisu, @NonNull String data) {
+    public Historia(int idPrzepisu, @NonNull String data, int iloscPorcji) {
         this.idPrzepisu = idPrzepisu;
         this.data = data;
+        this.iloscPorcji = iloscPorcji;
     }
 
     public int getId() {
@@ -52,5 +54,13 @@ public class Historia {
 
     public void setData(@NonNull String data) {
         this.data = data;
+    }
+
+    public int getIloscPorcji() {
+        return iloscPorcji;
+    }
+
+    public void setIloscPorcji(int iloscPorcji) {
+        this.iloscPorcji = iloscPorcji;
     }
 }
