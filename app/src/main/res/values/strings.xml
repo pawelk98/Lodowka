@@ -17,8 +17,9 @@
     <string name="productName">Nazwa produktu: </string>
     <string name="productMuch">Ilość: </string>
     <string name="productRecipes">Przepisy wykorzystujące produkt:</string>
+    <string name="save">Zapisz</string>
     <string name="edit">Edytuj</string>
-    <string name="changePhoto">Zmień obraz</string>'
+    <string name="changePhoto">Zmień obraz</string>
     <string name="time">Czas przygotowania:</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

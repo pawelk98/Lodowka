@@ -111,9 +111,10 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
         }));
 
-        SearchView searchView = (SearchView) view.findViewById(R.id.search_view);
+        SearchView searchView = view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(this);
     }
+
 
     @Override
     public boolean onQueryTextSubmit(String s) {
