@@ -95,6 +95,7 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", adapter_przepisy.getPrzepis(position).getId());
+                bundle.putString("przepisName", adapter_przepisy.getPrzepis(position).getNazwa());
                 RecipeShowFragment fragment = new RecipeShowFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();

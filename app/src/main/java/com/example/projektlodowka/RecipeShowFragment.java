@@ -1,6 +1,8 @@
 package com.example.projektlodowka;
 
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.projektlodowka.database.ProduktInPrzepis;
 import com.example.projektlodowka.database.ViewModel;
+
+import java.util.List;
 
 
 /**
@@ -20,10 +26,13 @@ import com.example.projektlodowka.database.ViewModel;
 public class RecipeShowFragment extends Fragment {
 
     int id;
+    String przepisName;
     TextView nazwa;
     TextView czas;
     TextView opis;
     ViewModel viewModel;
+    Button gotuj;
+
 
     public RecipeShowFragment() {
         // Required empty public constructor
@@ -33,6 +42,7 @@ public class RecipeShowFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             id = getArguments().getInt("id");
+            przepisName = getArguments().getString("przepisName");
         }
     }
 
@@ -50,7 +60,7 @@ public class RecipeShowFragment extends Fragment {
         nazwa = view.findViewById(R.id.przepisShowNazwaTextView);
         czas = view.findViewById(R.id.przepisShowCzasTextView);
         opis = view.findViewById(R.id.przepisShowOpisTextView);
-
+        gotuj = view.findViewById(R.id.cookNow);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
     }

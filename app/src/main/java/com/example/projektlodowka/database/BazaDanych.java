@@ -47,10 +47,12 @@ public abstract class BazaDanych extends RoomDatabase {
 
         private final ProduktDao produktDao;
         private final PrzepisDao przepisDao;
+        private final ProduktPrzepisDao produktPrzepisDao;
 
         PopulateDbAsync(BazaDanych db) {
             produktDao = db.produktDao();
             przepisDao = db.przepisDao();
+            produktPrzepisDao = db.produktPrzepisDao();
         }
 
         @Override
@@ -105,7 +107,6 @@ public abstract class BazaDanych extends RoomDatabase {
             przepisDao.insert(przepis);
             przepis = new Przepis("kaszanka", 5, "odgrzej w mikrofalówce itd");
             przepisDao.insert(przepis);
-
 
             return null;
         }
