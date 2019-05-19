@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.projektlodowka.database.ProduktInPrzepis;
+import com.example.projektlodowka.database.Przepis;
 import com.example.projektlodowka.database.ViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,6 +35,8 @@ public class RecipeShowFragment extends Fragment {
     TextView opis;
     ViewModel viewModel;
     Button gotuj;
+    ListView produktyInPrzepisy;
+    ProduktyInPrzepisAdapter produktyInPrzepisAdapter;
 
 
     public RecipeShowFragment() {
@@ -63,5 +68,24 @@ public class RecipeShowFragment extends Fragment {
         gotuj = view.findViewById(R.id.cookNow);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
+        produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
+        produktyInPrzepisAdapter = new ProduktyInPrzepisAdapter(getActivity());
+        produktyInPrzepisy.setAdapter(produktyInPrzepisAdapter);
+
+        viewModel.getProduktyInPrzepis(id).observe(this, new Observer<List<ProduktInPrzepis>>() {
+            @Override
+            public void onChanged(@Nullable List<ProduktInPrzepis> produktInPrzepis) {
+                produktyInPrzepisAdapter.setProduktInPzepis(produktInPrzepis);
+                produktyInPrzepisy.setAdapter(produktyInPrzepisAdapter);
+            }
+        });
+
+        gotuj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.insertProduktPrzepisByName(przepisName,"cebula",1000,false);
+            }
+        });
+
     }
 }
