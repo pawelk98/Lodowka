@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.projektlodowka.database.ProduktInPrzepis;
@@ -45,6 +46,7 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
             TextView nazwa = convertView.findViewById(R.id.przepisy_nazwa_produktu);
             TextView ilosc_posiadana = convertView.findViewById(R.id.przepisy_ilosc_posiadana_produktu);
             TextView ilosc_potrzebna = convertView.findViewById(R.id.przepisy_ilosc_postrzebna_produktu);
+            CheckBox checkBox = convertView.findViewById(R.id.checkBoxOpcjonalny);
 
 
             nazwa.setText(produktInPrzepis.get(position).getNazwa());
@@ -125,6 +127,8 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
                 ilosc_posiadana.setTextColor(Color.RED);
                 ilosc_potrzebna.setTextColor(Color.RED);
             }
+            if(produktInPrzepis.get(position).isOpcjonalny()==true)
+                checkBox.setChecked(true);
 
         }
 

@@ -16,6 +16,7 @@ public class ProduktInPrzepis {
     ProduktInPrzepis(String nazwa, int typ, int ilosc, int iloscProduktu, boolean opcjonalny) {
         this.nazwa = nazwa;
         this.ilosc = ilosc;
+        this.typ = typ;
         this.iloscProduktu = iloscProduktu;
         this.opcjonalny = opcjonalny;
     }

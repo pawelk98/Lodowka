@@ -83,7 +83,7 @@ public class RecipeShowFragment extends Fragment {
         gotuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.insertProduktPrzepisByName(przepisName,"cebula",1000,false);
+                viewModel.insertProduktPrzepisByName(przepisName,"mleko",1000,true);
             }
         });
 
