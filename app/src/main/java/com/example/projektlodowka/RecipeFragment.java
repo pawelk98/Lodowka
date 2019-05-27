@@ -77,15 +77,15 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
             }
         });
 
-       /* FloatingActionButton fab = view.findViewById(R.id.addProductFab);
+        FloatingActionButton fab = view.findViewById(R.id.przepis_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new ProductAddFragment());
+                fragmentTransaction.replace(R.id.main_frame, new PrzepisAddFragment());
                 fragmentTransaction.commit();
             }
-        });*/
+        });
 
         recyclerView.addOnItemTouchListener(new RecyclerPrzepisyAdapter.RecyclerTouchListener(getActivity(), recyclerView, new RecyclerPrzepisyAdapter.ClickListener() {
 

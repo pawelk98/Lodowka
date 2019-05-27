@@ -138,4 +138,5 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
     public void setProduktInPzepis(List<ProduktInPrzepis> produktInPrzepis) {
         this.produktInPrzepis = produktInPrzepis;
     }
+
 }
