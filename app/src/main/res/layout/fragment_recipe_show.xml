@@ -6,29 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".RecipeShowFragment">
 
-    <Button
-        android:id="@+id/editRecipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Edytuj"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/przepisTimerListView" />
-
     <ListView
         android:id="@+id/przepisTimerListView"
-        android:layout_width="193dp"
-        android:layout_height="168dp"
+        android:layout_width="199dp"
+        android:layout_height="177dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dishImage" />
+        app:layout_constraintEnd_toStartOf="@+id/dishImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dishImage"
-        android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_width="192dp"
+        android:layout_height="177dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
@@ -37,11 +29,11 @@
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/przepisTimerListView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/przepisSkladnikListView">
 
     </ScrollView>
@@ -96,30 +88,79 @@
         app:layout_constraintStart_toEndOf="@+id/przepisShowCzasTextView"
         app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/przepisSkladnikListView"
+    <TextView
+        android:id="@+id/nazwa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="Produkt"
+        android:textColor="#000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/przepisSkladnikListView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+        app:layout_constraintTop_toBottomOf="@+id/przepisTimerListView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/iloscpos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Posiadane"
+        android:textColor="#000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/przepisSkladnikListView"
+        app:layout_constraintStart_toEndOf="@id/nazwa"
+        app:layout_constraintTop_toBottomOf="@+id/przepisTimerListView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/iloscpocz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Potrzebne"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/przepisSkladnikListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        android:textColor="#000"
+        app:layout_constraintStart_toEndOf="@id/iloscpos"
+        app:layout_constraintTop_toBottomOf="@+id/przepisTimerListView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ListView
+        android:id="@+id/przepisSkladnikListView"
+        android:layout_width="match_parent"
+        android:layout_height="203dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nazwa"
+        tools:layout_editor_absoluteY="325dp" />
 
     <Button
         android:id="@+id/cookNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Gotuj!"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editRecipe" />
+        app:layout_constraintTop_toBottomOf="@+id/przepisSkladnikListView" />
 
     <TextView
         android:id="@+id/przepisShowOpisTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"

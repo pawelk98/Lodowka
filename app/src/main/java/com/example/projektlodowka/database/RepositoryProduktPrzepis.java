@@ -30,6 +30,8 @@ public class RepositoryProduktPrzepis {
         return produktPrzepisDao.loadPrzepis(idPrzepisu);
     }
 
+    LiveData<List<ProduktInPrzepis>> getProduktyInPrzepis(int idPrzepisu) { return produktPrzepisDao.loadProduktInPrzepis(idPrzepisu); }
+
     public void insertProduktPrzepis(ProduktPrzepis produktprzepis) {
         new insertProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktprzepis);
     }
