@@ -61,13 +61,14 @@ public class ProductShowcaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         nazwa = view.findViewById(R.id.productName);
         ilosc = view.findViewById(R.id.productMuch);
         usun = view.findViewById(R.id.produktUsunButton);
         edytuj = view.findViewById(R.id.produktEditButton);
-        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         circleImageView = view.findViewById(R.id.productImage);
 
+        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowcaseProdukt(getActivity(), id);
 
         usun.setOnClickListener(new View.OnClickListener() {
