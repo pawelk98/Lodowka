@@ -88,20 +88,6 @@ public class RepositoryProduktPrzepis {
         }
     }
 
-    class MyTaskParams {
-        String przepisName;
-        String produktName;
-        int ilosc;
-        boolean opcjonalny;
-
-        MyTaskParams(String przepisName, String produktName, int ilosc, boolean opcjonalny) {
-            this.przepisName = przepisName;
-            this.produktName = produktName;
-            this.ilosc = ilosc;
-            this.opcjonalny = opcjonalny;
-        }
-    }
-
     public void insertProduktPrzepisByName(String przepisName, String produktName, int ilosc, boolean opcjonalny) {
         new insertProduktPrzepisNameAsyncTask(produktPrzepisDao, produktDao, przepisDao)
                 .execute(new MyTaskParams(przepisName, produktName, ilosc, opcjonalny));

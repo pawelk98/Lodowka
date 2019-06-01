@@ -6,10 +6,14 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +31,23 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
     private List<Produkt> produkty;
     private Context context;
     private LayoutInflater inflater;
-
+    private boolean[] checkBoxes;
+    private boolean[] opcjonalny;
+    private int[] ilosci;
     public ProduktDodawaniePrzepisuAdatper(){}
 
     public ProduktDodawaniePrzepisuAdatper(Context context, List<Produkt> produkty) {
-        this.produkty = produkty;
+        this.produkty = new ArrayList<>(produkty);
         this.context = context;
     }
 
 
     void setProdukty(List<Produkt> produkty) {
-        this.produkty = produkty;
+        this.produkty.clear();
+        this.produkty.addAll(produkty);
+        checkBoxes = new boolean[produkty.size()];
+        opcjonalny = new boolean[produkty.size()];
+        ilosci = new int[produkty.size()];
     }
 
     @NonNull
@@ -62,45 +72,19 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         }*/
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
 
-        int i = produkty.get(position).getIlosc();
         switch (produkty.get(position).getTyp()) {
             case 0:
-                if (i < 500)
-                    viewHolder.typ.setText("g");
-                else if (i % 1000 == 0)
-                    viewHolder.typ.setText("kg");
-                else
-                    viewHolder.typ.setText("kg");
+                viewHolder.typ.setText("kg");
                 break;
 
             case 1:
-                if (i < 500)
-                    viewHolder.typ.setText("ml");
-                else if (i % 1000 == 0)
-                    viewHolder.typ.setText("l");
-                else
-                    viewHolder.typ.setText("l");
+                viewHolder.typ.setText("l");
                 break;
 
             case 2:
-                if (i % 1000 == 0)
-                    viewHolder.typ.setText("szt");
-                else
-                    viewHolder.typ.setText("szt");
-                break;
-
-            default:
-                viewHolder.typ.setText(String.valueOf((float) i / 1000));
+                viewHolder.typ.setText("szt");
                 break;
         }
-        if(viewHolder.nazwa.isChecked()==true) {
-            Toast.makeText(context,produkty.get(position).getNazwa()+" jest dodana",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else
-            Toast.makeText(context,produkty.get(position).getNazwa()+" chuj",
-                    Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -109,12 +93,13 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
             return 0;
         else
             return produkty.size();
-
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
         CheckBox nazwa;
+        CheckBox opcjonalnyCB;
         TextView typ;
+        EditText ilosc;
 
         ConstraintLayout parentLayout;
 
@@ -122,9 +107,45 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
             super(itemView);
             //obrazek = itemView.findViewById(R.id.produktImageView);
             nazwa = itemView.findViewById(R.id.nazwaCheckBox);
+            opcjonalnyCB = itemView.findViewById(R.id.checkBox2);
             typ = itemView.findViewById(R.id.typ_dodawanie_do_przepisow);
+            ilosc = itemView.findViewById(R.id.ilosc_produktu_w_przepisie);
             //parentLayout = itemView.findViewById(R.id.parent_layout);
 
+
+            ilosc.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    String text = ilosc.getText().toString();
+
+                    if(text.length() > 0)
+                        ilosci[getAdapterPosition()] = (int)(Float.parseFloat(text)*1000);
+                }
+            });
+
+            nazwa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    checkBoxes[getAdapterPosition()] = isChecked;
+                }
+            });
+
+            opcjonalnyCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    opcjonalny[getAdapterPosition()] = isChecked;
+                }
+            });
         }
     }
 
@@ -132,6 +153,15 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         return produkty.get(position);
     }
 
+    public boolean checked(int position) { return checkBoxes[position]; }
+
+    public String nazwaProduktu(int position) { return produkty.get(position).getNazwa(); }
+
+    public boolean opcjonalnyProdukt(int position) { return opcjonalny[position];}
+
+    public int iloscProduktu(int position) { return ilosci[position]; }
+
+    public String getItemName(int position) { return produkty.get(position).getNazwa(); }
     @Override
     public long getItemId(int position) {
         return position;
@@ -146,7 +176,6 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream);
         return stream.toByteArray();
     }
-
 
 
     public void setFilter(List<Produkt> noweProdukty){

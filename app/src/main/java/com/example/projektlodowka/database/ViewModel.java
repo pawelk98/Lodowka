@@ -59,7 +59,7 @@ public class ViewModel extends AndroidViewModel {
 
     public void setShowPrzepis(Activity activity, int id) { repositoryPrzepis.setShowPrzepis(activity,id); }
 
-    public void insertPrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.insertPrzepis(activity, przepis); }
+    public void insertPrzepis(Activity activity, Przepis przepis, List<MyTaskParams> produkty) { repositoryPrzepis.insertPrzepis(activity, przepis, produkty); }
 
     public void deletePrzepis(Przepis przepis) { repositoryPrzepis.deletePrzepis(przepis); }
 

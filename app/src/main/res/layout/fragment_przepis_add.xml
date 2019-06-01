@@ -30,7 +30,7 @@
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="Czas"
-            android:inputType="text"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

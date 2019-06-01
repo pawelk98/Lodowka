@@ -14,7 +14,7 @@ public class Produkt {
     private int id;
 
     @NonNull
-    private String nazwa = "BRAK NAZWY";
+    private String nazwa;
 
     private int typ;
 
