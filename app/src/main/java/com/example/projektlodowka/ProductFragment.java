@@ -1,6 +1,7 @@
 package com.example.projektlodowka;
 
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -41,7 +42,9 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
     RecyclerView recyclerView;
+    private boolean changedFragment = false;
     RecyclerProduktyAdapter adapter;
+    SearchView searchView;
 
     public ProductFragment() {
         // Required empty public constructor
@@ -65,9 +68,9 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycler_view_produkty);
-        adapter = new RecyclerProduktyAdapter(getActivity(),produkty);
+        adapter = new RecyclerProduktyAdapter(getActivity(), produkty);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
 
@@ -77,7 +80,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
                 produkty = produkt;
                 adapter.setProdukty(produkt);
                 recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+                recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
             }
         });
@@ -92,7 +95,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
             }
         });
 
-            recyclerView.addOnItemTouchListener(new RecyclerProduktyAdapter.RecyclerTouchListener(getActivity(), recyclerView, new RecyclerProduktyAdapter.ClickListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerProduktyAdapter.RecyclerTouchListener(getActivity(), recyclerView, new RecyclerProduktyAdapter.ClickListener() {
 
             @Override
             public void onClick(View view, final int position) {
@@ -112,8 +115,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
             }
 
         }));
-
-        SearchView searchView = view.findViewById(R.id.search_view);
+        searchView = view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(this);
     }
 
@@ -125,18 +127,21 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        changedFragment = false;
         String name = newText.toLowerCase();
-        List<Produkt> noweProdukty =new ArrayList<>();
+        List<Produkt> noweProdukty = new ArrayList<>();
 
         recyclerView.setAdapter(adapter);
-        for(Produkt produkt : produkty){
-            if(produkt.getNazwa().toLowerCase().contains(name)){
+        for (Produkt produkt : produkty) {
+            if (produkt.getNazwa().toLowerCase().contains(name)) {
                 noweProdukty.add(produkt);
             }
         }
         adapter.setFilter(noweProdukty);
+        changedFragment = true;
         return true;
     }
+
 }
 
 

@@ -17,7 +17,6 @@ import android.support.v4.app.Fragment;
 public class MainActivity extends AppCompatActivity  {
 
     Toolbar toolbar;
-    private boolean visible_setter=false;
 
 
     private BottomNavigationView mMainNav;
@@ -26,6 +25,8 @@ public class MainActivity extends AppCompatActivity  {
     private StartFragment startFragment;
     private ProductFragment productFragment;
     private RecipeFragment recipeFragment;
+
+    private HistoryFragment historyFragment;
 
 
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity  {
         startFragment = new StartFragment();
         productFragment = new ProductFragment();
         recipeFragment = new RecipeFragment();
+        historyFragment = new HistoryFragment();
 
         mMainNav.setSelectedItemId(R.id.nav_start);
         setFragment(startFragment);
@@ -100,13 +102,12 @@ public class MainActivity extends AppCompatActivity  {
         String msg = "Wybrano szukanie ";
         switch (item.getItemId())
         {
-            /*case R.id.search:
-                Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
-                toast.show();
-                break;*/
             case R.id.settings:
                 Intent intent =  new Intent(MainActivity.this, settings.class);
                 startActivity(intent);
+                break;
+            case R.id.history:
+                setFragment(historyFragment);
                 break;
         }
 

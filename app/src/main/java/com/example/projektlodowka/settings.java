@@ -18,6 +18,7 @@ public class settings extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
