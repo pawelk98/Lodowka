@@ -12,14 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.projektlodowka.database.Historia;
 import com.example.projektlodowka.database.ProduktInPrzepis;
 import com.example.projektlodowka.database.Przepis;
 import com.example.projektlodowka.database.ViewModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,6 +39,7 @@ public class RecipeShowFragment extends Fragment {
     TextView nazwa;
     TextView czas;
     TextView opis;
+    EditText porcje;
     ViewModel viewModel;
     Button gotuj;
     ListView produktyInPrzepisy;
@@ -66,6 +73,7 @@ public class RecipeShowFragment extends Fragment {
         czas = view.findViewById(R.id.przepisShowCzasTextView);
         opis = view.findViewById(R.id.przepisShowOpisTextView);
         gotuj = view.findViewById(R.id.cookNow);
+        porcje = view.findViewById(R.id.ilosc_porcji);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
         produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
@@ -83,7 +91,11 @@ public class RecipeShowFragment extends Fragment {
         gotuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.insertProduktPrzepisByName(przepisName,"mleko",1000,true);
+                //ugotowałem sobie (przepis data ilosc_porcji)
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String currentDateandTime = sdf.format(new Date());
+
+                viewModel.cook(getActivity(), przepisName, currentDateandTime, Integer.parseInt(porcje.getText().toString()));
             }
         });
 

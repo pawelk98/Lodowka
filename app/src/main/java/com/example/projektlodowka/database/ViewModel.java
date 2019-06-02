@@ -104,4 +104,6 @@ public class ViewModel extends AndroidViewModel {
     public void deleteHistoria (Historia historia) { repositoryHistoria.deleteHistoria(historia); }
 
     public void deleteAllHistoria () { repositoryHistoria.deleteAllHistoria(); }
+
+    public void cook(Activity activity, String przepisNazwa, String data, int ilePorcji) { repositoryPrzepis.cook(activity, przepisNazwa, data, ilePorcji); }
 }

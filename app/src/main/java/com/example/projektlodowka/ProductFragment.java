@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import java.util.List;
  */
 public class ProductFragment extends Fragment implements SearchView.OnQueryTextListener {
 
+    RelativeLayout relativeLayout;
     List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
     RecyclerView recyclerView;

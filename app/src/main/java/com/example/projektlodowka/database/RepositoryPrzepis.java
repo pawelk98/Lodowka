@@ -19,11 +19,13 @@ public class RepositoryPrzepis {
     private PrzepisDao przepisDao;
     private ProduktPrzepisDao produktPrzepisDao;
     private ProduktDao produktDao;
+    private HistoriaDao historiaDao;
 
     RepositoryPrzepis(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
         przepisDao = db.przepisDao();
         produktDao = db.produktDao();
+        historiaDao = db.historiaDao();
         produktPrzepisDao = db.produktPrzepisDao();
         przepisy = przepisDao.loadAllOrderNazwa();
     }
@@ -171,6 +173,53 @@ public class RepositoryPrzepis {
             nazwa.setText(przepis.getNazwa());
             czas.setText(String.valueOf(przepis.getCzas()));
             opis.setText(przepis.getOpis());
+        }
+    }
+
+    public void cook(Activity activity, String przepisNazwa, String data, int ilePorcji) {
+        CookData cookData = new CookData(przepisNazwa, data, ilePorcji);
+        new cookAsyncTask(activity, przepisDao, produktDao, produktPrzepisDao, historiaDao).execute(cookData);
+    }
+
+    private static class cookAsyncTask extends AsyncTask<CookData, Void, Void> {
+        Activity activity;
+        PrzepisDao przepisDao;
+        ProduktPrzepisDao produktPrzepisDao;
+        ProduktDao produktDao;
+        HistoriaDao historiaDao;
+
+        cookAsyncTask(Activity activity, PrzepisDao przepisDao, ProduktDao produktDao, ProduktPrzepisDao produktPrzepisDao, HistoriaDao historiaDao){
+            this.activity = activity;
+            this.produktPrzepisDao = produktPrzepisDao;
+            this.przepisDao = przepisDao;
+            this.produktDao = produktDao;
+            this.historiaDao = historiaDao;
+        }
+
+        @Override
+        protected Void doInBackground(CookData... cookData) {
+            Przepis przepis = przepisDao.loadNazwa(cookData[0].getPrzepis());
+            int id = przepis.getId();
+            List<ProduktPrzepis> produkty = new ArrayList<>(produktPrzepisDao.loadPrzepisList(id));
+
+            for(int i = 0; i < produkty.size(); i++) {
+                Produkt produkt = produktDao.loadId(produkty.get(i).getIdProduktu());
+                int ilosc = produkt.getIlosc() - (produkty.get(i).getIloscProduktu() * cookData[0].getPorcje());
+                if(ilosc < 0) ilosc = 0;
+
+                produkt.setIlosc(ilosc);
+                produktDao.update(produkt);
+            }
+
+            Historia historia = new Historia(przepis.getId(), cookData[0].getData(), cookData[0].getPorcje());
+            historiaDao.insert(historia);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(activity, "Smacznego!", Toast.LENGTH_SHORT).show();
         }
     }
 }

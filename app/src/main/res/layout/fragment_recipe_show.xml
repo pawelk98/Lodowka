@@ -168,4 +168,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/ilosc_porcji"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="1"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/cookNow"
+        app:layout_constraintTop_toBottomOf="@+id/przepisSkladnikListView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:text="Porcje:"
+        app:layout_constraintEnd_toStartOf="@+id/ilosc_porcji"
+        app:layout_constraintTop_toBottomOf="@+id/przepisSkladnikListView" />
+
 </android.support.constraint.ConstraintLayout>
