@@ -91,21 +91,21 @@ public abstract class BazaDanych extends RoomDatabase {
             produkt = new Produkt("masło",0,100);
             produktDao.insert(produkt);
 
-            Przepis przepis = new Przepis("parówki",15,"gotuj gotuj gotuj itd.");
+            Przepis przepis = new Przepis("Parówki",15,"Wlewamy wodę do garnka i stawiamy na piec. Wyjmujemy parówki, jeśli potrzeba obieramy z folii i wkładamy do wody. Kiedy woda zaczyna wrzeć zmniejszamy ogień i gotujemy parówki 3 minuty. Po 3 minutach wyłączamy piec, wyciągamy parówki na talerz i zjadamy. Parówki dobrze smakuja z ketchupem i musztardą. Smacznego!");
             przepisDao.insert(przepis);
-            przepis = new Przepis("makaron", 20, "gotuj gotuj smaż itd");
+            przepis = new Przepis("Makaron z sosem serowo-szpinakowym", 20, "Nastaw wodę na makaron. Na patelni zblanszuj cebulę, po czym dodaj szpinak. Gotuj przez pewien czas. Do szpinaku dodaj śmietanę 30% oraz ser (żółty/feta) wedle uznania. Na koniec przyprawy. Mniam mniam!");
             przepisDao.insert(przepis);
-            przepis = new Przepis("warzywa na patelnię", 30, "krój gotuj smaż itd");
+            przepis = new Przepis("Warzywa na patelnię", 30, "Na patelni rozgrzej olej, po czym dodaj warzywa. Smaż na wolnym ogniu dopóki wszystkie nie zmiękną. Na końcu przyprawy. Jedz je ochoczo :-))))  ");
             przepisDao.insert(przepis);
-            przepis = new Przepis("kotlety z kartoflami", 40, "klep gotuj smaż itd");
+            przepis = new Przepis("Kotlety z kartoflami", 40, "Gotowe kotleciki sojowe rozmięcz w cieplutkim bulionie wołowym, po czym usmaż na oleju kokosowym. Gotowe ćwiarteczki ziemniaczane z czosnkiem z Carrefoura wysyp na blasze i piecz w piekarniku aż do zarumienienia");
             przepisDao.insert(przepis);
-            przepis = new Przepis("karkówka", 35, "coś tam tego smaż itd");
+            przepis = new Przepis("Karkówka", 90, "Znajdujemy dobrze rozgrzanego grilla. Swieżą karkóweczkę marynujemy w specjalnej magicznej marynacie wujka Radzia. Karkówkę kładziemy na Aluminiowej blasze nad rozgrzanym piecem i gryllujemy dopóki karkóweczka nie wypuści z siebie wszystkich tłuszczy, oraz się nie zwęgli.");
             przepisDao.insert(przepis);
-            przepis = new Przepis("kanapki z chlebem i bagietką", 5, "krój samaruj itd");
+            przepis = new Przepis("Kanapki z chlebem i bagietką", 5, "Bagietkę czosnkową pokrój w drobne plasterki. Chleb rozmiękcz w letniej wodzie i uformuj z niego cienkie kotleciki. Obsmaż chlebowe kotlety z obu stron. Na kanapkach układaj plasterki bagietki oraz chlebowe kotlety. Dla smaku użyj ulubionych przypraw. Nie zapomnij także o ulubionych sosach ;)) Smacznego!");
             przepisDao.insert(przepis);
-            przepis = new Przepis("kawior", 15, "blee itd");
+            przepis = new Przepis("Kawior", 15, "Kup akwarium. Poczekaj aż kultury bakterii rozwiną się w nim na tyle, ze ewoluowane z nich bardziej złożone stworzenia wodne będą składać ikrę. Pozyskaną ikrę zamarynuj w małych słoiczkach i wzbogać się na niej, zostając chlebodawcą połowy swojego rodu. Powodzenia! ;)");
             przepisDao.insert(przepis);
-            przepis = new Przepis("kaszanka", 5, "odgrzej w mikrofalówce itd");
+            przepis = new Przepis("Kaszanka", 5, "Krew przeznaczoną na mroczny obrządek podkradnij znajomemu okultyście. Kaszę pożycz od sąsiadki. Ugotowaną kaszę wymieszaj z krwią Bogu ducha winnych świnek. Nie zapomnij o życiodajnym tłuszczyku, czyli słoninie wieprzowej. Dodaj ją do swojej kaszanki. Zdobyte uprzednio jelita wypełnij kaszanką. Sparz wszystko w ogromnym garze. Voila! Tylko nie zjedz wszystkiego sam! :-)");
             przepisDao.insert(przepis);
 
             return null;
