@@ -154,11 +154,11 @@ public abstract class BazaDanych extends RoomDatabase {
                 insertProduktPrzepis("makaron", "spaghetti", 250, false);
                 insertProduktPrzepis("zioła prowansalskie", "spaghetti", 300, true);
 
-                insertPrzepis("Schab w sosie własnym", 60, "Schab pokrój w plastry około 5cm, włóż do naczynia żaroodpornego wraz z pokrojoną cebulą i piecz przez 60 minut w 190 stopniach");
+                insertPrzepis("schab w sosie własnym", 60, "Schab pokrój w plastry około 5cm, włóż do naczynia żaroodpornego wraz z pokrojoną cebulą i piecz przez 60 minut w 190 stopniach");
                 insertProduktPrzepis("schab", "Schab w sosie własnym", 500, false);
                 insertProduktPrzepis("cebula", "Schab w sosie własnym", 1, false);
 
-                insertPrzepis("Zupa fasolowa", 40, "Do garnka z 3 litrami wody dodaj fasole i zagotuj, ziemniaki pokrój w małą kostkę i dorzuć do gotującej się wody");
+                insertPrzepis("zupa fasolowa", 40, "Do garnka z 3 litrami wody dodaj fasole i zagotuj, ziemniaki pokrój w małą kostkę i dorzuć do gotującej się wody");
                 insertProduktPrzepis("ziemniaki", "Zupa fasolowa", 200, false);
                 insertProduktPrzepis("fasola czarna", "200", 1, false);
                 insertProduktPrzepis("fasola biała", "200", 1, false);
