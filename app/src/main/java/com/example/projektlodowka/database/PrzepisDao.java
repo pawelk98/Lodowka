@@ -28,6 +28,9 @@ public interface PrzepisDao {
     @Query("SELECT * FROM Przepis")
     LiveData<List<Przepis>> loadAll();
 
+    @Query("SELECT * FROM Przepis")
+    List<Przepis> loadAllList();
+
     @Query("SELECT * FROM Przepis ORDER BY nazwa")
     LiveData<List<Przepis>> loadAllOrderNazwa();
 
