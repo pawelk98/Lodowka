@@ -51,7 +51,7 @@ public class RepositoryProduktPrzepis {
     }
 
 
-    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) {
+    public void deleteProduktPrzepis(ProduktPrzepis... produktPrzepis) {
         new deleteProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktPrzepis);
     }
 
@@ -64,7 +64,7 @@ public class RepositoryProduktPrzepis {
 
         @Override
         protected Void doInBackground(final ProduktPrzepis... params) {
-            mAsyncTaskDao.delete(params[0]);
+            mAsyncTaskDao.delete(params);
             return null;
         }
     }

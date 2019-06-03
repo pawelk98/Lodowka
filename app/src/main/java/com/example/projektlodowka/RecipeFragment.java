@@ -37,6 +37,7 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
     private ViewModel viewModel;
     RecyclerView recyclerView;
     RecyclerPrzepisyAdapter adapter_przepisy;
+    SearchView searchView;
 
     public RecipeFragment() {
         // Required empty public constructor
@@ -45,6 +46,7 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
     @Override
     public void onResume() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        searchView.setQuery("",true);
         super.onResume();
     }
 
@@ -91,8 +93,6 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
 
             @Override
             public void onClick(View view, final int position) {
-
-
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", adapter_przepisy.getPrzepis(position).getId());
                 bundle.putString("przepisName", adapter_przepisy.getPrzepis(position).getNazwa());
@@ -101,15 +101,22 @@ public class RecipeFragment extends Fragment implements SearchView.OnQueryTextLi
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
                 fragmentTransaction.addToBackStack("przepisyRecycler").commit();
-
             }
 
             @Override
             public void onLongClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", adapter_przepisy.getPrzepis(position).getId());
+                bundle.putString("przepisName", adapter_przepisy.getPrzepis(position).getNazwa());
+                RecipeEditFragment fragment = new RecipeEditFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.addToBackStack("przepisyRecycler").commit();
             }
 
         }));
-        SearchView searchView = (SearchView) view.findViewById(R.id.search_view_przepisy);
+        searchView = (SearchView) view.findViewById(R.id.search_view_przepisy);
         searchView.setOnQueryTextListener(this);
     }
 

@@ -52,6 +52,7 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
     @Override
     public void onResume() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        searchView.setQuery("",true);
         super.onResume();
     }
 

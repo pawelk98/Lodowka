@@ -63,6 +63,8 @@ public class ViewModel extends AndroidViewModel {
 
     public void deletePrzepis(Przepis przepis) { repositoryPrzepis.deletePrzepis(przepis); }
 
+    public void deleteAllPrzepis() { repositoryPrzepis.deleteAllPrzepis(); }
+
     public void updatePrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.updatePrzepis(activity, przepis); }
 
     public LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
@@ -77,7 +79,7 @@ public class ViewModel extends AndroidViewModel {
         repositoryProduktPrzepis.insertProduktPrzepisByName(przepisName, produktName, ilosc, opcjonalny);
     }
 
-    public void deleteProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
+    public void deleteProduktPrzepis(ProduktPrzepis... produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 
     public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.updateProduktPrzepis(produktPrzepis); }
 

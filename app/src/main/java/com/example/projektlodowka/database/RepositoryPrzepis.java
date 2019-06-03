@@ -145,6 +145,23 @@ public class RepositoryPrzepis {
         }
     }
 
+    public void deleteAllPrzepis() {
+        new RepositoryPrzepis.deleteAllPrzepisAsyncTask(przepisDao).execute();
+    }
+
+    private static class deleteAllPrzepisAsyncTask extends AsyncTask<Przepis, Void, Void> {
+        private PrzepisDao mAsyncTaskDao;
+
+        deleteAllPrzepisAsyncTask(PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Przepis... params) {
+            mAsyncTaskDao.deleteAll();
+            return null;
+        }
+    }
 
     public void setShowPrzepis(Activity activity, int id) {
         new setShowPrzepisAsyncTask(activity, przepisDao).execute(id);
