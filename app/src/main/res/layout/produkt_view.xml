@@ -1,54 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    >
+    android:orientation="vertical">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/produktImageView"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="44dp"
-        android:src="@drawable/def_pic"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/produktNazwaTextView"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:maxLines="2"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#000"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/produktImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/produktIloscTextView"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
+    <android.support.v7.widget.CardView
+        android:layout_width="164dp"
+        android:layout_height="204dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/produktImageView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/produktImageView"
-        app:layout_constraintTop_toBottomOf="@+id/produktImageView" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/spejserKalar"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/produktImageView"
+                android:layout_width="164dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/def_pic"
+                app:layout_constraintTop_toBottomOf="@+id/produktNazwaTextView"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/produktIloscTextView"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/ilosc"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/produktImageView" />
+
+            <TextView
+                android:id="@+id/produktNazwaTextView"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:maxLines="2"
+                android:text="@string/nazwa"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
 
 </android.support.constraint.ConstraintLayout>
