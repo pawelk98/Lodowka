@@ -319,14 +319,16 @@ public class RepositoryPrzepis {
                 TextView nazwa = activity.findViewById(R.id.recipe_name_in_start);
                 TextView id = activity.findViewById(R.id.doNotDelete);
 
-                byte[] array = przepis.getImage();
+                if(nazwa != null) {
+                    byte[] array = przepis.getImage();
 
-                nazwa.setText(przepis.getNazwa());
-                id.setText(String.valueOf(przepis.getId()));
+                    nazwa.setText(przepis.getNazwa());
+                    id.setText(String.valueOf(przepis.getId()));
 
-                if (przepis.getImage() != null) {
-                    Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
-                    obrazek.setImageBitmap(bitmap);
+                    if (przepis.getImage() != null) {
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                        obrazek.setImageBitmap(bitmap);
+                    }
                 }
             }
         }

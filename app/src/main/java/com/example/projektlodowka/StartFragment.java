@@ -53,13 +53,13 @@ public class StartFragment extends Fragment {
         obrazek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(doNotDelete.getText().toString().length() != 0) {
 
                     id = Integer.parseInt(doNotDelete.getText().toString());
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("id", id);
+                    bundle.putString("przepisName", nazwa.getText().toString());
                     RecipeShowFragment fragment = new RecipeShowFragment();
                     fragment.setArguments(bundle);
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
