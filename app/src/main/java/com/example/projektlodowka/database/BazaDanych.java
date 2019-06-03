@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
@@ -30,7 +31,9 @@ public abstract class BazaDanych extends RoomDatabase {
     public abstract HistoriaDao historiaDao();
     public abstract PoraDniaDao poraDniaDao();
 
+    private static volatile Context c;
     private static volatile BazaDanych INSTANCE;
+
 
     public static BazaDanych getBazaDanych(final Context context) {
         if(INSTANCE == null) {
@@ -40,6 +43,7 @@ public abstract class BazaDanych extends RoomDatabase {
                             BazaDanych.class, "BazaDanych").addCallback(sRoomDatabaseCallback).build();
                 }
             }
+            c = context;
         }
 
         return INSTANCE;
@@ -82,7 +86,7 @@ public abstract class BazaDanych extends RoomDatabase {
             przepisDao.insert(new Przepis(nazwa, czas, opis));
         }
 
-       /* private void insertProdukt(String nazwa, int typ, int ilosc, Drawable obrazek){
+        private void insertProdukt(String nazwa, int typ, int ilosc, Drawable obrazek){
             Produkt p = new Produkt(nazwa, typ, ilosc);
             p.setImage(getBytesFromBitmap(obrazek));
             produktDao.insert(p);
@@ -92,7 +96,7 @@ public abstract class BazaDanych extends RoomDatabase {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             return stream.toByteArray();
-        }*/
+        }
 
 
 
@@ -101,30 +105,30 @@ public abstract class BazaDanych extends RoomDatabase {
         protected Void doInBackground(final Void... params) {
             if(produktDao.count() == 0 && przepisDao.count() == 0) {
 
-                insertProdukt("ziemniaki", 0, 0);
-                insertProdukt("cebula", 2, 0);
-                insertProdukt("mleko", 1, 0);
-                insertProdukt("ser biały", 0, 0);
-                insertProdukt("makaron", 2, 0);
-                insertProdukt("jogurt naturalny", 1, 0);
-                insertProdukt("ser żółty", 0, 0);
-                insertProdukt("parówki", 3,0);
-                insertProdukt("chleb", 2, 0);
-                insertProdukt("bułki", 2, 0);
-                insertProdukt("jabłka", 2, 0);
-                insertProdukt("pomarańcze", 2, 0);
-                insertProdukt("awokado", 2, 0);
-                insertProdukt("fasola czarna", 0, 0);
-                insertProdukt("fasola biała", 0, 0);
-                insertProdukt("mięso mielone", 0, 0);
-                insertProdukt("schab", 0, 0);
-                insertProdukt("kiełbasa", 0, 0);
-                insertProdukt("szproty w pomidorach", 2, 0);
-                insertProdukt("sałata", 2, 0);
-                insertProdukt("soczewica", 0, 0);
-                insertProdukt("kefir", 1, 0);
-                insertProdukt("przecier pomidorowy", 1, 0);
-                insertProdukt("zioła prowansalskie", 0, 0);
+                insertProdukt("ziemniaki", 0, 0, c.getResources().getDrawable(R.drawable.ziemniak));
+                insertProdukt("cebula", 2, 0, c.getResources().getDrawable(R.drawable.cebula));
+                insertProdukt("mleko", 1, 0, c.getResources().getDrawable(R.drawable.mleko));
+                insertProdukt("ser biały", 0, 0, c.getResources().getDrawable(R.drawable.serbialy));
+                insertProdukt("makaron", 2, 0, c.getResources().getDrawable(R.drawable.makaron));
+                insertProdukt("jogurt naturalny", 1, 0, c.getResources().getDrawable(R.drawable.jogurtnaturalny));
+                insertProdukt("ser żółty", 0, 0, c.getResources().getDrawable(R.drawable.serzolty));
+                insertProdukt("parówki", 3,0, c.getResources().getDrawable(R.drawable.parowki));
+                insertProdukt("chleb", 2, 0, c.getResources().getDrawable(R.drawable.chleb));
+                insertProdukt("bułki", 2, 0, c.getResources().getDrawable(R.drawable.bulka));
+                insertProdukt("jabłka", 2, 0, c.getResources().getDrawable(R.drawable.jablko));
+                insertProdukt("pomarańcze", 2, 0, c.getResources().getDrawable(R.drawable.pomarancze));
+                insertProdukt("awokado", 2, 0, c.getResources().getDrawable(R.drawable.awokado));
+                insertProdukt("fasola czarna", 0, 0, c.getResources().getDrawable(R.drawable.fasolaczarna));
+                insertProdukt("fasola biała", 0, 0, c.getResources().getDrawable(R.drawable.fasolabiala));
+                insertProdukt("mięso mielone", 0, 0, c.getResources().getDrawable(R.drawable.miesomielone));
+                insertProdukt("schab", 0, 0, c.getResources().getDrawable(R.drawable.schab));
+                insertProdukt("kiełbasa", 0, 0, c.getResources().getDrawable(R.drawable.kielbasa));
+                insertProdukt("szproty w pomidorach", 2, 0, c.getResources().getDrawable(R.drawable.szprot));
+                insertProdukt("sałata", 2, 0, c.getResources().getDrawable(R.drawable.salata));
+                insertProdukt("soczewica", 0, 0, c.getResources().getDrawable(R.drawable.soczewica));
+                insertProdukt("kefir", 1, 0, c.getResources().getDrawable(R.drawable.kefir));
+                insertProdukt("przecier pomidorowy", 1, 0, c.getResources().getDrawable(R.drawable.przecier));
+                insertProdukt("zioła prowansalskie", 0, 0, c.getResources().getDrawable(R.drawable.ziola));
 
 
 
