@@ -25,17 +25,17 @@ public class HistoriaAdapter extends RecyclerView.Adapter<HistoriaAdapter.viewHo
 
     public HistoriaAdapter(Context context, List<Historia> historia, List<Przepis> przepis) {
         //this.historia = historia;
-        this.historia = new ArrayList<>(historia);
+        this.historia = historia;
         this.context = context;
         //this.przepis = przepis;
-        this.przepisy = new ArrayList<>(przepis);
+        this.przepisy = przepis;
     }
 
     void setHistoria(List<Historia> historia) {
-        this.historia.addAll(historia);
+        this.historia = historia;
     }
     void setPrzepisy(List<Przepis> przepisy) {
-        this.przepisy.addAll(przepisy);
+        this.przepisy = przepisy ;
     }
 
     @NonNull
@@ -48,16 +48,10 @@ public class HistoriaAdapter extends RecyclerView.Adapter<HistoriaAdapter.viewHo
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder viewHolder, int position) {
-        int poz = 0;
-
-        Toast.makeText(context, String.valueOf(przepisy.size()) + "lalalalalaalal",
-                Toast.LENGTH_LONG).show();
 
         for(Przepis przepis: przepisy) {
             if(przepis.getId()==historia.get(position).getIdPrzepisu()) {
                 viewHolder.nazwa.setText(przepis.getNazwa());
-                Toast.makeText(context, "FU!",
-                        Toast.LENGTH_LONG).show();
                 break;
             }
         }
