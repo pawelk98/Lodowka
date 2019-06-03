@@ -314,18 +314,20 @@ public class RepositoryPrzepis {
         protected void onPostExecute(Przepis przepis) {
             super.onPostExecute(przepis);
 
-            ImageView obrazek = activity.findViewById(R.id.image_in_start);
-            TextView nazwa = activity.findViewById(R.id.recipe_name_in_start);
-            TextView id = activity.findViewById(R.id.doNotDelete);
+            if(przepis != null) {
+                ImageView obrazek = activity.findViewById(R.id.image_in_start);
+                TextView nazwa = activity.findViewById(R.id.recipe_name_in_start);
+                TextView id = activity.findViewById(R.id.doNotDelete);
 
-            byte[] array= przepis.getImage();
+                byte[] array = przepis.getImage();
 
-            nazwa.setText(przepis.getNazwa());
-            id.setText(String.valueOf(przepis.getId()));
+                nazwa.setText(przepis.getNazwa());
+                id.setText(String.valueOf(przepis.getId()));
 
-            if(przepis.getImage() != null){
-                Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
-                obrazek.setImageBitmap(bitmap);
+                if (przepis.getImage() != null) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                    obrazek.setImageBitmap(bitmap);
+                }
             }
         }
 
@@ -333,7 +335,10 @@ public class RepositoryPrzepis {
         protected Przepis doInBackground(Void... voids) {
             List<Przepis> przepisy = mAsyncTaskDao.loadAllList();
 
-            return przepisy.get(0);
+            if(przepisy.size() > 0) {
+                return przepisy.get(0);
+            }
+            else return null;
         }
     }
 }
