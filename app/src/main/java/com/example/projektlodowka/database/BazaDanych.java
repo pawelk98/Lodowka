@@ -85,11 +85,21 @@ public abstract class BazaDanych extends RoomDatabase {
                 insertProdukt("parówki", 3,0);
                 insertProdukt("chleb", 2, 0);
                 insertProdukt("bułki", 2, 0);
+                insertProdukt("jabłka", 2, 0);
+                insertProdukt("pomarańcze", 2, 0);
+                insertProdukt("awokado", 2, 0);
+                insertProdukt("fasola czarna", 0, 0);
+                insertProdukt("mięso mielone", 0, 0);
+                insertProdukt("schab", 0, 0);
+                insertProdukt("kiełbasa", 0, 0);
+                insertProdukt("szproty w pomidorach", 2, 0);
+                insertProdukt("sałata", 2, 0);
+                insertProdukt("soczewica", 0, 0);
 
 
                 insertPrzepis("parówki", 10, "Wrzuć do gotującej się wody parówki");
-                insertProduktPrzepis("parówki", "parówki", 4, false);
-                insertProduktPrzepis("bułki", "parówki", 1, true);
+                insertProduktPrzepis("parówki", "parówki", 4000, false);
+                insertProduktPrzepis("bułki", "parówki", 1000, true);
             }
             return null;
         }
