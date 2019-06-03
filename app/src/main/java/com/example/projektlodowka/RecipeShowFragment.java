@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class RecipeShowFragment extends Fragment {
     Button gotuj;
     ListView produktyInPrzepisy;
     ProduktyInPrzepisAdapter produktyInPrzepisAdapter;
+    Button edytuj;
 
 
     public RecipeShowFragment() {
@@ -74,6 +76,7 @@ public class RecipeShowFragment extends Fragment {
         opis = view.findViewById(R.id.przepisShowOpisTextView);
         gotuj = view.findViewById(R.id.cookNow);
         porcje = view.findViewById(R.id.ilosc_porcji);
+        edytuj = view.findViewById(R.id.edytujPrzepis);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
         produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
@@ -96,6 +99,19 @@ public class RecipeShowFragment extends Fragment {
                 String currentDateandTime = sdf.format(new Date());
 
                 viewModel.cook(getActivity(), przepisName, currentDateandTime, Integer.parseInt(porcje.getText().toString()));
+            }
+        });
+
+        edytuj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", id);
+                RecipeEditFragment fragment = new RecipeEditFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.addToBackStack("przepisyRecycler").commit();
             }
         });
 

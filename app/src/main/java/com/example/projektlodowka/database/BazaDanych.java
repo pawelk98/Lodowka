@@ -95,11 +95,22 @@ public abstract class BazaDanych extends RoomDatabase {
                 insertProdukt("szproty w pomidorach", 2, 0);
                 insertProdukt("sałata", 2, 0);
                 insertProdukt("soczewica", 0, 0);
+                insertProdukt("kefir", 1, 0);
 
 
                 insertPrzepis("parówki", 10, "Wrzuć do gotującej się wody parówki");
                 insertProduktPrzepis("parówki", "parówki", 4000, false);
                 insertProduktPrzepis("bułki", "parówki", 1000, true);
+
+                insertPrzepis("kartofle z kefirem", 30, "Zagotuj dobrze obrane kartofle, rozgnieć je tym takim do ziemniaków. " +
+                        "Posól wedle uznania oraz zalej kefirem.");
+                insertProduktPrzepis("ziemniaki", "kartofle z kefirem", 700, false);
+                insertProduktPrzepis("kefir", "kartofle z kefirem", 350, false);
+
+                insertPrzepis("kanapki ze szprotami", 10, "Chlebek boży posmaruj masełkiem i połóż na nim starannie " +
+                        "rozgniecione widelcem szproty.");
+                insertProduktPrzepis("szproty w pomidorach", "kanapki ze szprotami", 1000, false);
+                insertProduktPrzepis("chleb", "kanapki ze szprotami", 300, false);
             }
             return null;
         }
