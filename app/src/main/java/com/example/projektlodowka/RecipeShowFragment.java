@@ -29,6 +29,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +44,7 @@ public class RecipeShowFragment extends Fragment {
     TextView opis;
     EditText porcje;
     ViewModel viewModel;
+    CircleImageView obrazek;
     Button gotuj;
     ListView produktyInPrzepisy;
     ProduktyInPrzepisAdapter produktyInPrzepisAdapter;
@@ -77,11 +80,13 @@ public class RecipeShowFragment extends Fragment {
         gotuj = view.findViewById(R.id.cookNow);
         porcje = view.findViewById(R.id.ilosc_porcji);
         edytuj = view.findViewById(R.id.edytujPrzepis);
+        obrazek = view.findViewById(R.id.dishImage);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
         produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
         produktyInPrzepisAdapter = new ProduktyInPrzepisAdapter(getActivity());
         produktyInPrzepisy.setAdapter(produktyInPrzepisAdapter);
+
 
         viewModel.getProduktyInPrzepis(id).observe(this, new Observer<List<ProduktInPrzepis>>() {
             @Override
