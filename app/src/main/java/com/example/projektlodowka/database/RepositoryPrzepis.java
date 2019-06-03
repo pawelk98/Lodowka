@@ -6,7 +6,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -292,6 +294,51 @@ public class RepositoryPrzepis {
             czas.setText(String.valueOf(przepis.getCzas()));
             opis.setText(przepis.getOpis());
 
+        }
+    }
+
+    public void setStartPrzepis(Activity activity) {
+        new setStartPrzepisAsyncTask(activity, przepisDao).execute();
+    }
+
+    private static class setStartPrzepisAsyncTask extends AsyncTask<Void, Void, Przepis> {
+        PrzepisDao mAsyncTaskDao;
+        Activity activity;
+
+        setStartPrzepisAsyncTask(Activity activity, PrzepisDao przepisDao){
+            mAsyncTaskDao = przepisDao;
+            this.activity = activity;
+        }
+
+        @Override
+        protected void onPostExecute(Przepis przepis) {
+            super.onPostExecute(przepis);
+
+            if(przepis != null) {
+                ImageView obrazek = activity.findViewById(R.id.image_in_start);
+                TextView nazwa = activity.findViewById(R.id.recipe_name_in_start);
+                TextView id = activity.findViewById(R.id.doNotDelete);
+
+                byte[] array = przepis.getImage();
+
+                nazwa.setText(przepis.getNazwa());
+                id.setText(String.valueOf(przepis.getId()));
+
+                if (przepis.getImage() != null) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                    obrazek.setImageBitmap(bitmap);
+                }
+            }
+        }
+
+        @Override
+        protected Przepis doInBackground(Void... voids) {
+            List<Przepis> przepisy = mAsyncTaskDao.loadAllList();
+
+            if(przepisy.size() > 0) {
+                return przepisy.get(0);
+            }
+            else return null;
         }
     }
 }

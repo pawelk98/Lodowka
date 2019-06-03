@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.support.v4.app.Fragment;
 
 import java.util.List;
 
@@ -80,6 +81,8 @@ public class ViewModel extends AndroidViewModel {
     }
 
     public void setEditPrzepis(Activity activity, int id) { repositoryPrzepis.setEditPrzepis(activity, id); }
+
+    public void setStartPrzepis(Activity activity) { repositoryPrzepis.setStartPrzepis(activity); }
 
     public void deleteProduktPrzepis(ProduktPrzepis... produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 
