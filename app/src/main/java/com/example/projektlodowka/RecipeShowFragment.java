@@ -99,7 +99,6 @@ public class RecipeShowFragment extends Fragment {
         gotuj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ugotowałem sobie (przepis data ilosc_porcji)
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 String currentDateandTime = sdf.format(new Date());
 
