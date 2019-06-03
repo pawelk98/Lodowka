@@ -40,9 +40,7 @@
 
     <string name="intro">Witaj w eFridge!</string>
 
-    <string name="intro4">Aplikacja została stworzona dla osób lubiących gotować (i nie tylko), by ułatwić i uprzyjemnić zabawę w kuchni.
-        Z jej pomocą można z łatwością sporządzić mobilny spis produktów spożywczych, oraz monitorować czynności podczas gotowania.
-        Dodawaj produkty w ikonce wózka sklepowego.
-        Korzystaj z przepisów oraz czasomierzy dostępnych w każdym z nich. </string>
+    <string name="intro4">Aplikacja została stworzona dla osób lubiących gotować, by ułatwić i uprzyjemnić zabawę w kuchni.
+        Z jej pomocą można z łatwością sporządzić mobilny spis produktów spożywczych, oraz przechowywać ulubione przepisy. </string>
 
 </resources>
