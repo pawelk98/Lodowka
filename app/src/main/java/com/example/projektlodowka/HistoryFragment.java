@@ -67,9 +67,9 @@ public class HistoryFragment extends Fragment {
                 historiaAdapter.setHistoria(historia);
                 recyclerView.setAdapter(historiaAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
             }
         });
+
         viewModel.getPrzepisy().observe(this, new Observer<List<Przepis>>() {
             @Override
             public void onChanged(@Nullable List<Przepis> przepis) {
@@ -78,11 +78,8 @@ public class HistoryFragment extends Fragment {
                 recyclerView.setAdapter(historiaAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
             }
         });
-
-
     }
 
 }

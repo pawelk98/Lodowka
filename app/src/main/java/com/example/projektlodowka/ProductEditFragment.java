@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.example.projektlodowka.database.Produkt;
 import com.example.projektlodowka.database.ViewModel;
@@ -53,6 +55,9 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
     public byte [] obrazBajty;
+    Button dodajBtn;
+    EditText dodajEdit;
+    TextView dodajText;
 
     public ProductEditFragment() {
         // Required empty public constructor
@@ -85,6 +90,9 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         edytuj = view.findViewById(R.id.produktEditButton);
         setImage = view.findViewById(R.id.changeImage);
         circleImageView = view.findViewById(R.id.productImage);
+        dodajBtn = view.findViewById(R.id.QuickAddButton);
+        dodajEdit = view.findViewById(R.id.QuickAddEditText);
+        dodajText = view.findViewById(R.id.QuickAddTextView);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setEditProdukt(getActivity(), id);
 
@@ -95,6 +103,17 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
             }
         });
 
+        dodajBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(dodajEdit.getText().toString().trim().length() != 0) {
+                    float iloscPosiadana = Float.parseFloat(ilosc.getText().toString());
+                    float iloscDoDodania = Float.parseFloat(dodajEdit.getText().toString()) + iloscPosiadana;
+
+                    ilosc.setText(String.valueOf(iloscDoDodania));
+                }
+            }
+        });
 
         edytuj.setOnClickListener(new View.OnClickListener() {
             @Override

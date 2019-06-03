@@ -3,6 +3,7 @@ package com.example.projektlodowka;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +29,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     private List<Produkt> produkty;
     private Context context;
     private LayoutInflater inflater;
+    private List<Bitmap> pictures;
+
 
     public RecyclerProduktyAdapter(){}
 
@@ -46,21 +49,32 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.produkt_view, viewGroup, false);
         viewHolder holder = new viewHolder(view);
+        pictures = new ArrayList<>();
+
+        for(Produkt produkt: produkty){
+            if(produkt.getImage() == null){
+                pictures.add(null);
+            }
+            else{
+                pictures.add(BitmapFactory.decodeByteArray(produkt.getImage(), 0, produkt.getImage().length));
+            }
+        }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder viewHolder, int position) {
 
-        if (produkty.get(position).getImage() == null) {
+        if (pictures.get(position) == null){
             File file = new File("drawable\\def_pic.png");
             if (file.exists()) {
                 Glide.with(context).load(file).into(viewHolder.obrazek);
             }
-        } else {
-            Bitmap bitmap = BitmapFactory.decodeByteArray(produkty.get(position).getImage(), 0, produkty.get(position).getImage().length);
-            Glide.with(context).load(bitmap).into(viewHolder.obrazek);
         }
+        else{
+            Glide.with(context).load(pictures.get(position)).into(viewHolder.obrazek);
+        }
+
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
 
         int i = produkty.get(position).getIlosc();

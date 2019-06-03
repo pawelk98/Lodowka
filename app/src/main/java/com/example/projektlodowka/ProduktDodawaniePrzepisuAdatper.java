@@ -30,11 +30,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<ProduktDodawaniePrzepisuAdatper.viewHolder>{
     private List<Produkt> produkty;
     private Context context;
-    private LayoutInflater inflater;
     private boolean[] checkBoxes;
     private boolean[] opcjonalny;
     private int[] ilosci;
-    public ProduktDodawaniePrzepisuAdatper(){}
 
     public ProduktDodawaniePrzepisuAdatper(Context context, List<Produkt> produkty) {
         this.produkty = new ArrayList<>(produkty);
@@ -71,7 +69,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
             Glide.with(context).load(bitmap).into(viewHolder.obrazek);
         }*/
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
-
+        viewHolder.bind(position);
         switch (produkty.get(position).getTyp()) {
             case 0:
                 viewHolder.typ.setText("kg");
@@ -146,6 +144,11 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
                     opcjonalny[getAdapterPosition()] = isChecked;
                 }
             });
+        }
+
+        void bind(int position) {
+            nazwa.setChecked(checkBoxes[position]);
+            opcjonalnyCB.setChecked(opcjonalny[position]);
         }
     }
 

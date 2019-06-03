@@ -32,6 +32,7 @@
         android:ems="10"
         android:hint="Nazwa"
         android:inputType="text"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEdit" />
@@ -45,6 +46,7 @@
         android:ems="10"
         android:hint="Ilosc"
         android:inputType="numberDecimal"
+        android:textAlignment="textEnd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produktEditNazwaEditText" />
 
@@ -57,6 +59,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/produktEditIloscEditText"
         app:layout_constraintTop_toBottomOf="@+id/produktEditNazwaEditText" />
 
@@ -71,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/QuickAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/QuickAddButton" />
 
 
 
@@ -124,7 +127,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/QuickAdd"
+        android:id="@+id/QuickAddButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -136,28 +139,30 @@
         app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/QuickAddEditText"
+        android:layout_width="81dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="1"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/QuickAdd"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/QuickAddButton"
         app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/QuickAddTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
         android:text="*sztuk*"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/QuickAddEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/QuickAddEditText" />
 
 
 </android.support.constraint.ConstraintLayout>

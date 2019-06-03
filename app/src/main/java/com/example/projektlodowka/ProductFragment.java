@@ -98,7 +98,17 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
 
             @Override
             public void onClick(View view, final int position) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", adapter.getProdukt(position).getId());
+                ProductEditFragment fragment = new ProductEditFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.main_frame, fragment);
+                fragmentTransaction.addToBackStack("produktyShowcase").commit();
+            }
 
+            @Override
+            public void onLongClick(View view, int position) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", adapter.getProdukt(position).getId());
                 ProductShowcaseFragment fragment = new ProductShowcaseFragment();
@@ -106,11 +116,6 @@ public class ProductFragment extends Fragment implements SearchView.OnQueryTextL
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
                 fragmentTransaction.addToBackStack("produktyRecycler").commit();
-
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
             }
 
         }));

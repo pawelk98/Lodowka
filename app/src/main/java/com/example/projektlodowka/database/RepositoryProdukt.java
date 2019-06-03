@@ -164,6 +164,8 @@ public class RepositoryProdukt {
             EditText ilosc = mActivity.findViewById(R.id.produktEditIloscEditText);
             Spinner typ = mActivity.findViewById(R.id.spinner_prod_edit);
             CircleImageView obrazekGuzik = mActivity.findViewById(R.id.productImage);
+            EditText dodajEdit = mActivity.findViewById(R.id.QuickAddEditText);
+            TextView dodajText = mActivity.findViewById(R.id.QuickAddTextView);
 
             byte [] array = produkt.getImage();
 
@@ -176,13 +178,24 @@ public class RepositoryProdukt {
 
             if (produkt.getIlosc() < 500 && produkt.getTyp() != 2) {
                 ilosc.setText(String.valueOf(produkt.getIlosc()));
+                dodajEdit.setText(String.valueOf(50));
                 typ.setSelection(produkt.getTyp() + 3);
+
+                if(produkt.getTyp() == 0) dodajText.setText("g");
+                else if(produkt.getTyp() == 1) dodajText.setText("ml");
+
             } else if (produkt.getIlosc() >= 500 && produkt.getTyp() != 2) {
                 ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
+                dodajEdit.setText(String.valueOf(0.5));
                 typ.setSelection(produkt.getTyp());
+
+                if(produkt.getTyp() == 0) dodajText.setText("kg");
+                else if(produkt.getTyp() == 1) dodajText.setText("l");
             } else {
                 ilosc.setText(String.valueOf((float)produkt.getIlosc() / 1000));
                 typ.setSelection(produkt.getTyp());
+                dodajEdit.setText(String.valueOf(0.5));
+                dodajText.setText("szt");
             }
         }
     }
