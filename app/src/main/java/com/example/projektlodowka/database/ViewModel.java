@@ -79,6 +79,8 @@ public class ViewModel extends AndroidViewModel {
         repositoryProduktPrzepis.insertProduktPrzepisByName(przepisName, produktName, ilosc, opcjonalny);
     }
 
+    public void setEditPrzepis(Activity activity, int id) { repositoryPrzepis.setEditPrzepis(activity, id); }
+
     public void deleteProduktPrzepis(ProduktPrzepis... produktPrzepis) { repositoryProduktPrzepis.deleteProduktPrzepis(produktPrzepis); }
 
     public void updateProduktPrzepis(ProduktPrzepis produktPrzepis) { repositoryProduktPrzepis.updateProduktPrzepis(produktPrzepis); }

@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +18,8 @@ import com.example.projektlodowka.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RepositoryPrzepis {
 
@@ -31,12 +39,14 @@ public class RepositoryPrzepis {
     }
 
 
+    LiveData<List<Przepis>> getPrzepisy() {
+        return przepisy;
+    }
 
 
-    LiveData<List<Przepis>> getPrzepisy() { return przepisy; }
-
-
-    public void insertPrzepis(Activity activity, Przepis przepis, List<MyTaskParams> produkty) { new insertPrzepisAsyncTask(activity, przepisDao, produktDao, produktPrzepisDao, produkty, przepis.getNazwa()).execute(przepis); }
+    public void insertPrzepis(Activity activity, Przepis przepis, List<MyTaskParams> produkty) {
+        new insertPrzepisAsyncTask(activity, przepisDao, produktDao, produktPrzepisDao, produkty, przepis.getNazwa()).execute(przepis);
+    }
 
     private static class insertPrzepisAsyncTask extends AsyncTask<Przepis, Void, Boolean> {
         private PrzepisDao mAsyncTaskDao;
@@ -45,6 +55,7 @@ public class RepositoryPrzepis {
         private String przepisNazwa;
         private Activity mActivity;
         List<MyTaskParams> produkty;
+
         insertPrzepisAsyncTask(Activity activity, PrzepisDao dao, ProduktDao produktDao, ProduktPrzepisDao produktPrzepisDao, List<MyTaskParams> produkty, String przepisNazwa) {
             this.produktDao = produktDao;
             this.produktPrzepisDao = produktPrzepisDao;
@@ -57,22 +68,20 @@ public class RepositoryPrzepis {
         @Override
         protected Boolean doInBackground(final Przepis... params) {
             Przepis p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
-            if(p == null) {
+            if (p == null) {
                 mAsyncTaskDao.insert(params[0]);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            if(aBoolean) {
+            if (aBoolean) {
                 Toast.makeText(mActivity, "Dodano przepis", Toast.LENGTH_SHORT).show();
                 new insertProduktyAsyncTask(produktPrzepisDao, produktDao, mAsyncTaskDao, przepisNazwa).execute(produkty);
-            }
-            else
-                Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(mActivity, "Przepis o podanej nazwie już istnieje", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -91,7 +100,7 @@ public class RepositoryPrzepis {
 
         @Override
         protected Void doInBackground(final List<MyTaskParams>... params) {
-            for(int i = 0; i < params[0].size(); i++) {
+            for (int i = 0; i < params[0].size(); i++) {
                 int produktId = produktDao.loadNazwa(params[0].get(i).produktName).getId();
                 int przepisId = przepisDao.loadNazwa(przepisNazwa).getId();
                 produktPrzepisDao.insert(new ProduktPrzepis(przepisId, produktId, params[0].get(i).ilosc, params[0].get(i).opcjonalny));
@@ -101,11 +110,16 @@ public class RepositoryPrzepis {
     }
 
 
-    public void deletePrzepis(Przepis przepis) { new deletePrzepisAsyncTask(przepisDao).execute(przepis); }
+    public void deletePrzepis(Przepis przepis) {
+        new deletePrzepisAsyncTask(przepisDao).execute(przepis);
+    }
 
     private static class deletePrzepisAsyncTask extends AsyncTask<Przepis, Void, Void> {
         private PrzepisDao mAsyncTaskDao;
-        deletePrzepisAsyncTask(PrzepisDao dao) { mAsyncTaskDao = dao; }
+
+        deletePrzepisAsyncTask(PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+        }
 
         @Override
         protected Void doInBackground(final Przepis... params) {
@@ -115,11 +129,14 @@ public class RepositoryPrzepis {
     }
 
 
-    public void updatePrzepis(Activity activity, Przepis przepis) { new updatePrzepisAsyncTask(activity, przepisDao).execute(przepis); }
+    public void updatePrzepis(Activity activity, Przepis przepis) {
+        new updatePrzepisAsyncTask(activity, przepisDao).execute(przepis);
+    }
 
     private static class updatePrzepisAsyncTask extends AsyncTask<Przepis, Void, Boolean> {
         private PrzepisDao mAsyncTaskDao;
         private Activity mActivity;
+
         updatePrzepisAsyncTask(Activity activity, PrzepisDao dao) {
             mAsyncTaskDao = dao;
             mActivity = activity;
@@ -128,20 +145,19 @@ public class RepositoryPrzepis {
         @Override
         protected Boolean doInBackground(Przepis... params) {
             Przepis p = mAsyncTaskDao.loadNazwa(params[0].getNazwa());
-            if(p == null || params[0].getId() == p.getId()) {
+            if (p == null || params[0].getId() == p.getId()) {
                 mAsyncTaskDao.update(params[0]);
                 return true;
-            }
-            else
+            } else
                 return false;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            if(aBoolean)
-                Toast.makeText(mActivity,"Edytowano przepis",Toast.LENGTH_SHORT).show();
+            if (aBoolean)
+                Toast.makeText(mActivity, "Edytowano przepis", Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(mActivity,"Przepis o podanej nazwie już istnieje",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Przepis o podanej nazwie już istnieje", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -205,7 +221,7 @@ public class RepositoryPrzepis {
         ProduktDao produktDao;
         HistoriaDao historiaDao;
 
-        cookAsyncTask(Activity activity, PrzepisDao przepisDao, ProduktDao produktDao, ProduktPrzepisDao produktPrzepisDao, HistoriaDao historiaDao){
+        cookAsyncTask(Activity activity, PrzepisDao przepisDao, ProduktDao produktDao, ProduktPrzepisDao produktPrzepisDao, HistoriaDao historiaDao) {
             this.activity = activity;
             this.produktPrzepisDao = produktPrzepisDao;
             this.przepisDao = przepisDao;
@@ -219,10 +235,10 @@ public class RepositoryPrzepis {
             int id = przepis.getId();
             List<ProduktPrzepis> produkty = new ArrayList<>(produktPrzepisDao.loadPrzepisList(id));
 
-            for(int i = 0; i < produkty.size(); i++) {
+            for (int i = 0; i < produkty.size(); i++) {
                 Produkt produkt = produktDao.loadId(produkty.get(i).getIdProduktu());
                 int ilosc = produkt.getIlosc() - (produkty.get(i).getIloscProduktu() * cookData[0].getPorcje());
-                if(ilosc < 0) ilosc = 0;
+                if (ilosc < 0) ilosc = 0;
 
                 produkt.setIlosc(ilosc);
                 produktDao.update(produkt);
@@ -237,6 +253,45 @@ public class RepositoryPrzepis {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Toast.makeText(activity, "Smacznego!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void setEditPrzepis(Activity activity, int id) {
+        new setEditPrzepisAsyncTask(activity, przepisDao).execute(id);
+    }
+
+    private static class setEditPrzepisAsyncTask extends AsyncTask<Integer, Void, Przepis> {
+        private PrzepisDao mAsyncTaskDao;
+        private Activity mActivity;
+
+        setEditPrzepisAsyncTask(Activity activity, PrzepisDao dao) {
+            mAsyncTaskDao = dao;
+            mActivity = activity;
+        }
+
+        @Override
+        protected Przepis doInBackground(Integer... integers) {
+            return mAsyncTaskDao.loadId(integers[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Przepis przepis) {
+            ImageView obrazek = mActivity.findViewById(R.id.recipkaFoto);
+            EditText nazwa = mActivity.findViewById(R.id.zmienName);
+            EditText czas = mActivity.findViewById(R.id.zmienTajm);
+            EditText opis = mActivity.findViewById(R.id.zmienOpis);
+
+            byte[] array = przepis.getImage();
+
+            if (array != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                obrazek.setImageBitmap(bitmap);
+            }
+
+            nazwa.setText(przepis.getNazwa());
+            czas.setText(String.valueOf(przepis.getCzas()));
+            opis.setText(przepis.getOpis());
+
         }
     }
 }
