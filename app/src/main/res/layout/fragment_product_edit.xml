@@ -38,42 +38,40 @@
 
     <EditText
         android:id="@+id/produktEditIloscEditText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Ilosc"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toStartOf="@id/spinner_prod_edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produktEditNazwaEditText" />
 
     <Spinner
         android:id="@+id/spinner_prod_edit"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
 
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
+        app:layout_constraintStart_toEndOf="@+id/produktEditIloscEditText"
+        app:layout_constraintTop_toBottomOf="@+id/produktEditNazwaEditText" />
 
     <Button
         android:id="@+id/produktEditButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner_prod_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/QuickAdd" />
 
 
 
@@ -103,7 +101,7 @@
 
             <Button
                 android:id="@+id/changeImage"
-                android:layout_width="wrap_content"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
                 android:text="Zmień obrazek"
@@ -113,7 +111,7 @@
 
             <Button
                 android:id="@+id/deleteImage"
-                android:layout_width="wrap_content"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="44dp"
                 android:text="Usuń obrazek"
@@ -125,6 +123,41 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/QuickAdd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="Dodaj"
+        app:layout_constraintEnd_toEndOf="@+id/produktEditIloscEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="1"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/QuickAdd"
+        app:layout_constraintTop_toBottomOf="@+id/produktEditIloscEditText" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="*sztuk*"
+        app:layout_constraintBottom_toBottomOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

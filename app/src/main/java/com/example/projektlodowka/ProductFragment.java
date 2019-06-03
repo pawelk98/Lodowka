@@ -38,7 +38,6 @@ import java.util.List;
  */
 public class ProductFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    RelativeLayout relativeLayout;
     List<Produkt> produkty = new ArrayList<>();
     private ViewModel viewModel;
     RecyclerView recyclerView;
