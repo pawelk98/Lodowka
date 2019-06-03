@@ -39,4 +39,7 @@ public interface PrzepisDao {
 
     @Query("SELECT * FROM Przepis WHERE czas <= :czas")
     List<Przepis> loadCzas(int czas);
+
+    @Query("SELECT COUNT(*) FROM Przepis")
+    int count();
 }

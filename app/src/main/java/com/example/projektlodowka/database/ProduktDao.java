@@ -43,4 +43,7 @@ public interface ProduktDao {
 
     @Query("SELECT * FROM Produkt WHERE typ = :typ")
     List<Produkt> loadTyp(int typ);
+
+    @Query("SELECT COUNT(*) FROM Produkt")
+    int count();
 }
