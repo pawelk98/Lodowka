@@ -13,14 +13,15 @@
             android:id="@+id/przepis_dodaj_nazwe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:minLines="4"
-            android:lines="8"
+            android:layout_marginEnd="32dp"
             android:ems="10"
             android:hint="Nazwa"
             android:inputType="text"
-            app:layout_constraintTop_toBottomOf="@+id/dodaj_przepis"
-            tools:layout_editor_absoluteX="20dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dodaj_przepis" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_dodaj_produkt_do_przepisu"
@@ -51,21 +52,29 @@
             android:id="@+id/przepis_dodaj_opis"
             android:layout_width="match_parent"
             android:layout_height="75dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
             android:hint="Dodaj opis"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas"
-            tools:layout_editor_absoluteX="20dp" />
+            android:lines="8"
+            android:minLines="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas" />
 
         <EditText
             android:id="@+id/przepis_dodaj_czas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
             android:ems="10"
             android:hint="Czas"
             android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_nazwe"
-            tools:layout_editor_absoluteX="20dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_nazwe" />
 
     </android.support.constraint.ConstraintLayout>
 

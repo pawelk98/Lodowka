@@ -122,13 +122,15 @@
         <EditText
             android:id="@+id/zmienOpis"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Opis"
+            android:lines="8"
+            android:minLines="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/zmienTajm" />

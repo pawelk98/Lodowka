@@ -7,171 +7,202 @@
     android:layout_height="match_parent"
     tools:context=".RecipeShowFragment">
 
-    <ScrollView
-        android:id="@+id/scrollView3"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ScrollView
-                android:id="@+id/scrollView2"
-                android:layout_width="200dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/dishImage"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time">
-
-                <TextView
-                    android:id="@+id/przepisShowOpisTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="*tutej opis przepisu*" />
-            </ScrollView>
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dishImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time">
 
             <TextView
-                android:id="@+id/iloscpos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="Posiadane"
-                android:textColor="#000"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/nazwa"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-            <TextView
-                android:id="@+id/przepisShowCzasTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginStart="8dp"
-                android:text="*czas*"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/time"
-                app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
-
-            <TextView
-                android:id="@+id/nazwa"
-                android:layout_width="wrap_content"
+                android:id="@+id/przepisShowOpisTextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:text="Produkt"
-                android:textColor="#000"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+                android:text="*tutej opis przepisu*" />
+        </ScrollView>
 
-            <TextView
-                android:id="@+id/min"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:text="min"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/przepisShowCzasTextView"
-                app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
+        <TextView
+            android:id="@+id/iloscpos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Posiadane"
+            android:textColor="#000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/nazwa"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-            <TextView
-                android:id="@+id/iloscpocz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="Potrzebne"
-                android:textColor="#000"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/iloscpos"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        <TextView
+            android:id="@+id/przepisShowCzasTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="8dp"
+            android:text="*czas*"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/time"
+            app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/dishImage"
-                android:layout_width="192dp"
-                android:layout_height="177dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:src="@drawable/custom_dish_02"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time" />
+        <TextView
+            android:id="@+id/nazwa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="Produkt"
+            android:textColor="#000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/time"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
+        <TextView
+            android:id="@+id/min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="min"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/przepisShowCzasTextView"
+            app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
 
-            <TextView
-                android:id="@+id/przepisShowNazwaTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="*tutaj nazwa przepisu*"
-                android:textColor="@color/colorText"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/iloscpocz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Potrzebne"
+            android:textColor="#000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/iloscpos"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-            <ListView
-                android:id="@+id/przepisSkladnikListView"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dishImage"
+            android:layout_width="192dp"
+            android:layout_height="177dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/custom_dish_02"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/time" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/time"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/przepisShowNazwaTextView" />
+
+        <TextView
+            android:id="@+id/przepisShowNazwaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="*tutaj nazwa przepisu*"
+            android:textColor="@color/colorText"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/cookNow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nazwa"
+            app:layout_constraintVertical_bias="1.0">
+
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nazwa" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/cookNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Gotuj!"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <ListView
+                    android:id="@+id/przepisSkladnikListView"
+                    android:layout_width="363dp"
+                    android:layout_height="330dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="52dp"
-                android:layout_height="26dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:text="Porcje:"
-                app:layout_constraintEnd_toStartOf="@+id/ilosc_porcji"
-                app:layout_constraintTop_toBottomOf="@+id/przepisSkladnikListView" />
+                </ListView>
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
 
-            <EditText
-                android:id="@+id/ilosc_porcji"
-                android:layout_width="46dp"
-                android:layout_height="43dp"
-                android:layout_marginEnd="20dp"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="1"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cookNow" />
+        <Button
+            android:id="@+id/cookNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Gotuj!"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="52dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="Porcje:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ilosc_porcji" />
+
+        <EditText
+            android:id="@+id/ilosc_porcji"
+            android:layout_width="46dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="1"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cookNow" />
+
+        <Button
+            android:id="@+id/edytujPrzepis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
