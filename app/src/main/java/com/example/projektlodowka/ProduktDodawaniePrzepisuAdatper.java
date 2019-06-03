@@ -35,14 +35,13 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
     private int[] ilosci;
 
     public ProduktDodawaniePrzepisuAdatper(Context context, List<Produkt> produkty) {
-        this.produkty = new ArrayList<>(produkty);
+        this.produkty = produkty;
         this.context = context;
     }
 
 
     void setProdukty(List<Produkt> produkty) {
-        this.produkty.clear();
-        this.produkty.addAll(produkty);
+        this.produkty = produkty;
         checkBoxes = new boolean[produkty.size()];
         opcjonalny = new boolean[produkty.size()];
         ilosci = new int[produkty.size()];
@@ -59,15 +58,6 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
     @Override
     public void onBindViewHolder(@NonNull ProduktDodawaniePrzepisuAdatper.viewHolder viewHolder, int position) {
 
-      /*  if (produkty.get(position).getImage() == null) {
-            File file = new File("drawable\\def_pic.png");
-            if (file.exists()) {
-                Glide.with(context).load(file).into(viewHolder.obrazek);
-            }
-        } else {
-            Bitmap bitmap = BitmapFactory.decodeByteArray(produkty.get(position).getImage(), 0, produkty.get(position).getImage().length);
-            Glide.with(context).load(bitmap).into(viewHolder.obrazek);
-        }*/
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
         viewHolder.bind(position);
         switch (produkty.get(position).getTyp()) {
@@ -103,12 +93,10 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            //obrazek = itemView.findViewById(R.id.produktImageView);
             nazwa = itemView.findViewById(R.id.nazwaCheckBox);
             opcjonalnyCB = itemView.findViewById(R.id.checkBox2);
             typ = itemView.findViewById(R.id.typ_dodawanie_do_przepisow);
             ilosc = itemView.findViewById(R.id.ilosc_produktu_w_przepisie);
-            //parentLayout = itemView.findViewById(R.id.parent_layout);
 
 
             ilosc.addTextChangedListener(new TextWatcher() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,27 +32,16 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     private Context context;
     private LayoutInflater inflater;
     private List<Bitmap> pictures;
-
+    private File file;
 
     public RecyclerProduktyAdapter(){}
 
     public RecyclerProduktyAdapter(Context context, List<Produkt> produkty) {
         this.produkty = produkty;
         this.context = context;
-    }
+        file = new File("drawable\\def_pic.png");
 
-
-    void setProdukty(List<Produkt> produkty) {
-        this.produkty = produkty;
-    }
-
-    @NonNull
-    @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.produkt_view, viewGroup, false);
-        viewHolder holder = new viewHolder(view);
         pictures = new ArrayList<>();
-
         for(Produkt produkt: produkty){
             if(produkt.getImage() == null){
                 pictures.add(null);
@@ -59,22 +50,43 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
                 pictures.add(BitmapFactory.decodeByteArray(produkt.getImage(), 0, produkt.getImage().length));
             }
         }
-        return holder;
+    }
+
+
+    void setProdukty(List<Produkt> produkty) {
+        this.produkty = produkty;
+        pictures = new ArrayList<>();
+        for(Produkt produkt: produkty){
+            if(produkt.getImage() == null){
+                pictures.add(null);
+            }
+            else{
+                pictures.add(BitmapFactory.decodeByteArray(produkt.getImage(), 0, produkt.getImage().length));
+            }
+        }
+    }
+
+    @NonNull
+    @Override
+    public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.produkt_view, viewGroup, false);
+        return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder viewHolder, int position) {
 
+        viewHolder.setIsRecyclable(false);
+
         if (pictures.get(position) == null){
-            File file = new File("drawable\\def_pic.png");
             if (file.exists()) {
                 Glide.with(context).load(file).into(viewHolder.obrazek);
             }
         }
         else{
-            Glide.with(context).load(pictures.get(position)).into(viewHolder.obrazek);
+//            Glide.with(context).load(produkty.get(position)).into(viewHolder.obrazek);
+            viewHolder.obrazek.setImageBitmap(pictures.get(position));
         }
-
         viewHolder.nazwa.setText(produkty.get(position).getNazwa());
 
         int i = produkty.get(position).getIlosc();
