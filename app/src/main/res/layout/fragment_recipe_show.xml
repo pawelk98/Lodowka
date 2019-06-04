@@ -33,7 +33,7 @@
             android:id="@+id/iloscpos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="124dp"
             android:layout_marginTop="8dp"
             android:text="Posiadane"
             android:textColor="#000"
@@ -80,7 +80,7 @@
             android:id="@+id/iloscpocz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="Potrzebne"
             android:textColor="#000"
@@ -197,6 +197,18 @@
             android:text="@string/edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Opcjonalny"
+            android:textColor="@color/colorText"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/iloscpocz"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     </android.support.constraint.ConstraintLayout>
 
