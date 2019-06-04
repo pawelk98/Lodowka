@@ -29,44 +29,21 @@ public class RecyclerPrzepisyAdapter extends  RecyclerView.Adapter<RecyclerPrzep
 
     private List<Przepis> przepisy;
     private Context context;
-    private List<Bitmap> pictures;
-    private File file;
 
     public RecyclerPrzepisyAdapter( Context context,List<Przepis> przepisy) {
         this.przepisy = przepisy;
         this.context = context;
-
-        file = new File("drawable\\def_pic.png");
-
-        pictures = new ArrayList<>();
-        for(Przepis przepis: przepisy){
-            if(przepis.getImage() == null){
-                pictures.add(null);
-            }
-            else{
-                pictures.add(BitmapFactory.decodeByteArray(przepis.getImage(), 0, przepis.getImage().length));
-            }
-        }
     }
     void setPrzepisy(List<Przepis> przepisy){
         this.przepisy=przepisy;
-
-        pictures = new ArrayList<>();
-        for(Przepis przepis: przepisy){
-            if(przepis.getImage() == null){
-                pictures.add(null);
-            }
-            else{
-                pictures.add(BitmapFactory.decodeByteArray(przepis.getImage(), 0, przepis.getImage().length));
-            }
-        }
     }
 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.konkretny_przepis, viewGroup, false);
-        return new viewHolder(view);
+        viewHolder holder = new viewHolder(view);
+        return holder;
     }
 
     @Override
@@ -74,15 +51,14 @@ public class RecyclerPrzepisyAdapter extends  RecyclerView.Adapter<RecyclerPrzep
 
         viewHolder.setIsRecyclable(false);
 
-        if (pictures.get(position) == null) {
+        if (przepisy.get(position).getImage() == null) {
+            File file = new File("drawable\\custom_dish_03.png");
             if (file.exists()) {
                 Glide.with(context).load(file).into(viewHolder.obrazek);
             }
         } else {
-            viewHolder.obrazek.setImageBitmap(pictures.get(position));
-
-//            byte[] ImageArray = Base64.decode(przepisy.get(position).getImage(), Base64.DEFAULT);
-//            Glide.with(context).asBitmap().load(ImageArray).into(viewHolder.obrazek);//<<<<<-------------
+            Bitmap bitmap = BitmapFactory.decodeByteArray(przepisy.get(position).getImage(), 0, przepisy.get(position).getImage().length);
+            Glide.with(context).load(bitmap).into(viewHolder.obrazek);
         }
         viewHolder.nazwa.setText(przepisy.get(position).getNazwa());
         int i= przepisy.get(position).getCzas();
