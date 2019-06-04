@@ -173,6 +173,9 @@ public class RecipeEditFragment extends Fragment {
             public void onClick(View v) { ;
                 Przepis dPrzepis = new Przepis();
                 dPrzepis.setId(idPrzepisu);
+                dPrzepis.setNazwa(nazwa.getText().toString());
+                dPrzepis.setCzas(Integer.parseInt(czas.getText().toString()));
+                dPrzepis.setOpis(opis.getText().toString());
                 dPrzepis.setImage(null);
 
                 viewModel.updatePrzepis(getActivity(), dPrzepis);
