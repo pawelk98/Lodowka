@@ -209,6 +209,13 @@ public class RepositoryPrzepis {
             TextView nazwa = mActivity.findViewById(R.id.przepisShowNazwaTextView);
             TextView czas = mActivity.findViewById(R.id.przepisShowCzasTextView);
             TextView opis = mActivity.findViewById(R.id.przepisShowOpisTextView);
+            CircleImageView obrazek = mActivity.findViewById(R.id.dishImage);
+            byte[] array = przepis.getImage();
+
+            if (array != null) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
+                obrazek.setImageBitmap(bitmap);
+            }
 
             nazwa.setText(przepis.getNazwa());
             czas.setText(String.valueOf(przepis.getCzas()));
