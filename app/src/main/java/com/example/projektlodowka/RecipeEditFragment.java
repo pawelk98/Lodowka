@@ -120,7 +120,7 @@ public class RecipeEditFragment extends Fragment {
                 produkty = produkt;
                 adapter.setProdukty(produkt);
 
-                if(skladniki.size() != 0){
+                if(skladniki != null && skladniki.size() != 0){
                     adapter.setSkladniki(skladniki);
                 }
 

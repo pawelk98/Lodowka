@@ -116,7 +116,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
                     String text = ilosc.getText().toString();
 
                     if (text.length() > 0)
-                        ilosci[getAdapterPosition()] = (int) (Float.parseFloat(text));
+                        ilosci[getAdapterPosition()] = Float.parseFloat(text);
                 }
             });
 
