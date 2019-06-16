@@ -50,6 +50,7 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
     EditText ilosc;
     int type;
     Button edytuj;
+    Button usunObrazek;
     ViewModel viewModel;
     Produkt uProdukt;
     CircleImageView circleImageView;
@@ -97,6 +98,7 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         dodajText = view.findViewById(R.id.QuickAddTextView);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setEditProdukt(getActivity(), id);
+        usunObrazek = view.findViewById(R.id.deleteImage);
 
         setImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +160,22 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
                     fragmentTransaction.replace(R.id.main_frame, new ProductFragment());
                     fragmentTransaction.commit();
                 }
+            }
+        });
+
+        usunObrazek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Produkt dprodukt = new Produkt();
+                dprodukt.setId(id);
+                dprodukt.setImage(null);
+                dprodukt.setIlosc((int) Float.parseFloat(ilosc.getText().toString()));
+                dprodukt.setNazwa(nazwa.getText().toString());
+               dprodukt.setTyp(type);
+               viewModel.updateProdukt(getActivity(),dprodukt);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(ProductEditFragment.this).attach(ProductEditFragment.this).commit();
+
             }
         });
     }
