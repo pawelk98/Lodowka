@@ -99,6 +99,53 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <RadioGroup
+                android:id="@+id/radio_typ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/zmienOpis">
+
+                <RadioButton
+                    android:id="@+id/radio_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onClick="checkButton"
+                    android:text="Śniadanie" />
+
+                <RadioButton
+                    android:id="@+id/radio_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButton"
+                    android:text="Obiad" />
+
+                <RadioButton
+                    android:id="@+id/radio_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButton"
+                    android:text="Kolacja" />
+
+                <RadioButton
+                    android:id="@+id/radio_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButton"
+                    android:text="Śniadanie/Kolacja" />
+
+                <RadioButton
+                    android:id="@+id/radio_five"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="checkButton"
+                    android:text="Inne" />
+
+            </RadioGroup>
+
             <EditText
                 android:id="@+id/zmienName"
                 android:layout_width="match_parent"
@@ -154,7 +201,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/usunBaton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zmienOpis" />
+                app:layout_constraintTop_toBottomOf="@+id/radio_typ" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
