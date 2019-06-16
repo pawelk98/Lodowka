@@ -86,6 +86,10 @@ public abstract class BazaDanych extends RoomDatabase {
             przepisDao.insert(new Przepis(nazwa, czas, opis));
         }
 
+        private void insertPrzepis(String nazwa, int czas, String opis, int poraDnia) {
+            przepisDao.insert(new Przepis(nazwa, czas, opis, poraDnia));
+        }
+
         private void insertProdukt(String nazwa, int typ, int ilosc, Drawable obrazek){
             Produkt p = new Produkt(nazwa, typ, ilosc);
             p.setImage(getBytesFromBitmap(obrazek));
@@ -133,32 +137,32 @@ public abstract class BazaDanych extends RoomDatabase {
 
 
 
-                insertPrzepis("parówki", 10, "Wrzuć do gotującej się wody parówki");
+                insertPrzepis("parówki", 10, "Wrzuć do gotującej się wody parówki", 0);
                 insertProduktPrzepis("parówki", "parówki", 4000, false);
                 insertProduktPrzepis("bułki", "parówki", 1000, true);
 
                 insertPrzepis("kartofle z kefirem", 30, "Zagotuj dobrze obrane kartofle, rozgnieć je tym takim do ziemniaków. " +
-                        "Posól wedle uznania oraz zalej kefirem.");
+                        "Posól wedle uznania oraz zalej kefirem.", 2);
                 insertProduktPrzepis("ziemniaki", "kartofle z kefirem", 700, false);
                 insertProduktPrzepis("kefir", "kartofle z kefirem", 350, false);
 
                 insertPrzepis("kanapki ze szprotami", 10, "Chlebek boży posmaruj masełkiem i połóż na nim starannie " +
-                        "rozgniecione widelcem szproty.");
+                        "rozgniecione widelcem szproty.", 4);
                 insertProduktPrzepis("szproty w pomidorach", "kanapki ze szprotami", 1000, false);
                 insertProduktPrzepis("chleb", "kanapki ze szprotami", 300, false);
 
                 insertPrzepis("spaghetti", 40, "Usmaż mięso na patelni, dodaj przecier i duś na wolnym ogniu. " +
-                        "Jeżeli masz ochotę dodaj zioła prowansalskie." + "Makaron wrzuć do gotującej się wody i gotuj na wolnym ogniu około 8 minut czasem mieszając");
+                        "Jeżeli masz ochotę dodaj zioła prowansalskie." + "Makaron wrzuć do gotującej się wody i gotuj na wolnym ogniu około 8 minut czasem mieszając", 2);
                 insertProduktPrzepis("mięso mielone", "spaghetti", 200, false);
                 insertProduktPrzepis("przecier pomidorowy", "spaghetti", 300, false);
                 insertProduktPrzepis("makaron", "spaghetti", 250, false);
                 insertProduktPrzepis("zioła prowansalskie", "spaghetti", 300, true);
 
-                insertPrzepis("schab w sosie własnym", 60, "Schab pokrój w plastry około 5cm, włóż do naczynia żaroodpornego wraz z pokrojoną cebulą i piecz przez 60 minut w 190 stopniach");
+                insertPrzepis("schab w sosie własnym", 60, "Schab pokrój w plastry około 5cm, włóż do naczynia żaroodpornego wraz z pokrojoną cebulą i piecz przez 60 minut w 190 stopniach", 2);
                 insertProduktPrzepis("schab", "schab w sosie własnym", 500, false);
                 insertProduktPrzepis("cebula", "schab w sosie własnym", 1000, false);
 
-                insertPrzepis("zupa fasolowa", 40, "Do garnka z 3 litrami wody dodaj fasole i zagotuj, ziemniaki pokrój w małą kostkę i dorzuć do gotującej się wody");
+                insertPrzepis("zupa fasolowa", 40, "Do garnka z 3 litrami wody dodaj fasole i zagotuj, ziemniaki pokrój w małą kostkę i dorzuć do gotującej się wody", 2);
                 insertProduktPrzepis("ziemniaki", "zupa fasolowa", 200, false);
                 insertProduktPrzepis("fasola czarna", "zupa fasolowa", 200, false);
                 insertProduktPrzepis("fasola biała", "zupa fasolowa", 200, false);

@@ -151,7 +151,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
 
     public boolean opcjonalnyProdukt(int position) { return opcjonalny[position];}
 
-    public int iloscProduktu(int position) { return ilosci[position]; }
+    public int iloscProduktu(int position) { return ilosci[position] * 1000; }
 
     public String getItemName(int position) { return produkty.get(position).getNazwa(); }
     @Override

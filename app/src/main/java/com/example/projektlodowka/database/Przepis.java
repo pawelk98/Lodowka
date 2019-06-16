@@ -23,14 +23,24 @@ public class Przepis {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
 
+    private int poraDnia; // 0-nieokreślona, 1-śniadanie, 2-obiad, 3-kolacja, 4-śniadanie/kolacja
 
     @Ignore
     public Przepis() {}
 
+    @Ignore
     public Przepis (@NonNull String nazwa, int czas, String opis) {
         this.nazwa = nazwa;
         this.czas = czas;
         this.opis = opis;
+        this.poraDnia = 0;
+    }
+
+    public Przepis (@NonNull String nazwa, int czas, String opis, int poraDnia) {
+        this.nazwa = nazwa;
+        this.czas = czas;
+        this.opis = opis;
+        this.poraDnia = poraDnia;
     }
 
     public int getId() {
@@ -72,5 +82,13 @@ public class Przepis {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public int getPoraDnia() {
+        return poraDnia;
+    }
+
+    public void setPoraDnia(int poraDnia) {
+        this.poraDnia = poraDnia;
     }
 }

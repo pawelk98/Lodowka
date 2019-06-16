@@ -45,4 +45,7 @@ public interface PrzepisDao {
 
     @Query("SELECT COUNT(*) FROM Przepis")
     int count();
+
+    @Query("SELECT * FROM Przepis WHERE poraDnia = :poraDnia")
+    List<Przepis> loadPoraDnia(int poraDnia);
 }
