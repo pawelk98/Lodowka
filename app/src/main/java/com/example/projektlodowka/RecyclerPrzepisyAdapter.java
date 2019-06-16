@@ -52,11 +52,9 @@ public class RecyclerPrzepisyAdapter extends  RecyclerView.Adapter<RecyclerPrzep
         viewHolder.setIsRecyclable(false);
 
         if (przepisy.get(position).getImage() == null) {
-            File file = new File("drawable\\custom_dish_03.png");
-            if (file.exists()) {
-                Glide.with(context).load(file).into(viewHolder.obrazek);
-            }
-        } else {
+            Glide.with(context).load(R.drawable.custom_dish_03).into(viewHolder.obrazek);
+        }
+         else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(przepisy.get(position).getImage(), 0, przepisy.get(position).getImage().length);
             Glide.with(context).load(bitmap).into(viewHolder.obrazek);
         }

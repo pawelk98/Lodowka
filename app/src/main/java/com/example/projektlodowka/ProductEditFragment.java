@@ -166,13 +166,34 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         usunObrazek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Produkt dprodukt = new Produkt();
-                dprodukt.setId(id);
-                dprodukt.setImage(null);
-                dprodukt.setIlosc((int) Float.parseFloat(ilosc.getText().toString()));
-                dprodukt.setNazwa(nazwa.getText().toString());
-               dprodukt.setTyp(type);
-               viewModel.updateProdukt(getActivity(),dprodukt);
+                switch (type) {
+                    case 0:
+                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                        break;
+                    case 1:
+                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                        break;
+                    case 2:
+                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                        break;
+                    case 3:
+                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                (int)(Float.parseFloat(ilosc.getText().toString())));
+                        break;
+                    case 4:
+                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                (int)(Float.parseFloat(ilosc.getText().toString())));
+                        break;
+                }
+
+                uProdukt.setId(id);
+                uProdukt.setImage(null);
+
+
+                viewModel.updateProdukt(getActivity(),uProdukt);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.detach(ProductEditFragment.this).attach(ProductEditFragment.this).commit();
 

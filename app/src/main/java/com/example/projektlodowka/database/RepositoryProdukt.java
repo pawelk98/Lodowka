@@ -17,6 +17,7 @@ import com.example.projektlodowka.R;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -110,7 +111,6 @@ public class RepositoryProdukt {
         new updateProduktAsyncTask(activity, produktDao).execute(produkt);
     }
 
-
     private static class updateProduktAsyncTask extends AsyncTask<Produkt, Void, Boolean> {
         private ProduktDao mAsyncTaskDao;
         private Activity mActivity;
@@ -173,6 +173,7 @@ public class RepositoryProdukt {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
                 obrazekGuzik.setImageBitmap(bitmap);
             }
+
 
             nazwa.setText(produkt.getNazwa());
 

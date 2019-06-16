@@ -8,6 +8,8 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -155,7 +157,8 @@ public class RecipeEditFragment extends Fragment {
                 uPrzepis.setCzas(Integer.parseInt(czas.getText().toString()));
                 uPrzepis.setOpis(opis.getText().toString());
 
-                uPrzepis.setImage(obrazBajty);
+
+                uPrzepis.setImage(getBytesFromBitmap(obrazek.getDrawable()));
 
                 viewModel.deleteProdukty(idPrzepisu);
                 viewModel.updatePrzepis(getActivity(), uPrzepis);
@@ -246,6 +249,13 @@ public class RecipeEditFragment extends Fragment {
             e.printStackTrace();
         }
         return data;
+    }
+
+    private byte[] getBytesFromBitmap(Drawable d) {
+        Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
     }
 }
 

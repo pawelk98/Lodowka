@@ -30,14 +30,12 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
 
     private List<Produkt> produkty;
     private Context context;
-    private File file;
 
     public RecyclerProduktyAdapter(){}
 
     public RecyclerProduktyAdapter(Context context, List<Produkt> produkty) {
         this.produkty = produkty;
         this.context = context;
-        file = new File("drawable\\def_pic.png");
     }
 
 
@@ -55,13 +53,8 @@ public class RecyclerProduktyAdapter extends RecyclerView.Adapter<RecyclerProduk
     @Override
     public void onBindViewHolder(@NonNull viewHolder viewHolder, int position) {
 
-        viewHolder.setIsRecyclable(false);
-
         if (produkty.get(position).getImage() == null) {
-            File file = new File("drawable\\def_pic.png");
-            if (file.exists()) {
-                Glide.with(context).load(file).into(viewHolder.obrazek);
-            }
+            Glide.with(context).load(R.drawable.def_pic).into(viewHolder.obrazek);
         } else {
             Bitmap bitmap = BitmapFactory.decodeByteArray(produkty.get(position).getImage(), 0, produkty.get(position).getImage().length);
             Glide.with(context).load(bitmap).into(viewHolder.obrazek);
