@@ -115,7 +115,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
                     String text = ilosc.getText().toString();
 
                     if(text.length() > 0)
-                        ilosci[getAdapterPosition()] = (int)(Float.parseFloat(text)*1000);
+                        ilosci[getAdapterPosition()] = (int)(Float.parseFloat(text));
                 }
             });
 
@@ -137,6 +137,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         void bind(int position) {
             nazwa.setChecked(checkBoxes[position]);
             opcjonalnyCB.setChecked(opcjonalny[position]);
+            ilosc.setText(String.valueOf(ilosci[position]));
         }
     }
 

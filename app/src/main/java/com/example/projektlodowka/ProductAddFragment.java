@@ -94,23 +94,23 @@ public class ProductAddFragment extends Fragment implements AdapterView.OnItemSe
 
                     switch (type) {
                         case 0:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 1:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 2:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
                                     (int)(Float.parseFloat(ilosc.getText().toString())*1000));
                             break;
                         case 3:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type - 3,
                                     (int)(Float.parseFloat(ilosc.getText().toString())));
                             break;
                         case 4:
-                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), Integer.valueOf(type-3),
+                            p = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type - 3,
                                     (int)(Float.parseFloat(ilosc.getText().toString())));
                             break;
                     }

@@ -112,7 +112,7 @@ public abstract class BazaDanych extends RoomDatabase {
                 insertProdukt("makaron", 2, 0, c.getResources().getDrawable(R.drawable.makaron));
                 insertProdukt("jogurt naturalny", 1, 0, c.getResources().getDrawable(R.drawable.jogurtnaturalny));
                 insertProdukt("ser żółty", 0, 0, c.getResources().getDrawable(R.drawable.serzolty));
-                insertProdukt("parówki", 3,0, c.getResources().getDrawable(R.drawable.parowki));
+                insertProdukt("parówki", 2,0, c.getResources().getDrawable(R.drawable.parowki));
                 insertProdukt("chleb", 2, 0, c.getResources().getDrawable(R.drawable.chleb));
                 insertProdukt("bułki", 2, 0, c.getResources().getDrawable(R.drawable.bulka));
                 insertProdukt("jabłka", 2, 0, c.getResources().getDrawable(R.drawable.jablko));
