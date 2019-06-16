@@ -82,10 +82,6 @@ public abstract class BazaDanych extends RoomDatabase {
             produktDao.insert(new Produkt(nazwa, typ, ilosc));
         }
 
-        private void insertPrzepis(String nazwa, int czas, String opis) {
-            przepisDao.insert(new Przepis(nazwa, czas, opis));
-        }
-
         private void insertPrzepis(String nazwa, int czas, String opis, int poraDnia) {
             przepisDao.insert(new Przepis(nazwa, czas, opis, poraDnia));
         }

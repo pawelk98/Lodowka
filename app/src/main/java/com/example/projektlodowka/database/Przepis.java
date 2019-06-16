@@ -28,14 +28,6 @@ public class Przepis {
     @Ignore
     public Przepis() {}
 
-    @Ignore
-    public Przepis (@NonNull String nazwa, int czas, String opis) {
-        this.nazwa = nazwa;
-        this.czas = czas;
-        this.opis = opis;
-        this.poraDnia = 0;
-    }
-
     public Przepis (@NonNull String nazwa, int czas, String opis, int poraDnia) {
         this.nazwa = nazwa;
         this.czas = czas;

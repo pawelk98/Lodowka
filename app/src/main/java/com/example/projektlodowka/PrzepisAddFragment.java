@@ -97,7 +97,7 @@ public class PrzepisAddFragment extends Fragment {
 
                     przepis = new Przepis(nazwa.getText().toString().toLowerCase(),
                             Integer.valueOf(czas.getText().toString()),
-                            opis.getText().toString().toLowerCase());
+                            opis.getText().toString().toLowerCase(), 0);
                     viewModel.insertPrzepis(getActivity(), przepis, produktyDoDodania);
                     produktyDoDodania.clear();
 

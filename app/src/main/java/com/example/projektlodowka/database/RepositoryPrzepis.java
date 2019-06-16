@@ -18,8 +18,13 @@ import android.widget.Toast;
 
 import com.example.projektlodowka.R;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -335,12 +340,41 @@ public class RepositoryPrzepis {
 
         @Override
         protected Przepis doInBackground(Void... voids) {
-            List<Przepis> przepisy = mAsyncTaskDao.loadAllList();
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            String currentDateandTime = sdf.format(new Date());
+            long currentTime = Time.valueOf(currentDateandTime).getTime();
+
+            long noc = Time.valueOf("03:00:00").getTime();
+            long sniadanie = Time.valueOf("11:00:00").getTime();
+            long obiad = Time.valueOf("18:00:00").getTime();
+            long kolacja = Time.valueOf("22:00:00").getTime();
+
+            List<Przepis> przepisy = new ArrayList<>();
+
+            if(currentTime > noc && currentTime < sniadanie) {
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(1));
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(4));
+            }
+            else if(currentTime > sniadanie && currentTime < obiad)
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(2));
+            else if(currentTime > obiad && currentTime < kolacja) {
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(3));
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(4));
+            }
+            else
+                przepisy.addAll(mAsyncTaskDao.loadPoraDnia(0));
 
             if(przepisy.size() > 0) {
-                return przepisy.get(0);
+                return przepisy.get(new Random().nextInt(przepisy.size()));
             }
-            else return null;
+            else
+            {
+                przepisy.addAll(mAsyncTaskDao.loadAllList());
+                if(przepisy.size() > 0)
+                    return przepisy.get(new Random().nextInt(przepisy.size()));
+                else
+                    return null;
+            }
         }
     }
 }
