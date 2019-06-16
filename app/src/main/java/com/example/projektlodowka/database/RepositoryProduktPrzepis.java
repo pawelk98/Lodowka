@@ -32,6 +32,22 @@ public class RepositoryProduktPrzepis {
 
     LiveData<List<ProduktInPrzepis>> getProduktyInPrzepis(int idPrzepisu) { return produktPrzepisDao.loadProduktInPrzepis(idPrzepisu); }
 
+    public void deleteProdukty(int idPrzepisu) { new deleteProduktyAsyncTask(produktPrzepisDao).execute(idPrzepisu); }
+
+    private static class deleteProduktyAsyncTask extends AsyncTask <Integer, Void, Void> {
+        ProduktPrzepisDao mAsyncTaskDao;
+        public deleteProduktyAsyncTask(ProduktPrzepisDao mAsyncTaskDao) {
+            super();
+            this.mAsyncTaskDao = mAsyncTaskDao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            mAsyncTaskDao.deleteProdukty(integers[0]);
+            return null;
+        }
+    }
+
     public void insertProduktPrzepis(ProduktPrzepis produktprzepis) {
         new insertProduktPrzepisAsyncTask(produktPrzepisDao).execute(produktprzepis);
     }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.projektlodowka.database.Produkt;
+import com.example.projektlodowka.database.ProduktInPrzepis;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,12 +28,12 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<ProduktDodawaniePrzepisuAdatper.viewHolder>{
+public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<ProduktDodawaniePrzepisuAdatper.viewHolder> {
     private List<Produkt> produkty;
     private Context context;
     private boolean[] checkBoxes;
     private boolean[] opcjonalny;
-    private int[] ilosci;
+    private float[] ilosci;
 
     public ProduktDodawaniePrzepisuAdatper(Context context, List<Produkt> produkty) {
         this.produkty = produkty;
@@ -44,7 +45,7 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         this.produkty = produkty;
         checkBoxes = new boolean[produkty.size()];
         opcjonalny = new boolean[produkty.size()];
-        ilosci = new int[produkty.size()];
+        ilosci = new float[produkty.size()];
     }
 
     @NonNull
@@ -114,8 +115,8 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
                 public void afterTextChanged(Editable s) {
                     String text = ilosc.getText().toString();
 
-                    if(text.length() > 0)
-                        ilosci[getAdapterPosition()] = (int)(Float.parseFloat(text));
+                    if (text.length() > 0)
+                        ilosci[getAdapterPosition()] = (int) (Float.parseFloat(text));
                 }
             });
 
@@ -145,15 +146,26 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
         return produkty.get(position);
     }
 
-    public boolean checked(int position) { return checkBoxes[position]; }
+    public boolean checked(int position) {
+        return checkBoxes[position];
+    }
 
-    public String nazwaProduktu(int position) { return produkty.get(position).getNazwa(); }
+    public String nazwaProduktu(int position) {
+        return produkty.get(position).getNazwa();
+    }
 
-    public boolean opcjonalnyProdukt(int position) { return opcjonalny[position];}
+    public boolean opcjonalnyProdukt(int position) {
+        return opcjonalny[position];
+    }
 
-    public int iloscProduktu(int position) { return ilosci[position] * 1000; }
+    public int iloscProduktu(int position) {
+        return (int)(ilosci[position] * 1000);
+    }
 
-    public String getItemName(int position) { return produkty.get(position).getNazwa(); }
+    public String getItemName(int position) {
+        return produkty.get(position).getNazwa();
+    }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -170,10 +182,22 @@ public class ProduktDodawaniePrzepisuAdatper extends RecyclerView.Adapter<Produk
     }
 
 
-    public void setFilter(List<Produkt> noweProdukty){
+    public void setFilter(List<Produkt> noweProdukty) {
 
         produkty = new ArrayList<>(noweProdukty);
         notifyDataSetChanged();
+    }
+
+    public void setSkladniki(List<ProduktInPrzepis> skladniki) {
+        for (int i = 0; i < produkty.size(); i++) {
+            for(int j = 0; j < skladniki.size(); j++) {
+                if(produkty.get(i).getNazwa().equals(skladniki.get(j).getNazwa())) {
+                    checkBoxes[i] = true;
+                    opcjonalny[i] = skladniki.get(j).isOpcjonalny();
+                    ilosci[i] = (float)(skladniki.get(j).getIloscProduktu())/1000;
+                }
+            }
+        }
     }
 
 }

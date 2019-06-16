@@ -50,7 +50,6 @@ public class RepositoryPrzepis {
         return przepisy;
     }
 
-
     public void insertPrzepis(Activity activity, Przepis przepis, List<MyTaskParams> produkty) {
         new insertPrzepisAsyncTask(activity, przepisDao, produktDao, produktPrzepisDao, produkty, przepis.getNazwa()).execute(przepis);
     }

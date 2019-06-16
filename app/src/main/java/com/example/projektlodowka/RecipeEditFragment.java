@@ -27,6 +27,7 @@ import android.widget.ImageView;
 
 import com.example.projektlodowka.database.MyTaskParams;
 import com.example.projektlodowka.database.Produkt;
+import com.example.projektlodowka.database.ProduktInPrzepis;
 import com.example.projektlodowka.database.Przepis;
 import com.example.projektlodowka.database.ViewModel;
 
@@ -61,12 +62,14 @@ public class RecipeEditFragment extends Fragment {
     Przepis przepis;
     List<Produkt> produkty = new ArrayList<>();
     List<MyTaskParams> produktyDoEdycji = new ArrayList<>();
+    List<ProduktInPrzepis> skladniki;
+    List<MyTaskParams> produktyDoDodania;
 
     int idPrzepisu;
     String nazwaPrzepisu;
 
     ViewModel viewModel;
-
+    int x;
 
     public RecipeEditFragment() {
         // Required empty public constructor
@@ -91,6 +94,8 @@ public class RecipeEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        produktyDoDodania = new ArrayList<>();
+
         zmienZdjecie = view.findViewById(R.id.zmienFoto);
         usunZdjecie = view.findViewById(R.id.usunFoto);
         zapisz = view.findViewById(R.id.zapiszBaton);
@@ -109,20 +114,41 @@ public class RecipeEditFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
-
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
             public void onChanged(@Nullable final List<Produkt> produkt) {
                 produkty = produkt;
                 adapter.setProdukty(produkt);
+
+                if(skladniki.size() != 0){
+                    adapter.setSkladniki(skladniki);
+                }
+
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
+
+        viewModel.getProduktyInPrzepis(idPrzepisu).observe(this, new Observer<List<ProduktInPrzepis>>() {
+            @Override
+            public void onChanged(@Nullable final List<ProduktInPrzepis> produktInPrzepis) {
+                skladniki = produktInPrzepis;
             }
         });
 
         zapisz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int i = 0; i < adapter.getItemCount(); i++) {
+                    if (adapter.checked(i)) {
+                        String nazwaP = adapter.nazwaProduktu(i);
+                        int ilosc = adapter.iloscProduktu(i);
+                        boolean opcjonalny = adapter.opcjonalnyProdukt(i);
+
+                        produktyDoDodania.add(new MyTaskParams(nazwa.getText().toString(),nazwaP, ilosc, opcjonalny));
+                    }
+                }
+
                 Przepis uPrzepis = new Przepis();
                 uPrzepis.setId(idPrzepisu);
                 uPrzepis.setNazwa(nazwa.getText().toString());
@@ -131,7 +157,14 @@ public class RecipeEditFragment extends Fragment {
 
                 uPrzepis.setImage(obrazBajty);
 
+                viewModel.deleteProdukty(idPrzepisu);
                 viewModel.updatePrzepis(getActivity(), uPrzepis);
+
+                for(int i = 0; i < produktyDoDodania.size(); i++){
+                    viewModel.insertProduktPrzepisByName(produktyDoDodania.get(i).getPrzepisName(),produktyDoDodania.get(i).getProduktName(),
+                            produktyDoDodania.get(i).getIlosc(), produktyDoDodania.get(i).isOpcjonalny());
+                }
+
 
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 manager.popBackStack();
