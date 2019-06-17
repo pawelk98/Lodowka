@@ -5,123 +5,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/przepis_dodaj_nazwe"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:hint="Nazwa"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dodaj_przepis" />
+            android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_dodaj_produkt_do_przepisu"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_opis"
-            app:spanCount="1">
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </android.support.v7.widget.RecyclerView>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/dodaj_przepis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Dodaj"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                    <Button
+                        android:id="@+id/delete_photo_recipe"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="44dp"
+                        android:text="Usuń zdjęcie"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-        <EditText
-            android:id="@+id/przepis_dodaj_opis"
-            android:layout_width="176dp"
-            android:layout_height="173dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:hint="Dodaj opis"
-            android:lines="8"
-            android:minLines="4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas" />
+                    <Button
+                        android:id="@+id/add_photo_recipe"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="44dp"
+                        android:layout_marginEnd="32dp"
+                        android:text="Dodaj zdjęcie"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/przepis_dodaj_czas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:hint="Czas"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_nazwe" />
+                    <ImageView
+                        android:id="@+id/add_recipe_photo"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/custom_dish_03" />
+                </android.support.constraint.ConstraintLayout>
+            </LinearLayout>
 
-        <RadioGroup
-            android:id="@+id/radioGroupAdd"
-            android:layout_width="154dp"
-            android:layout_height="173dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/przepis_dodaj_opis"
-            app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas">
-
-            <RadioButton
-                android:id="@+id/radioSniadanieAdd"
+            <EditText
+                android:id="@+id/przepis_dodaj_nazwe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Śniadanie" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Nazwa"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dodaj_przepis" />
 
-            <RadioButton
-                android:id="@+id/radioObiadAdd"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_dodaj_produkt_do_przepisu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_opis"
+                app:spanCount="1">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/dodaj_przepis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obiad" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Dodaj"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-            <RadioButton
-                android:id="@+id/radioKolacjaAdd"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/przepis_dodaj_opis"
+                android:layout_width="176dp"
+                android:layout_height="173dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:gravity="top|left"
+                android:hint="Dodaj opis"
+                android:lines="8"
+                android:minLines="4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas" />
+
+            <EditText
+                android:id="@+id/przepis_dodaj_czas"
+                android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:text="Kolacja" />
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:hint="Czas (min)"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dodaj_przepis" />
 
-            <RadioButton
-                android:id="@+id/radioSniadanieKolacjaAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Śniadanie/Kolacja" />
+            <RadioGroup
+                android:id="@+id/radioGroupAdd"
+                android:layout_width="154dp"
+                android:layout_height="173dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/przepis_dodaj_opis"
+                app:layout_constraintTop_toBottomOf="@+id/przepis_dodaj_czas">
 
-            <RadioButton
-                android:id="@+id/radioInneAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inne" />
+                <RadioButton
+                    android:id="@+id/radioSniadanieAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Śniadanie" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioObiadAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obiad" />
 
-    </android.support.constraint.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/radioKolacjaAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kolacja" />
+
+                <RadioButton
+                    android:id="@+id/radioSniadanieKolacjaAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Śniadanie/Kolacja" />
+
+                <RadioButton
+                    android:id="@+id/radioInneAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inne" />
+
+            </RadioGroup>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>
