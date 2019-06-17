@@ -572,6 +572,9 @@ public class RepositoryPrzepis {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
                 obrazek.setImageBitmap(bitmap);
             }
+            else {
+                obrazek.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.custom_dish_03));
+            }
 
             nazwa.setText(przepis.getNazwa());
             czas.setText(String.valueOf(przepis.getCzas()));

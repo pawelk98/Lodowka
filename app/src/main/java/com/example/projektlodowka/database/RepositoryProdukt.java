@@ -173,6 +173,9 @@ public class RepositoryProdukt {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(array, 0, array.length);
                 obrazekGuzik.setImageBitmap(bitmap);
             }
+            else{
+                obrazekGuzik.setImageDrawable(mActivity.getResources().getDrawable(R.drawable.def_pic));
+            }
 
 
             nazwa.setText(produkt.getNazwa());
