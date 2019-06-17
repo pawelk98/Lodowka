@@ -1,8 +1,10 @@
 package com.example.projektlodowka;
 
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -166,36 +168,47 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
         usunObrazek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (type) {
-                    case 0:
-                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
-                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
-                        break;
-                    case 1:
-                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
-                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
-                        break;
-                    case 2:
-                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
-                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
-                        break;
-                    case 3:
-                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
-                                (int)(Float.parseFloat(ilosc.getText().toString())));
-                        break;
-                    case 4:
-                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
-                                (int)(Float.parseFloat(ilosc.getText().toString())));
-                        break;
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-                uProdukt.setId(id);
-                uProdukt.setImage(null);
+                builder.setMessage("Chcesz usunąć zdjęcie produktu?")
+                        .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (type) {
+                                    case 0:
+                                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                                        break;
+                                    case 1:
+                                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                                        break;
+                                    case 2:
+                                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type,
+                                                (int)(Float.parseFloat(ilosc.getText().toString())*1000));
+                                        break;
+                                    case 3:
+                                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                                (int)(Float.parseFloat(ilosc.getText().toString())));
+                                        break;
+                                    case 4:
+                                        uProdukt = new Produkt(nazwa.getText().toString().trim().toLowerCase(), type-3,
+                                                (int)(Float.parseFloat(ilosc.getText().toString())));
+                                        break;
+                                }
+
+                                uProdukt.setId(id);
+                                uProdukt.setImage(null);
 
 
-                viewModel.updateProdukt(getActivity(),uProdukt);
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(ProductEditFragment.this).attach(ProductEditFragment.this).commit();
+                                viewModel.updateProdukt(getActivity(),uProdukt);
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(ProductEditFragment.this).attach(ProductEditFragment.this).commit();
+                            }
+                        })
+                        .setNegativeButton("Anuluj",null);
+                AlertDialog alert = builder.create();
+                alert.show();
 
             }
         });

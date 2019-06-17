@@ -11,7 +11,9 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan">
         <activity android:name=".settings" />
-        <activity android:name=".ustawienia_activity" />
+        <activity android:name=".ustawienia_activity"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">

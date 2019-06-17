@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import java.util.List;
@@ -67,6 +68,34 @@ public class ViewModel extends AndroidViewModel {
     public void deleteAllPrzepis() { repositoryPrzepis.deleteAllPrzepis(); }
 
     public void updatePrzepis(Activity activity, Przepis przepis) { repositoryPrzepis.updatePrzepis(activity, przepis); }
+
+    public void setNoc(int godzina,int minuta){repositoryPrzepis.setNoc(godzina,minuta);}
+
+    public void setKolacja(int godzina,int minuta){repositoryPrzepis.setKolacja(godzina, minuta);}
+
+    public void setSniadanie(int godzina,int minuta){repositoryPrzepis.setSniadanie(godzina, minuta);}
+
+    public void setObiad(int godzina,int minuta){repositoryPrzepis.setObiad(godzina, minuta);}
+
+    public void setBasics(){repositoryPrzepis.setBasics();}
+
+    public long getNoc(){return repositoryPrzepis.getNoc();}
+
+    public long getKolacja(){ return repositoryPrzepis.getKolacja();}
+
+    public long getSniadanie(){ return repositoryPrzepis.getSniadanie();}
+
+    public long getObiad(){ return repositoryPrzepis.getObiad();}
+
+    public String getStringNoc(){return repositoryPrzepis.getStringNoc();}
+
+    public String getStringKolacja(){ return repositoryPrzepis.getStringKolacja();}
+
+    public String getStringSniadanie(){ return repositoryPrzepis.getStringSniadanie();}
+
+    public String getStringObiad(){ return repositoryPrzepis.getStringObiad();}
+
+    public String readFromFile(Context context, String plik){return repositoryPrzepis.readFromFile(context,plik);}
 
     public LiveData<List<ProduktPrzepis>> getProduktyPrzepisy() { return produktyPrzepisy; }
 

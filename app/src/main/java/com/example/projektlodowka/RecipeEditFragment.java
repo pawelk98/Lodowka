@@ -1,10 +1,12 @@
 package com.example.projektlodowka;
 
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -182,18 +184,29 @@ public class RecipeEditFragment extends Fragment {
         usun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Przepis dPrzepis = new Przepis();
-                dPrzepis.setId(idPrzepisu);
+                AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
 
-                viewModel.deletePrzepis(dPrzepis);
+                builder.setMessage("Chcesz usunac przepis?")
+                        .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Przepis dPrzepis = new Przepis();
+                                dPrzepis.setId(idPrzepisu);
 
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                manager.popBackStack();
-                manager.popBackStack();
-                manager.popBackStack();
-                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, new RecipeFragment());
-                fragmentTransaction.commit();
+                                viewModel.deletePrzepis(dPrzepis);
+
+                                FragmentManager manager = getActivity().getSupportFragmentManager();
+                                manager.popBackStack();
+                                manager.popBackStack();
+                                manager.popBackStack();
+                                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.main_frame, new RecipeFragment());
+                                fragmentTransaction.commit();
+                            }
+                        })
+                        .setNegativeButton("Anuluj",null);
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
@@ -206,17 +219,31 @@ public class RecipeEditFragment extends Fragment {
 
         usunZdjecie.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { ;
-                Przepis dPrzepis = new Przepis();
-                dPrzepis.setId(idPrzepisu);
-                dPrzepis.setNazwa(nazwa.getText().toString());
-                dPrzepis.setCzas(Integer.parseInt(czas.getText().toString()));
-                dPrzepis.setOpis(opis.getText().toString());
-                dPrzepis.setImage(null);
+            public void onClick(View v) {
 
-                viewModel.updatePrzepis(getActivity(), dPrzepis);
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(RecipeEditFragment.this).attach(RecipeEditFragment.this).commit();
+                AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+
+                builder.setMessage("Chcesz usunac zdjęcie przepisu?")
+                        .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Przepis dPrzepis = new Przepis();
+                                dPrzepis.setId(idPrzepisu);
+                                dPrzepis.setNazwa(nazwa.getText().toString());
+                                dPrzepis.setCzas(Integer.parseInt(czas.getText().toString()));
+                                dPrzepis.setOpis(opis.getText().toString());
+                                dPrzepis.setImage(null);
+
+                                viewModel.updatePrzepis(getActivity(), dPrzepis);
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.detach(RecipeEditFragment.this).attach(RecipeEditFragment.this).commit();
+                            }
+                        })
+                        .setNegativeButton("Anuluj",null);
+                AlertDialog alert = builder.create();
+                alert.show();
+
             }
         });
 

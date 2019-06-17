@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +20,13 @@ import android.widget.Toast;
 
 import com.example.projektlodowka.R;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +44,11 @@ public class RepositoryPrzepis {
     private ProduktPrzepisDao produktPrzepisDao;
     private ProduktDao produktDao;
     private HistoriaDao historiaDao;
+    private String noc;
+    private String kolacja;
+    private String sniadanie;
+    private String obiad;
+    Application application;
 
     RepositoryPrzepis(Application application) {
         BazaDanych db = BazaDanych.getBazaDanych(application);
@@ -43,6 +57,205 @@ public class RepositoryPrzepis {
         historiaDao = db.historiaDao();
         produktPrzepisDao = db.produktPrzepisDao();
         przepisy = przepisDao.loadAllOrderNazwa();
+        this.application = application;
+        this.noc=readFromFile(application,"plikNoc");
+        this.kolacja=readFromFile(application,"plikKolacja");
+        this.obiad=readFromFile(application,"plikObiad");
+        this.sniadanie=readFromFile(application,"plikSniadanie");
+    }
+    public void setBasics(){
+       setNoc(3,0);
+       setKolacja(21,0);
+       setSniadanie(11,0);
+       setObiad(16,0);
+    }
+    public void setNoc(int godzina,int minuta){
+        String h = "00",m="00";
+
+        if(godzina <10)
+            h="0"+godzina;
+        else
+            h=String.valueOf(godzina);
+        if(minuta<10)
+            m="0"+minuta;
+        else
+            m=String.valueOf(minuta);
+
+        noc = h+":" +m+":00";
+        writeToFile(noc,application,"plikNoc");
+    }
+    public void setKolacja(int godzina,int minuta){
+        String h = "00",m="00";
+
+        if(godzina <10)
+            h="0"+godzina;
+        else
+            h=String.valueOf(godzina);
+        if(minuta<10)
+            m="0"+minuta;
+        else
+            m=String.valueOf(minuta);
+        kolacja = h +":" +m+":00";
+        writeToFile(kolacja,application,"plikKolacja");
+    }
+    public void setSniadanie(int godzina,int minuta){
+        String h = "00",m="00";
+
+        if(godzina <10)
+            h="0"+godzina;
+        else
+            h=String.valueOf(godzina);
+        if(minuta<10)
+            m="0"+minuta;
+        else
+            m=String.valueOf(minuta);
+
+        sniadanie = h +":" +m+":00";
+        writeToFile(sniadanie,application,"plikSniadanie");
+    }
+    public void setObiad(int godzina,int minuta){
+        String h = "00",m="00";
+
+        if(godzina <10)
+            h="0"+godzina;
+        else
+            h=String.valueOf(godzina);
+        if(minuta<10)
+            m="0"+minuta;
+        else
+            m=String.valueOf(minuta);
+
+        obiad = h +":" +m+":00";
+        writeToFile(obiad,application,"plikObiad");
+    }
+
+    public long getNoc(){
+        Toast.makeText(application,"noc przed wejsciem do ifa "+noc,
+                Toast.LENGTH_SHORT).show();
+        if(noc==null) {
+            File fNoc = new File(application.getFilesDir(),"plikNoc");
+            if(fNoc.exists()){
+                noc=readFromFile(application,"plikNoc");
+            }
+            else {
+                writeToFile("03:00:00",application,"plikNoc");
+                noc=readFromFile(application,"plikNoc");
+            }
+        }
+            return Time.valueOf(noc).getTime();
+    }
+
+
+    public long getKolacja(){
+        if(kolacja==null){
+            File fkolacja = new File(application.getFilesDir(),"plikKolacja");
+            if(fkolacja.exists()){
+                kolacja=readFromFile(application,"plikKolacja");
+            }
+            else {
+            writeToFile("21:00:00",application,"plikKolacja");
+            kolacja=readFromFile(application,"plikKolacja");
+            }
+        }
+            return Time.valueOf(kolacja).getTime();
+    }
+
+    public long getSniadanie() {
+        if(sniadanie==null){
+            File fSniadanie = new File(application.getFilesDir(),"plikSniadanie");
+            if(fSniadanie.exists()){
+                sniadanie=readFromFile(application,"plikSniadanie");
+            }
+            else {
+                writeToFile("11:00:00",application,"plikSniadanie");
+                sniadanie=readFromFile(application,"plikSniadanie");
+            }
+        }
+            return Time.valueOf(sniadanie).getTime();
+    }
+
+    public long getObiad() {
+        if(obiad==null){
+            File fObiad = new File(application.getFilesDir(),"plikObiad");
+            if(fObiad.exists()){
+                obiad=readFromFile(application,"plikObiad");
+            }
+            else {
+                writeToFile("16:00:00",application,"plikObiad");
+                obiad=readFromFile(application,"plikObiad");
+            }
+        }
+            return Time.valueOf(obiad).getTime();
+    }
+
+    public String  getStringNoc(){
+        if(noc==null)
+            return "brak:";
+        else
+            return noc;
+    }
+
+    public String getStringKolacja(){
+        if(kolacja==null)
+            return null;
+        else
+            return kolacja;
+    }
+
+    public String getStringSniadanie() {
+        if(sniadanie==null)
+            return null;
+        else
+            return sniadanie;
+    }
+
+    public String getStringObiad() {
+        if(obiad==null)
+            return null;
+        else
+            return obiad;
+    }
+
+    public void writeToFile(String data,Context context,String plik) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(plik, Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+
+
+            public String readFromFile(Context context, String plik) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput(plik);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                inputStream.close();
+                ret = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
     }
 
 
@@ -309,16 +522,24 @@ public class RepositoryPrzepis {
     }
 
     public void setStartPrzepis(Activity activity) {
-        new setStartPrzepisAsyncTask(activity, przepisDao).execute();
+        new setStartPrzepisAsyncTask(activity, przepisDao, getNoc(), getSniadanie(), getObiad(), getKolacja()).execute();
     }
 
     private static class setStartPrzepisAsyncTask extends AsyncTask<Void, Void, Przepis> {
         PrzepisDao mAsyncTaskDao;
         Activity activity;
+        long noc;
+        long sniadanie;
+        long obiad;
+        long kolacja;
 
-        setStartPrzepisAsyncTask(Activity activity, PrzepisDao przepisDao){
+        setStartPrzepisAsyncTask(Activity activity, PrzepisDao przepisDao, long noc, long sniadanie, long obiad, long kolacja){
             mAsyncTaskDao = przepisDao;
             this.activity = activity;
+            this.noc=noc;
+            this.sniadanie=sniadanie;
+            this.obiad=obiad;
+            this.kolacja=kolacja;
         }
 
         @Override
@@ -350,13 +571,7 @@ public class RepositoryPrzepis {
             String currentDateandTime = sdf.format(new Date());
             long currentTime = Time.valueOf(currentDateandTime).getTime();
 
-            long noc = Time.valueOf("03:00:00").getTime();
-            long sniadanie = Time.valueOf("11:00:00").getTime();
-            long obiad = Time.valueOf("18:00:00").getTime();
-            long kolacja = Time.valueOf("22:00:00").getTime();
-
             List<Przepis> przepisy = new ArrayList<>();
-
             if(currentTime > noc && currentTime < sniadanie) {
                 przepisy.addAll(mAsyncTaskDao.loadPoraDnia(1));
                 przepisy.addAll(mAsyncTaskDao.loadPoraDnia(4));
