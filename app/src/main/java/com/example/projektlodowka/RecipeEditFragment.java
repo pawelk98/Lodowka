@@ -188,7 +188,19 @@ public class RecipeEditFragment extends Fragment {
                 uPrzepis.setOpis(opis.getText().toString());
 
 
-                uPrzepis.setImage(getBytesFromBitmap(obrazek.getDrawable()));
+
+                Drawable d1 = obrazek.getDrawable();
+                obrazek.setImageDrawable(getResources().getDrawable(R.drawable.custom_dish_03));
+                Drawable d2 = obrazek.getDrawable();
+
+                Bitmap d1bmp = ((BitmapDrawable)d1).getBitmap();
+                Bitmap d2bmp = ((BitmapDrawable)d2).getBitmap();
+
+                if(!d1bmp.sameAs(d2bmp))
+                    uPrzepis.setImage(getBytesFromBitmap(d1));
+                else
+                    uPrzepis.setImage(null);
+
 
                 viewModel.deleteProdukty(idPrzepisu);
                 viewModel.updatePrzepis(getActivity(), uPrzepis);

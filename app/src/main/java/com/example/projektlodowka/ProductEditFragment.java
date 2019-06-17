@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -151,7 +153,19 @@ public class ProductEditFragment extends Fragment implements AdapterView.OnItemS
                     }
 
                     uProdukt.setId(id);
-                    uProdukt.setImage(getBytesFromBitmap(circleImageView.getDrawable()));
+
+                    Drawable d1 = circleImageView.getDrawable();
+                    circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.def_pic));
+                    Drawable d2 = circleImageView.getDrawable();
+
+                    Bitmap d1bmp = ((BitmapDrawable)d1).getBitmap();
+                    Bitmap d2bmp = ((BitmapDrawable)d2).getBitmap();
+
+                    if(!d1bmp.sameAs(d2bmp))
+                        uProdukt.setImage(getBytesFromBitmap(d1));
+                    else
+                        uProdukt.setImage(null);
+
                     viewModel.updateProdukt(getActivity(), uProdukt);
 
                     FragmentManager manager = getActivity().getSupportFragmentManager();
