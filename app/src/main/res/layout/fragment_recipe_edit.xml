@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <RadioGroup
-                android:id="@+id/radio_typ"
+                android:id="@+id/radioGroupAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -109,39 +109,34 @@
                 app:layout_constraintTop_toBottomOf="@+id/zmienOpis">
 
                 <RadioButton
-                    android:id="@+id/radio_one"
+                    android:id="@+id/radioSniadanie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:onClick="checkButton"
                     android:text="Śniadanie" />
 
                 <RadioButton
-                    android:id="@+id/radio_two"
+                    android:id="@+id/radioObiad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="checkButton"
                     android:text="Obiad" />
 
                 <RadioButton
-                    android:id="@+id/radio_three"
+                    android:id="@+id/radioKolacja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="checkButton"
                     android:text="Kolacja" />
 
                 <RadioButton
-                    android:id="@+id/radio_four"
+                    android:id="@+id/radioSniadanieKolacja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="checkButton"
                     android:text="Śniadanie/Kolacja" />
 
                 <RadioButton
-                    android:id="@+id/radio_five"
+                    android:id="@+id/radioInne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="checkButton"
                     android:text="Inne" />
 
             </RadioGroup>
@@ -201,7 +196,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/usunBaton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radio_typ" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupAdd" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

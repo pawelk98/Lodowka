@@ -3,7 +3,6 @@ package com.example.projektlodowka;
 
 import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -28,6 +27,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.projektlodowka.database.MyTaskParams;
 import com.example.projektlodowka.database.Produkt;
@@ -59,6 +60,8 @@ public class RecipeEditFragment extends Fragment {
     EditText opis;
     Uri imageUri;
     RecyclerView recyclerView;
+    RadioGroup radioGroup;
+    RadioButton  inne,sniadanie,obiad,kolacja,kolacjaSniadanie;
     ProduktDodawaniePrzepisuAdatper adapter;
     public byte [] obrazBajty;
     private static final int PICK_IMAGE = 100;
@@ -100,6 +103,12 @@ public class RecipeEditFragment extends Fragment {
 
         produktyDoDodania = new ArrayList<>();
 
+        radioGroup = view.findViewById(R.id.radioGroupAdd);
+        inne = view.findViewById(R.id.radioInne);
+        sniadanie = view.findViewById(R.id.radioSniadanie);
+        obiad = view.findViewById(R.id.radioObiad);
+        kolacja = view.findViewById(R.id.radioKolacja);
+        kolacjaSniadanie = view.findViewById(R.id.radioSniadanieKolacja);
         zmienZdjecie = view.findViewById(R.id.zmienFoto);
         usunZdjecie = view.findViewById(R.id.usunFoto);
         zapisz = view.findViewById(R.id.zapiszBaton);
@@ -140,6 +149,7 @@ public class RecipeEditFragment extends Fragment {
             }
         });
 
+
         zapisz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,8 +162,26 @@ public class RecipeEditFragment extends Fragment {
                         produktyDoDodania.add(new MyTaskParams(nazwa.getText().toString(),nazwaP, ilosc, opcjonalny));
                     }
                 }
-
                 Przepis uPrzepis = new Przepis();
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                if(selectedId == sniadanie.getId()) {
+                    uPrzepis.setPoraDnia(1);
+                }
+                else if(selectedId == obiad.getId()) {
+                    uPrzepis.setPoraDnia(2);
+                }
+                else if(selectedId == kolacja.getId()) {
+                    uPrzepis.setPoraDnia(3);
+                }
+                else if(selectedId == kolacjaSniadanie.getId()) {
+                    uPrzepis.setPoraDnia(4);
+                }
+                else {
+                    uPrzepis.setPoraDnia(0);
+                }
+
+
                 uPrzepis.setId(idPrzepisu);
                 uPrzepis.setNazwa(nazwa.getText().toString());
                 uPrzepis.setCzas(Integer.parseInt(czas.getText().toString()));

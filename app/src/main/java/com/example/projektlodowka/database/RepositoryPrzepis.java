@@ -14,6 +14,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,11 +59,40 @@ public class RepositoryPrzepis {
         historiaDao = db.historiaDao();
         produktPrzepisDao = db.produktPrzepisDao();
         przepisy = przepisDao.loadAllOrderNazwa();
+
         this.application = application;
-        this.noc=readFromFile(application,"plikNoc");
-        this.kolacja=readFromFile(application,"plikKolacja");
-        this.obiad=readFromFile(application,"plikObiad");
-        this.sniadanie=readFromFile(application,"plikSniadanie");
+
+        File fNoc = new File(application.getFilesDir(),"plikNoc");
+        File fObiad = new File(application.getFilesDir(),"plikObiad");
+        File fKolacja = new File(application.getFilesDir(),"plikKolacja");
+        File fSniadanie = new File(application.getFilesDir(),"plikSniadanie");
+
+        if(!fNoc.exists()&&!fObiad.exists()&&!fKolacja.exists()&&!fSniadanie.exists()){
+            setBasics();
+        }
+        else {
+
+            if (fNoc.exists())
+                this.noc = readFromFile(application, "plikNoc");
+            else
+                setNoc(3, 0);
+
+            if (fSniadanie.exists())
+                this.sniadanie = readFromFile(application, "plikSniadanie");
+            else
+                setSniadanie(11,0);
+
+            if (fNoc.exists())
+                this.obiad = readFromFile(application, "plikObiad");
+            else
+                setObiad(16,0);
+
+            if (fNoc.exists())
+                this.kolacja = readFromFile(application, "plikKolacja");
+            else
+                setKolacja(21,0);
+
+        }
     }
     public void setBasics(){
        setNoc(3,0);
@@ -130,8 +161,6 @@ public class RepositoryPrzepis {
     }
 
     public long getNoc(){
-        Toast.makeText(application,"noc przed wejsciem do ifa "+noc,
-                Toast.LENGTH_SHORT).show();
         if(noc==null) {
             File fNoc = new File(application.getFilesDir(),"plikNoc");
             if(fNoc.exists()){
@@ -422,6 +451,7 @@ public class RepositoryPrzepis {
             TextView czas = mActivity.findViewById(R.id.przepisShowCzasTextView);
             TextView opis = mActivity.findViewById(R.id.przepisShowOpisTextView);
             CircleImageView obrazek = mActivity.findViewById(R.id.dishImage);
+            TextView poraDnia = mActivity.findViewById(R.id.poraDnia);
             byte[] array = przepis.getImage();
 
             if (array != null) {
@@ -432,6 +462,29 @@ public class RepositoryPrzepis {
             nazwa.setText(przepis.getNazwa());
             czas.setText(String.valueOf(przepis.getCzas()));
             opis.setText(przepis.getOpis());
+
+            int pora=przepis.getPoraDnia();
+            switch(pora){
+                case 0:
+                    poraDnia.setText("Inne");
+                    break;
+                case 1:
+                    poraDnia.setText("Śniadanie");
+                    break;
+                case 2:
+                    poraDnia.setText("Obiad");
+                    break;
+                case 3:
+                    poraDnia.setText("Kolacja");
+                    break;
+                case 4:
+                    poraDnia.setText("Śniadanie/Kolacja");
+                    break;
+                    default:
+                        poraDnia.setText("Nie wiadomo");
+                        break;
+            }
+
         }
     }
 
@@ -506,6 +559,12 @@ public class RepositoryPrzepis {
             EditText nazwa = mActivity.findViewById(R.id.zmienName);
             EditText czas = mActivity.findViewById(R.id.zmienTajm);
             EditText opis = mActivity.findViewById(R.id.zmienOpis);
+            RadioGroup radioGroup = mActivity.findViewById(R.id.radioGroupAdd);
+            RadioButton inne = mActivity.findViewById(R.id.radioInne);
+            RadioButton sniadanie = mActivity.findViewById(R.id.radioSniadanie);
+            RadioButton obiad = mActivity.findViewById(R.id.radioObiad);
+            RadioButton kolacja = mActivity.findViewById(R.id.radioKolacja);
+            RadioButton kolacjaSniadanie = mActivity.findViewById(R.id.radioSniadanieKolacja);
 
             byte[] array = przepis.getImage();
 
@@ -517,6 +576,24 @@ public class RepositoryPrzepis {
             nazwa.setText(przepis.getNazwa());
             czas.setText(String.valueOf(przepis.getCzas()));
             opis.setText(przepis.getOpis());
+            int pora=przepis.getPoraDnia();
+            switch(pora){
+                case 0:
+                    inne.setChecked(true);
+                    break;
+                case 1:
+                    sniadanie.setChecked(true);
+                    break;
+                case 2:
+                    obiad.setChecked(true);
+                    break;
+                case 3:
+                    kolacja.setChecked(true);
+                    break;
+                case 4:
+                    kolacjaSniadanie.setChecked(true);
+                    break;
+            }
 
         }
     }

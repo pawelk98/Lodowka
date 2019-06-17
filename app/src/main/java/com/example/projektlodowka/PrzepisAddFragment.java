@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.projektlodowka.database.MyTaskParams;
@@ -38,6 +40,8 @@ public class PrzepisAddFragment extends Fragment {
     RecyclerView recyclerView;
     ProduktDodawaniePrzepisuAdatper adapter;
     Przepis przepis;
+    RadioGroup radioGroup;
+    RadioButton inne,sniadanie,obiad,kolacja,kolacjaSniadanie;
     List<Produkt> produkty = new ArrayList<>();
     List<MyTaskParams> produktyDoDodania = new ArrayList<>();
 
@@ -63,6 +67,13 @@ public class PrzepisAddFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
+
+        radioGroup = view.findViewById(R.id.radioGroupAdd);
+        inne = view.findViewById(R.id.radioInneAdd);
+        sniadanie = view.findViewById(R.id.radioSniadanieAdd);
+        obiad = view.findViewById(R.id.radioObiadAdd);
+        kolacja = view.findViewById(R.id.radioKolacjaAdd);
+        kolacjaSniadanie = view.findViewById(R.id.radioSniadanieKolacjaAdd);
 
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
@@ -94,10 +105,28 @@ public class PrzepisAddFragment extends Fragment {
                 }
                 if (nazwa.getText().toString().trim().length() != 0
                         && czas.getText().toString().trim().length() != 0) {
+                    Przepis uPrzepis = new Przepis();
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    int pora=0;
+                    if(selectedId == sniadanie.getId()) {
+                        pora=1;
+                    }
+                    else if(selectedId == obiad.getId()) {
+                        pora=2;
+                    }
+                    else if(selectedId == kolacja.getId()) {
+                        pora=3;
+                    }
+                    else if(selectedId == kolacjaSniadanie.getId()) {
+                        pora=4;
+                    }
+                    else {
+                        pora=0;
+                    }
 
                     przepis = new Przepis(nazwa.getText().toString().toLowerCase(),
                             Integer.valueOf(czas.getText().toString()),
-                            opis.getText().toString().toLowerCase(), 0);
+                            opis.getText().toString().toLowerCase(), pora);
                     viewModel.insertPrzepis(getActivity(), przepis, produktyDoDodania);
                     produktyDoDodania.clear();
 

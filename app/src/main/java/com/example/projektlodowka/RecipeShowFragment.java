@@ -43,6 +43,7 @@ public class RecipeShowFragment extends Fragment {
     TextView czas;
     TextView opis;
     EditText porcje;
+    TextView poraDnia;
     ViewModel viewModel;
     CircleImageView obrazek;
     Button gotuj;
@@ -81,6 +82,7 @@ public class RecipeShowFragment extends Fragment {
         porcje = view.findViewById(R.id.ilosc_porcji);
         edytuj = view.findViewById(R.id.edytujPrzepis);
         obrazek = view.findViewById(R.id.dishImage);
+        poraDnia = view.findViewById(R.id.poraDnia);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
         produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
