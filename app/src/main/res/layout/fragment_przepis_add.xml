@@ -23,39 +23,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/delete_photo_recipe"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="44dp"
-                        android:text="Usuń zdjęcie"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <Button
-                        android:id="@+id/add_photo_recipe"
-                        android:layout_width="135dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="44dp"
-                        android:layout_marginEnd="32dp"
-                        android:text="Dodaj zdjęcie"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/add_recipe_photo"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/custom_dish_03" />
-                </android.support.constraint.ConstraintLayout>
+                <ImageButton
+                    android:id="@+id/recipeImageAdd"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_insert_photov2" />
             </LinearLayout>
 
             <EditText

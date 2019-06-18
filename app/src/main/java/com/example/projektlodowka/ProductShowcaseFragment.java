@@ -1,6 +1,8 @@
 package com.example.projektlodowka;
 
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.media.Image;
@@ -10,15 +12,25 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projektlodowka.database.Produkt;
+import com.example.projektlodowka.database.ProduktInPrzepis;
+import com.example.projektlodowka.database.ProduktPrzepis;
+import com.example.projektlodowka.database.Przepis;
+import com.example.projektlodowka.database.PrzepisInProdukt;
 import com.example.projektlodowka.database.ViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -36,6 +48,10 @@ public class ProductShowcaseFragment extends Fragment {
     Produkt uProdukt;
     ViewModel viewModel;
     CircleImageView circleImageView;
+    RecyclerView recyclerView;
+    PrzepisyWProdukcieAdapter adapter;
+    List<PrzepisInProdukt> przepisy = new ArrayList<>();
+
 
     public ProductShowcaseFragment() {
         // Required empty public constructor
@@ -67,9 +83,24 @@ public class ProductShowcaseFragment extends Fragment {
         usun = view.findViewById(R.id.produktUsunButton);
         edytuj = view.findViewById(R.id.produktEditButton);
         circleImageView = view.findViewById(R.id.productImage);
+        recyclerView = view.findViewById(R.id.reciepesContainingProduct);
+        adapter = new PrzepisyWProdukcieAdapter(getActivity(),przepisy);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowcaseProdukt(getActivity(), id);
+
+        viewModel.getPrzepisyInProdukt(id).observe(this, new Observer<List<PrzepisInProdukt>>() {
+            @Override
+            public void onChanged(@Nullable List<PrzepisInProdukt> przepisInProdukts) {
+                przepisy=przepisInProdukts;
+                adapter.setPrzepisy(przepisy);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            }
+        });
+
 
         usun.setOnClickListener(new View.OnClickListener() {
             @Override

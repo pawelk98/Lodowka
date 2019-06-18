@@ -2,7 +2,13 @@ package com.example.projektlodowka;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -26,8 +33,13 @@ import com.example.projektlodowka.database.ProduktPrzepis;
 import com.example.projektlodowka.database.Przepis;
 import com.example.projektlodowka.database.ViewModel;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class PrzepisAddFragment extends Fragment {
@@ -44,6 +56,10 @@ public class PrzepisAddFragment extends Fragment {
     RadioButton inne,sniadanie,obiad,kolacja,kolacjaSniadanie;
     List<Produkt> produkty = new ArrayList<>();
     List<MyTaskParams> produktyDoDodania = new ArrayList<>();
+    ImageButton dodajObrazek;
+    public  byte [] obrazBajty;
+    Uri imageUri;
+    private static final int PICK_IMAGE = 100;
 
 
     public PrzepisAddFragment() {
@@ -74,6 +90,7 @@ public class PrzepisAddFragment extends Fragment {
         obiad = view.findViewById(R.id.radioObiadAdd);
         kolacja = view.findViewById(R.id.radioKolacjaAdd);
         kolacjaSniadanie = view.findViewById(R.id.radioSniadanieKolacjaAdd);
+        dodajObrazek = view.findViewById(R.id.recipeImageAdd);
 
         viewModel.getProdukty().observe(this, new Observer<List<Produkt>>() {
             @Override
@@ -82,6 +99,12 @@ public class PrzepisAddFragment extends Fragment {
                 adapter.setProdukty(produkt);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
+        dodajObrazek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
             }
         });
 
@@ -127,6 +150,7 @@ public class PrzepisAddFragment extends Fragment {
                     przepis = new Przepis(nazwa.getText().toString().toLowerCase(),
                             Integer.valueOf(czas.getText().toString()),
                             opis.getText().toString().toLowerCase(), pora);
+                    przepis.setImage(obrazBajty);
                     viewModel.insertPrzepis(getActivity(), przepis, produktyDoDodania);
                     produktyDoDodania.clear();
 
@@ -137,5 +161,32 @@ public class PrzepisAddFragment extends Fragment {
                 }
             }
         });
+    }
+    private void openGallery() {
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            dodajObrazek.setImageURI(imageUri);
+            obrazBajty=convertImageToByte(imageUri);
+        }
+    }
+    public byte[] convertImageToByte(Uri uri){
+        byte[] data = null;
+        try {
+            ContentResolver cr = getContext().getContentResolver();
+            InputStream inputStream = cr.openInputStream(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            data = baos.toByteArray();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }

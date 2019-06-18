@@ -90,7 +90,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center"
-            android:src="@drawable/def_pic" />
+            android:src="@drawable/ic_insert_photov2" />
     </LinearLayout>
 
 
