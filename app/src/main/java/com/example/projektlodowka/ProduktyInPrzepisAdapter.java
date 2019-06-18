@@ -19,10 +19,12 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
     private List<ProduktInPrzepis> produktInPrzepis = new ArrayList<>();
     Context context;
     LayoutInflater inflater;
+    private int ilePorcji;
 
     public ProduktyInPrzepisAdapter(Context context) {
         this.context = context;
         inflater = LayoutInflater.from(context);
+        ilePorcji = 1;
     }
     @Override
     public int getCount() {
@@ -94,31 +96,31 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
             switch (produktInPrzepis.get(position).getTyp()) {
                 case 0:
                     if (j < 500)
-                        ilosc_potrzebna.setText(j + "g");
+                        ilosc_potrzebna.setText(j*ilePorcji + "g");
                     else if (j % 1000 == 0)
-                        ilosc_potrzebna.setText(j / 1000 + "kg");
+                        ilosc_potrzebna.setText(j*ilePorcji / 1000 + "kg");
                     else
-                        ilosc_potrzebna.setText((float) j / 1000 + "kg");
+                        ilosc_potrzebna.setText((float) j*ilePorcji / 1000 + "kg");
                     break;
 
                 case 1:
                     if (j < 500)
-                        ilosc_potrzebna.setText(j + "ml");
+                        ilosc_potrzebna.setText(j*ilePorcji + "ml");
                     else if (j % 1000 == 0)
-                        ilosc_potrzebna.setText(j / 1000 + "l");
+                        ilosc_potrzebna.setText(j*ilePorcji / 1000 + "l");
                     else
-                        ilosc_potrzebna.setText((float) j / 1000 + "l");
+                        ilosc_potrzebna.setText((float) j*ilePorcji / 1000 + "l");
                     break;
 
                 case 2:
                     if (j % 1000 == 0)
-                        ilosc_potrzebna.setText(j / 1000 + "szt");
+                        ilosc_potrzebna.setText(j*ilePorcji / 1000 + "szt");
                     else
-                        ilosc_potrzebna.setText((float) j / 1000 + "szt");
+                        ilosc_potrzebna.setText((float) j*ilePorcji / 1000 + "szt");
                     break;
 
                 default:
-                    ilosc_potrzebna.setText(String.valueOf((float) j / 1000));
+                    ilosc_potrzebna.setText(String.valueOf((float) j*ilePorcji / 1000));
                     break;
             }
 
@@ -137,6 +139,10 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
 
     public void setProduktInPzepis(List<ProduktInPrzepis> produktInPrzepis) {
         this.produktInPrzepis = produktInPrzepis;
+    }
+
+    public void setIlePorcji(int x) {
+        ilePorcji = x;
     }
 
 }
