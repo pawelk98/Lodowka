@@ -32,6 +32,8 @@ public class RepositoryProduktPrzepis {
 
     LiveData<List<ProduktInPrzepis>> getProduktyInPrzepis(int idPrzepisu) { return produktPrzepisDao.loadProduktInPrzepis(idPrzepisu); }
 
+    LiveData<List<PrzepisInProdukt>> getPrzepisyInProdukt(int idProduktu) { return produktPrzepisDao.loadPrzepisInProdukt(idProduktu); }
+
     public void deleteProdukty(int idPrzepisu) { new deleteProduktyAsyncTask(produktPrzepisDao).execute(idPrzepisu); }
 
     private static class deleteProduktyAsyncTask extends AsyncTask <Integer, Void, Void> {

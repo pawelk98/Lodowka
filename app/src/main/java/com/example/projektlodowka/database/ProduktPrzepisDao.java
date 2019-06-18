@@ -41,7 +41,12 @@ public interface ProduktPrzepisDao {
             "FROM Produkt, ProduktPrzepis WHERE Produkt.id = ProduktPrzepis.idProduktu AND ProduktPrzepis.idPrzepisu = :idPrzepisu")
     LiveData<List<ProduktInPrzepis>> loadProduktInPrzepis(int idPrzepisu);
 
+    @Query("SELECT Przepis.nazwa, Przepis.image FROM Przepis, ProduktPrzepis " +
+            "WHERE Przepis.id = ProduktPrzepis.idPrzepisu AND ProduktPrzepis.idProduktu = :idProduktu")
+    LiveData<List<PrzepisInProdukt>> loadPrzepisInProdukt(int idProduktu);
+
     @Query("DELETE FROM ProduktPrzepis WHERE idPrzepisu = :idPrzepisu")
     void deleteProdukty(int idPrzepisu);
+
 
 }
