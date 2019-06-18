@@ -50,6 +50,7 @@ public class RecipeShowFragment extends Fragment {
     ListView produktyInPrzepisy;
     ProduktyInPrzepisAdapter produktyInPrzepisAdapter;
     Button edytuj;
+    Button addPorcja;
 
 
     public RecipeShowFragment() {
@@ -83,12 +84,12 @@ public class RecipeShowFragment extends Fragment {
         edytuj = view.findViewById(R.id.edytujPrzepis);
         obrazek = view.findViewById(R.id.dishImage);
         poraDnia = view.findViewById(R.id.poraDnia);
+        addPorcja = view.findViewById(R.id.addPorcja);
         viewModel = ViewModelProviders.of(this).get(ViewModel.class);
         viewModel.setShowPrzepis(getActivity(),id);
         produktyInPrzepisy = view.findViewById(R.id.przepisSkladnikListView);
         produktyInPrzepisAdapter = new ProduktyInPrzepisAdapter(getActivity());
         produktyInPrzepisy.setAdapter(produktyInPrzepisAdapter);
-
 
         viewModel.getProduktyInPrzepis(id).observe(this, new Observer<List<ProduktInPrzepis>>() {
             @Override
@@ -118,6 +119,14 @@ public class RecipeShowFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.main_frame, fragment);
                 fragmentTransaction.addToBackStack("przepisyRecycler").commit();
+            }
+        });
+
+        addPorcja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int x = Integer.parseInt(porcje.getText().toString()) + 1;
+                porcje.setText(String.valueOf(x));
             }
         });
 

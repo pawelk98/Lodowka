@@ -3,11 +3,11 @@ package com.example.projektlodowka.database;
 public class PrzepisInProdukt {
 
     String nazwa;
-    byte[] obrazek;
+    byte[] image;
 
-    public PrzepisInProdukt(String nazwa, byte[] obrazek) {
+    public PrzepisInProdukt(String nazwa, byte[] image) {
         this.nazwa = nazwa;
-        this.obrazek = obrazek;
+        this.image = image;
     }
 
 
@@ -20,10 +20,10 @@ public class PrzepisInProdukt {
     }
 
     public byte[] getObrazek() {
-        return obrazek;
+        return image;
     }
 
     public void setObrazek(byte[] obrazek) {
-        this.obrazek = obrazek;
+        this.image = obrazek;
     }
 }
