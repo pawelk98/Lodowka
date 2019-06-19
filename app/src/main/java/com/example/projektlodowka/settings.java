@@ -65,15 +65,19 @@ public class settings extends AppCompatActivity {
         nocBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            int godzina = timePicker.getCurrentHour();
-            int minuta = timePicker.getCurrentMinute();
-                Toast.makeText(getBaseContext(),String.valueOf(godzina),
-                        Toast.LENGTH_SHORT).show();
+                int godzina = timePicker.getCurrentHour();
+                int minuta = timePicker.getCurrentMinute();
 
-                Toast.makeText(getBaseContext(),String.valueOf(minuta),
-                        Toast.LENGTH_SHORT).show();
-            viewModel.setNoc(godzina,minuta);
-            noc.setText(viewModel.getStringNoc());
+                int h = Integer.parseInt(sniadanie.getText().toString().substring(0,2));
+                int m = Integer.parseInt(sniadanie.getText().toString().substring(3,5));
+
+                int time1 = m + h * 100;
+                int time2 = minuta + godzina * 100;
+
+                if(time2 < time1) {
+                    viewModel.setNoc(godzina, minuta);
+                    noc.setText(viewModel.getStringNoc());
+                }
             }
         });
         sniadanieBtn.setOnClickListener(new View.OnClickListener() {
@@ -81,30 +85,66 @@ public class settings extends AppCompatActivity {
             public void onClick(View v) {
                 int godzina = timePicker.getCurrentHour();
                 int minuta = timePicker.getCurrentMinute();
-                viewModel.setSniadanie(godzina,minuta);
-                sniadanie.setText(viewModel.getStringSniadanie());
 
+                int h = Integer.parseInt(noc.getText().toString().substring(0,2));
+                int m = Integer.parseInt(noc.getText().toString().substring(3,5));
+
+                int time1 = m + h * 100;
+                int time2 = minuta + godzina * 100;
+
+                h = Integer.parseInt(obiad.getText().toString().substring(0,2));
+                m = Integer.parseInt(obiad.getText().toString().substring(3,5));
+
+                int time3 = m + h*100;
+
+                if(time1 < time2 && time2 < time3) {
+                    viewModel.setSniadanie(godzina, minuta);
+                    sniadanie.setText(viewModel.getStringSniadanie());
+                }
             }
         });
+
         obiadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int godzina = timePicker.getCurrentHour();
                 int minuta = timePicker.getCurrentMinute();
-                viewModel.setObiad(godzina,minuta);
-                obiad.setText(viewModel.getStringObiad());
 
+                int h = Integer.parseInt(sniadanie.getText().toString().substring(0,2));
+                int m = Integer.parseInt(sniadanie.getText().toString().substring(3,5));
+
+                int time1 = m + h*100;
+                int time2 = minuta + godzina * 100;
+
+                h = Integer.parseInt(kolacja.getText().toString().substring(0,2));
+                m = Integer.parseInt(kolacja.getText().toString().substring(3,5));
+
+                int time3 = m + h*100;
+
+                if(time1 < time2 && time2 < time3) {
+                    viewModel.setObiad(godzina, minuta);
+                    obiad.setText(viewModel.getStringObiad());
+                }
             }
         });
+
         kolacjaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int godzina = timePicker.getCurrentHour();
                 int minuta = timePicker.getCurrentMinute();
-                viewModel.setKolacja(godzina,minuta);
-                //kolacja.setText(String.valueOf(viewModel.getKolacja()));
-                kolacja.setText(viewModel.getStringKolacja());
 
+                int h = Integer.parseInt(obiad.getText().toString().substring(0,2));
+                int m = Integer.parseInt(obiad.getText().toString().substring(3,5));
+
+                int time1 = m + h*100;
+                int time2 = minuta + godzina * 100;
+
+                if(time1 < time2) {
+                    viewModel.setKolacja(godzina, minuta);
+                    //kolacja.setText(String.valueOf(viewModel.getKolacja()));
+                    kolacja.setText(viewModel.getStringKolacja());
+                }
             }
         });
 
