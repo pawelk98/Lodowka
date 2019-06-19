@@ -43,7 +43,7 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView==null) {
+
             convertView = inflater.inflate(R.layout.produkt_w_przepisie,parent,false);
             TextView nazwa = convertView.findViewById(R.id.przepisy_nazwa_produktu);
             TextView ilosc_posiadana = convertView.findViewById(R.id.przepisy_ilosc_posiadana_produktu);
@@ -131,8 +131,6 @@ public class ProduktyInPrzepisAdapter extends BaseAdapter {
             }
             if(produktInPrzepis.get(position).isOpcjonalny()==true)
                 checkBox.setChecked(true);
-
-        }
 
         return convertView;
     }
