@@ -45,6 +45,7 @@
         android:ems="10"
         android:hint="Ilosc"
         android:inputType="numberDecimal"
+        android:text="0"
         app:layout_constraintEnd_toStartOf="@id/spinner_prod_edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produktEditNazwaEditText" />

@@ -8,7 +8,7 @@
 
     <CheckBox
         android:id="@+id/nazwaCheckBox"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
 
@@ -20,13 +20,14 @@
 
     <EditText
         android:id="@+id/ilosc_produktu_w_przepisie"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:inputType="numberDecimal"
         android:minWidth="60dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nazwaCheckBox"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +35,7 @@
 
     <TextView
         android:id="@+id/typ_dodawanie_do_przepisow"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
@@ -46,13 +47,13 @@
 
     <CheckBox
         android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="172dp"
         android:layout_marginBottom="8dp"
-        android:text="Opcjonalny"
+        android:text="opc."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

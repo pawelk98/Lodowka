@@ -97,12 +97,14 @@
 
             <RadioGroup
                 android:id="@+id/radioGroupAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_width="154dp"
+                android:layout_height="173dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zmienOpis">
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/zmienOpis"
+                app:layout_constraintTop_toBottomOf="@+id/zmienTajm">
 
                 <RadioButton
                     android:id="@+id/radioSniadanie"
@@ -158,21 +160,20 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Czas"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edytujRecipke" />
 
             <EditText
                 android:id="@+id/zmienOpis"
-                android:layout_width="0dp"
-                android:layout_height="75dp"
+                android:layout_width="176dp"
+                android:layout_height="176dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
                 android:gravity="top|left"
                 android:lines="8"
                 android:minLines="4"
                 android:text="Opis"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/zmienTajm" />
 
@@ -181,11 +182,11 @@
                 android:layout_width="395dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupAdd" />
+                app:layout_constraintTop_toBottomOf="@+id/zmienOpis" />
 
             <Button
                 android:id="@+id/usunBaton"

@@ -31,11 +31,12 @@
 
         <TextView
             android:id="@+id/iloscpos"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="124dp"
+            android:layout_marginStart="27dp"
             android:layout_marginTop="8dp"
             android:text="Posiadane"
+            android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/nazwa"
@@ -54,12 +55,13 @@
 
         <TextView
             android:id="@+id/nazwa"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:text="Produkt"
+            android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,11 +80,12 @@
 
         <TextView
             android:id="@+id/iloscpocz"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="22dp"
             android:layout_marginTop="8dp"
             android:text="Potrzebne"
+            android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/iloscpos"
@@ -124,7 +127,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -153,7 +156,7 @@
 
                 </ListView>
             </android.support.constraint.ConstraintLayout>
-        </ScrollView>
+        </FrameLayout>
 
         <Button
             android:id="@+id/cookNow"
@@ -202,7 +205,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="8dp"
             android:text="Opcjonalny"
             android:textColor="@color/colorText"
