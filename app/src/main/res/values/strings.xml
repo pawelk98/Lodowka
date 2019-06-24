@@ -38,9 +38,7 @@
     W celu osadzenia, parówki wieszamy na kijach na 1 godzinę w temperaturze pokojowej. Wędzimy y w temperaturze 30 -40 ˚C przez 1-2 h, do uzyskania jasnej barwy. Uwędzone parówki parzymy przez 10-15 min. w temperaturze 70-72˚C, a następnie po sparzeniu studzimy w zimnej wodzie. Po tym rozwieszamy na kijach w celu osuszenia.
     </string>
 
-    <string name="intro">Witaj w eFridge!</string>
-
-    <string name="intro4">Aplikacja została stworzona dla osób lubiących gotować, by ułatwić i uprzyjemnić zabawę w kuchni.
-        Z jej pomocą można z łatwością sporządzić mobilny spis produktów spożywczych, oraz przechowywać ulubione przepisy. </string>
+    <string name="logo">eFridge</string>
+    <string name="intro">Może skusisz się na:</string>
 
 </resources>
