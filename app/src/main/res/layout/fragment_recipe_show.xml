@@ -31,14 +31,16 @@
 
         <TextView
             android:id="@+id/iloscpos"
-            android:layout_width="60dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Posiadane"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/iloscpocz"
             app:layout_constraintStart_toEndOf="@+id/nazwa"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -82,13 +84,13 @@
             android:id="@+id/iloscpocz"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Potrzebne"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/iloscpos"
+            app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -173,6 +175,7 @@
             android:layout_height="26dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="24dp"
+            android:gravity="center"
             android:text="Porcje:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ilosc_porcji" />
@@ -204,12 +207,12 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Opcjonalny"
             android:textColor="@color/colorText"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/iloscpocz"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
         <TextView

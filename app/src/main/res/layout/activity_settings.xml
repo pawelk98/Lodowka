@@ -51,11 +51,11 @@
                 android:id="@+id/buttonNoc"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
                 android:text="Nocny"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/czasSniadanie" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/czasObiad" />
 
             <TextView
                 android:id="@+id/czasObiad"
@@ -81,11 +81,11 @@
                 android:id="@+id/buttonKolacja"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="80dp"
                 android:text="kolacja"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/czasObiad" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/czasSniadanie" />
 
             <TextView
                 android:id="@+id/czasSniadanie"
