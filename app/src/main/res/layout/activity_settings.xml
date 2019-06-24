@@ -6,113 +6,138 @@
     android:layout_height="match_parent"
     tools:context=".settings">
 
-    <include
-         layout="@layout/toolbar"
-        android:id="@+id/toolbar"/>
-
-    <Button
-        android:id="@+id/resetButton"
-        android:layout_width="186dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="RESETUJ"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        tools:layout_editor_absoluteY="-62dp">
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:headerBackground="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resetButton"
-        />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/buttonNoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Nocny"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:headerBackground="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
 
-    <Button
-        android:id="@+id/buttonSniadanie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="sniadanie"
-        app:layout_constraintStart_toEndOf="@+id/buttonNoc"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+            <Button
+                android:id="@+id/buttonSniadanie"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="8dp"
+                android:text="sniadanie"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
-    <Button
-        android:id="@+id/buttonObiad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="obiad"
-        app:layout_constraintStart_toEndOf="@+id/buttonSniadanie"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+            <TextView
+                android:id="@+id/czasNoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/buttonNoc"
+                app:layout_constraintStart_toStartOf="@+id/buttonNoc"
+                app:layout_constraintTop_toBottomOf="@+id/buttonNoc" />
 
-    <Button
-        android:id="@+id/buttonKolacja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="kolacja"
-        app:layout_constraintStart_toEndOf="@+id/buttonObiad"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+            <Button
+                android:id="@+id/buttonNoc"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="8dp"
+                android:text="Nocny"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/czasSniadanie" />
 
-    <TextView
-        android:id="@+id/czasNoc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNoc" />
+            <TextView
+                android:id="@+id/czasObiad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/buttonObiad"
+                app:layout_constraintStart_toStartOf="@+id/buttonObiad"
+                app:layout_constraintTop_toBottomOf="@+id/buttonObiad" />
 
-    <TextView
-        android:id="@+id/czasSniadanie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/czasNoc"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSniadanie" />
+            <Button
+                android:id="@+id/buttonObiad"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
+                android:text="obiad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
-    <TextView
-        android:id="@+id/czasObiad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/czasSniadanie"
-        app:layout_constraintTop_toBottomOf="@+id/buttonObiad" />
+            <Button
+                android:id="@+id/buttonKolacja"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="80dp"
+                android:text="kolacja"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/czasObiad" />
 
-    <TextView
-        android:id="@+id/czasKolacja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/czasObiad"
-        app:layout_constraintTop_toBottomOf="@+id/buttonKolacja" />
+            <TextView
+                android:id="@+id/czasSniadanie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/buttonSniadanie"
+                app:layout_constraintStart_toStartOf="@+id/buttonSniadanie"
+                app:layout_constraintTop_toBottomOf="@+id/buttonSniadanie" />
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="107dp" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/frameLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="#8BC34A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="186dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="RESETUJ"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/czasKolacja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/buttonKolacja"
+                app:layout_constraintStart_toStartOf="@+id/buttonKolacja"
+                app:layout_constraintTop_toBottomOf="@+id/buttonKolacja" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
