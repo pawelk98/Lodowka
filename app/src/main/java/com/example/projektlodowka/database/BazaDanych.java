@@ -133,35 +133,63 @@ public abstract class BazaDanych extends RoomDatabase {
 
 
 
-                insertPrzepis("parówki", 10, "Wrzuć do gotującej się wody parówki", 0);
-                insertProduktPrzepis("parówki", "parówki", 4000, false);
-                insertProduktPrzepis("bułki", "parówki", 1000, true);
+                insertPrzepis("Parówki z ketchupem", 10, "Wrzuć do gotującej się wody parówki. Gotuj pięć minut we wrzącej wodzie." + "Podawaj z chlebem i keczupem. Ewentualnie można też użyć musztardy.", 0);
+                insertProduktPrzepis("parówki", "Parówki z ketchupem", 4000, false);
+                insertProduktPrzepis("bułki", "Parówki z ketchupem", 1000, true);
+                insertProduktPrzepis("ketchup","Parówki z ketchupem", 2000, false);
 
-                insertPrzepis("kartofle z kefirem", 30, "Zagotuj dobrze obrane kartofle, rozgnieć je tym takim do ziemniaków. " +
-                        "Posól wedle uznania oraz zalej kefirem.", 2);
-                insertProduktPrzepis("ziemniaki", "kartofle z kefirem", 700, false);
-                insertProduktPrzepis("kefir", "kartofle z kefirem", 350, false);
+                insertPrzepis("Kartofle z kefirem", 30, "Ziemniaki obierz a następnie gotuj dopóki nie zmiękną. W przypadku młodych ziemniaków pogruchotaj je, jeśli są stare utłucz je na puree." +
+                        "Posól wedle uznania oraz zalej kefirem. Udekoruj koperkiem dla smaku.", 2);
+                insertProduktPrzepis("ziemniaki", "Kartofle z kefirem", 700, false);
+                insertProduktPrzepis("kefir", "Kartofle z kefirem", 350, false);
+                insertProduktPrzepis("koperek", "Kartofle z kefirem", 100, true);
 
-                insertPrzepis("kanapki ze szprotami", 10, "Chlebek boży posmaruj masełkiem i połóż na nim starannie " +
-                        "rozgniecione widelcem szproty.", 4);
-                insertProduktPrzepis("szproty w pomidorach", "kanapki ze szprotami", 1000, false);
-                insertProduktPrzepis("chleb", "kanapki ze szprotami", 300, false);
+                insertPrzepis("Kanapki ze szprotami", 10, "Chleb posmaruj masłem oraz połóż na nim starannie " +
+                        "rozgniecione widelcem szproty." + "Dla smaku możesz położyć na nich ser biały.", 4);
+                insertProduktPrzepis("szproty w pomidorach", "Kanapki ze szprotami", 1000, false);
+                insertProduktPrzepis("chleb", "Kanapki ze szprotami", 300, false);
+                insertProduktPrzepis("ser biały", "Kartofle z kefirem", 900, true);
 
-                insertPrzepis("spaghetti", 40, "Usmaż mięso na patelni, dodaj przecier i duś na wolnym ogniu. " +
-                        "Jeżeli masz ochotę dodaj zioła prowansalskie." + "Makaron wrzuć do gotującej się wody i gotuj na wolnym ogniu około 8 minut czasem mieszając", 2);
-                insertProduktPrzepis("mięso mielone", "spaghetti", 200, false);
-                insertProduktPrzepis("przecier pomidorowy", "spaghetti", 300, false);
-                insertProduktPrzepis("makaron", "spaghetti", 250, false);
-                insertProduktPrzepis("zioła prowansalskie", "spaghetti", 300, true);
+                insertPrzepis("Spaghetti bolongese", 40, "Na patelni podgrzej olej i zeszlij cebulę oraz czosnek. Dodaj mięso mielone i podsmaż je. " + "Dodaj przecier pomidorowy i duś na wolnym ogniu." +
+                        "Jeżeli masz ochotę dodaj zioła prowansalskie." + "Makaron wrzuć do gotującej się wody i gotuj na wolnym ogniu około 8 minut mieszając od czasu do " + "Odcedź makaron i połóż go na talerzu wraz z sosem.", 2);
+                insertProduktPrzepis("mięso mielone", "Spaghetti bolongese", 200, false);
+                insertProduktPrzepis("cebula", "Spaghetti bolongese", 1000, false);
+                insertProduktPrzepis("czosnek", "Spaghetti bolongese", 400, false);
+                insertProduktPrzepis("przecier pomidorowy", "Spaghetti bolongese", 300, false);
+                insertProduktPrzepis("makaron", "Spaghetti bolongese", 250, false);
+                insertProduktPrzepis("zioła prowansalskie", "Spaghetti bolongese", 300, true);
 
-                insertPrzepis("schab w sosie własnym", 60, "Schab pokrój w plastry około 5cm, włóż do naczynia żaroodpornego wraz z pokrojoną cebulą i piecz przez 60 minut w 190 stopniach", 2);
-                insertProduktPrzepis("schab", "schab w sosie własnym", 500, false);
-                insertProduktPrzepis("cebula", "schab w sosie własnym", 1000, false);
+                insertPrzepis("Schab w sosie własnym", 60, "Schab pokroić w plastry o grubości 1-2 cm" +
+                        "Kawałki mięsa położyć na suchej dobrze nagrzanej patelni; Mięso powinno prawie,że się przypalić, nabrać koloru mocno brązowego z obydwu stron, to właśnie te przypalone soki nadadzą wyjątkowego smaku sosowi;Proszę się nie martwić suchością i przypalenizną, podczas duszenia mięso nabierze konsystencji takiej,że będzie się rozpływać w buzi.\n" +
+                        "Gdy mięso jest dość dobrze przyrumienione, dodać posiekaną cebulkę i zalać wodą tak by przykrywało mięso, doprawić solą i pieprzem do smaku; Przykryć pokrywką i dusić na małym ogniu ok 40-60 minut. W razie potrzeby dolać wody (gdyby się wygotowała)\n" +
+                        "Gdy mięso jest mięciutkie, zagęścić sos łyżką mąki wymieszaną z 50 ml zimnej wody; Następnie dodać łyżkę śmietany, posiekaną natkę pietruszki,zamięszać i wyłączyć zródło ciepła;\n" +
+                        "Sos i schab gotowy - smacznego!", 2);
+                insertProduktPrzepis("schab", "Schab w sosie własnym", 500, false);
+                insertProduktPrzepis("cebula", "Schab w sosie własnym", 1000, false);
+                insertProduktPrzepis("mąka", "Schab w sosie własnym", 50, false);
+                insertProduktPrzepis("śmietana", "Schab w sosie własnym", 50, false);
+                insertProduktPrzepis("natka pietruszki", "Schab w sosie własnym", 1000, false);
 
-                insertPrzepis("zupa fasolowa", 40, "Do garnka z 3 litrami wody dodaj fasole i zagotuj, ziemniaki pokrój w małą kostkę i dorzuć do gotującej się wody", 2);
-                insertProduktPrzepis("ziemniaki", "zupa fasolowa", 200, false);
-                insertProduktPrzepis("fasola czarna", "zupa fasolowa", 200, false);
-                insertProduktPrzepis("fasola biała", "zupa fasolowa", 200, false);
+                insertPrzepis("Zupa fasolowa", 40, "Dzień wcześniej namoczyć fasolę: wsypać do garnka, zalać zimną wodą w ilości około 1 litra i odstawić na całą noc do napęcznienia.\n" +
+                        "Następnego dnia odcedzić fasolę. Do dużego garnka włożyć pokrojone na 2 - 3 kawałki żeberka, wlać 2,5 litra wody, dodać fasolę oraz łyżeczkę soli. Zagotować, zszumować, zmniejszyć ogień i gotować pod przykryciem przez ok. 1 godzinę i 15 minut.\n" +
+                        "Dodać 1 obraną marchewkę (drugą obrać, zetrzeć na tarce o dużych oczkach i odłożyć na później), obraną pietruszkę, kawałek korzenia selera oraz ziela angielskie i listek laurowy. Gotować przez 15 minut.\n" +
+                        "Odkroić skórkę z boczku, wykroić białe chrząstki, pokroić w kosteczkę. Włożyć na patelnię i co chwilę mieszając podsmażyć na złoty kolor. Dodać pokrojoną w kosteczkę cebulę i mieszając smażyć przez ok. 5 minut. Pod koniec dodać rozgnieciony czosnek. Przełożyć do garnka z wywarem wypłukując patelnię częścią wywaru.\n" +
+                        "Do zupy dodać odłożoną startą marchewkę, doprawić świeżo zmielonym pieprzem i w razie potrzeby solą. Gotować 10 minut.\n" +
+                        "Ziemniaki obrać i pokroić w kosteczkę, dodać do zupy. Gotować przez 1/2 godziny. Na koniec dodać majeranek i chwilę pogotować. Podawać z pieczywem.", 2);
+                insertProduktPrzepis("ziemniaki", "Zupa fasolowa", 200, false);
+                insertProduktPrzepis("żeberko wołowe", "Zupa fasolowa", 500, false);
+                insertProduktPrzepis("marchewka", "Zupa fasolowa", 100, false);
+                insertProduktPrzepis("pietruszka", "Zupa fasolowa", 100, false);
+                insertProduktPrzepis("seler", "Zupa fasolowa", 100, false);
+                insertProduktPrzepis("ziemniaki", "Zupa fasolowa", 200, false);
+                insertProduktPrzepis("ziele angielskie", "Zupa fasolowa", 50, false);
+                insertProduktPrzepis("liść laurowy", "Zupa fasolowa", 1000, false);
+                insertProduktPrzepis("boczek", "Zupa fasolowa", 300, false);
+                insertProduktPrzepis("cebula", "Zupa fasolowa", 1000, false);
+                insertProduktPrzepis("czosnek", "Zupa fasolowa", 400, false);
+                insertProduktPrzepis("majeranek", "Zupa fasolowa", 20, false);
+                insertProduktPrzepis("fasola czarna", "Zupa fasolowa", 200, false);
+                insertProduktPrzepis("fasola biała", "Zupa fasolowa", 200, false);
 
             }
             return null;
